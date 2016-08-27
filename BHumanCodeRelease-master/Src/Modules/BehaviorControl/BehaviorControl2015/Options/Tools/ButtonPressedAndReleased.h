@@ -4,6 +4,12 @@
  * @param key The button to observe.
  * @param timeOut An optional timeout in ms. The timeout is measured between state changes.
  */
+ 
+  //pengwanli
+  //按钮按下和抬起，
+  //第一个参数代表按下的按钮，
+  //第二个参数指按钮按下的时间，当超过这个时间，则按按下一次按钮并抬起算
+  //第三个参数指两次按下按钮的时间间隔，少于这个时间间隔，按按下一次算
 option(ButtonPressedAndReleased, ((KeyStates) Key) key, (int) releaseTimeOut, (int) successiveTimeOut)
 {
   /** The option waits for the button to be pressed. */
