@@ -122,6 +122,8 @@ class BehaviorControl2015 : public BehaviorControl2015Base
   Behavior* theBehavior; /**< The behavior with all options and libraries. */
 
 public:
+//pengwanli 200160827
+//构造函数，读.cfg文件
   BehaviorControl2015()
   : behaviorData(const_cast<ActivationGraph&>(theActivationGraph),
                  theBehaviorLEDRequest,
