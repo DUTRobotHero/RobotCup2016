@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeLite_Project Name="SimRobotHelp" InternalType="Console">
+  <Description/>
+  <VirtualDirectory Name="Help">
+    <File Name="../../Util/SimRobot/Src/SimRobotHelp/Help/help.qhp"/>
+    <File Name="../../Util/SimRobot/Src/SimRobotHelp/Help/helpcollection.qhcp"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name=".Qt">
+    <File Name="../../Build/Linux/SimRobotHelp/Develop/qrc_SimRobotHelpDevelopLinux.cpp" ExcludeProjConfig="Debug;Release"/>
+    <File Name="../../Build/Linux/SimRobotHelp/Develop/moc_HelpWidgetDevelopLinux.cpp" ExcludeProjConfig="Debug;Release"/>
+    <File Name="../../Build/Linux/SimRobotHelp/Debug/qrc_SimRobotHelpDebugLinux.cpp" ExcludeProjConfig="Develop;Release"/>
+    <File Name="../../Build/Linux/SimRobotHelp/Debug/moc_HelpWidgetDebugLinux.cpp" ExcludeProjConfig="Develop;Release"/>
+    <File Name="../../Build/Linux/SimRobotHelp/Release/qrc_SimRobotHelpReleaseLinux.cpp" ExcludeProjConfig="Develop;Debug"/>
+    <File Name="../../Build/Linux/SimRobotHelp/Release/moc_HelpWidgetReleaseLinux.cpp" ExcludeProjConfig="Develop;Debug"/>
+  </VirtualDirectory>
+  <File Name="../../Util/SimRobot/Src/SimRobotHelp/HelpModule.cpp"/>
+  <File Name="../../Util/SimRobot/Src/SimRobotHelp/HelpWidget.cpp"/>
+  <File Name="../../Util/SimRobot/Src/SimRobotHelp/HelpModule.h"/>
+  <File Name="../../Util/SimRobot/Src/SimRobotHelp/HelpWidget.h"/>
+  <File Name="../../Util/SimRobot/Src/SimRobotHelp/SimRobotHelp.qrc"/>
+  <Settings Type="Executable">
+    <GlobalSettings>
+      <Compiler Options="" C_Options="">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="">
+        <LibraryPath Value="."/>
+      </Linker>
+      <ResourceCompiler Options=""/>
+    </GlobalSettings>
+    <Configuration Name="Develop" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="" C_Options="" Required="no" PreCompiledHeader=""/>
+      <Linker Options="" Required="no"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="../../Build/Linux/SimRobotHelp/Develop/libSimRobotHelp.so" IntermediateDirectory="../../Build/Linux/SimRobotHelp/Develop" Command="./../../Build/Linux/SimRobotHelp/Develop/libSimRobotHelp.so" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="." PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="yes">
+        <RebuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare rebuild SimRobotHelp config=Develop</RebuildCommand>
+        <CleanCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare clean SimRobotHelp config=Develop</CleanCommand>
+        <BuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare SimRobotHelp config=Develop</BuildCommand>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild>../../Build/Linux/SimRobotHelp/Develop/moc_HelpWidgetDevelopLinux.cpp ../../Build/Linux/SimRobotHelp/Develop/help.qch ../../Build/Linux/SimRobotHelp/Develop/helpcollection.qhc ../../Build/Linux/SimRobotHelp/Develop/qrc_SimRobotHelpDevelopLinux.cpp 
+../../Build/Linux/SimRobotHelp/Develop/moc_HelpWidgetDevelopLinux.cpp: ../../Util/SimRobot/Src/SimRobotHelp/HelpWidget.h
+	moc-qt4 -DLINUX -DNDEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_HELP_LIB -DQT_NO_STL -DQT_NO_DEBUG  -I../../Util/SimRobot/Src/SimRobotHelp -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtHelp -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/QtHelp -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobotHelp/HelpWidget.h -o ../../Build/Linux/SimRobotHelp/Develop/moc_HelpWidgetDevelopLinux.cpp
+../../Build/Linux/SimRobotHelp/Develop/help.qch: ../../Util/SimRobot/Src/SimRobotHelp/Help/help.qhp ../../Util/SimRobot/Src/SimRobotHelp/Help/index.html ../../Util/SimRobot/Src/SimRobotHelp/Help/examples/examples.html ../../Util/SimRobot/Src/SimRobotHelp/Help/console/commands.html ../../Util/SimRobot/Src/SimRobotHelp/Help/api/api.html ../../Util/SimRobot/Src/SimRobotHelp/Help/rosiml/rosi_controller.html ../../Util/SimRobot/Src/SimRobotHelp/Help/rosiml/rosi.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/helpmenu.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/filemenu.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/windowmenu.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/simulationmenu.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/treewindow.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/toolbar.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/editorwindow.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/console.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/viewmenu.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/editmenu.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/interface.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/menus.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/statusbar.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/sensorwindow.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/objectwindow.html ../../Util/SimRobot/Src/SimRobotHelp/Help/faq/faq.html ../../Util/SimRobot/Src/SimRobotHelp/Help/basics/architecture.html ../../Util/SimRobot/Src/SimRobotHelp/Help/basics/quickstart.html ../../Util/SimRobot/Src/SimRobotHelp/Help/basics/physics.html ../../Util/SimRobot/Src/SimRobotHelp/Help/basics/sensing.html ../../Util/SimRobot/Src/SimRobotHelp/Help/basics/specification.html ../../Util/SimRobot/Src/SimRobotHelp/Help/basics/basics.html ../../Util/SimRobot/Src/SimRobotHelp/Help/simrobothelp.css ../../Util/SimRobot/Src/SimRobotHelp/Help/helpcollection.qhcp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_update_view.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_monochrome_image.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_step.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_start.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_line_graph.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_shader_interface.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/status_bar.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_light.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_show_sensors.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/app_exit.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_surface_rendering.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_drag_and_drop_plane.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_cut.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_reset.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_stereogram.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_column_graph.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_grid.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_color_image.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_camera.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_motion_blur.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_open.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_tree_view.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_save.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_help.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_paste.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/crystal_toolbar.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_new.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_copy.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_clock.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_view_item.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_search.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/app_exit_xp.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/architecture.png ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/SimRobot.png
+	bash -c &quot;QT_SELECT=qt4 qhelpgenerator ../../Util/SimRobot/Src/SimRobotHelp/Help/help.qhp -o ../../Build/Linux/SimRobotHelp/Develop/help.qch&quot;
+../../Build/Linux/SimRobotHelp/Develop/helpcollection.qhc: ../../Util/SimRobot/Src/SimRobotHelp/Help/helpcollection.qhcp ../../Build/Linux/SimRobotHelp/Develop/help.qch
+	bash -c &quot;cp ../../Util/SimRobot/Src/SimRobotHelp/Help/helpcollection.qhcp ../../Build/Linux/SimRobotHelp/Develop/helpcollection.qhcp &amp;&amp; QT_SELECT=qt4 qcollectiongenerator ../../Build/Linux/SimRobotHelp/Develop/helpcollection.qhcp -o ../../Build/Linux/SimRobotHelp/Develop/helpcollection.qhc&quot;
+../../Build/Linux/SimRobotHelp/Develop/qrc_SimRobotHelpDevelopLinux.cpp: ../../Util/SimRobot/Src/SimRobotHelp/SimRobotHelp.qrc ../../Util/SimRobot/Src/SimRobotHelp/Icons/help.png ../../Util/SimRobot/Src/SimRobotHelp/Icons/back.png ../../Util/SimRobot/Src/SimRobotHelp/Icons/home.png ../../Util/SimRobot/Src/SimRobotHelp/Icons/forward.png ../../Util/SimRobot/Src/SimRobotHelp/Icons/locate.png
+	rcc -name SimRobotHelp ../../Util/SimRobot/Src/SimRobotHelp/SimRobotHelp.qrc -o ../../Build/Linux/SimRobotHelp/Develop/qrc_SimRobotHelpDevelopLinux.cpp
+</CustomPreBuild>
+      </AdditionalRules>
+    </Configuration>
+    <Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="" C_Options="" Required="no" PreCompiledHeader=""/>
+      <Linker Options="" Required="no"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="../../Build/Linux/SimRobotHelp/Debug/libSimRobotHelp.so" IntermediateDirectory="../../Build/Linux/SimRobotHelp/Debug" Command="./../../Build/Linux/SimRobotHelp/Debug/libSimRobotHelp.so" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="." PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="yes">
+        <RebuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare rebuild SimRobotHelp config=Debug</RebuildCommand>
+        <CleanCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare clean SimRobotHelp config=Debug</CleanCommand>
+        <BuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare SimRobotHelp config=Debug</BuildCommand>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild>../../Build/Linux/SimRobotHelp/Debug/moc_HelpWidgetDebugLinux.cpp ../../Build/Linux/SimRobotHelp/Debug/help.qch ../../Build/Linux/SimRobotHelp/Debug/helpcollection.qhc ../../Build/Linux/SimRobotHelp/Debug/qrc_SimRobotHelpDebugLinux.cpp 
+../../Build/Linux/SimRobotHelp/Debug/moc_HelpWidgetDebugLinux.cpp: ../../Util/SimRobot/Src/SimRobotHelp/HelpWidget.h
+	moc-qt4 -DLINUX -D_DEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_HELP_LIB -DQT_NO_STL  -I../../Util/SimRobot/Src/SimRobotHelp -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtHelp -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/QtHelp -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobotHelp/HelpWidget.h -o ../../Build/Linux/SimRobotHelp/Debug/moc_HelpWidgetDebugLinux.cpp
+../../Build/Linux/SimRobotHelp/Debug/help.qch: ../../Util/SimRobot/Src/SimRobotHelp/Help/help.qhp ../../Util/SimRobot/Src/SimRobotHelp/Help/index.html ../../Util/SimRobot/Src/SimRobotHelp/Help/examples/examples.html ../../Util/SimRobot/Src/SimRobotHelp/Help/console/commands.html ../../Util/SimRobot/Src/SimRobotHelp/Help/api/api.html ../../Util/SimRobot/Src/SimRobotHelp/Help/rosiml/rosi_controller.html ../../Util/SimRobot/Src/SimRobotHelp/Help/rosiml/rosi.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/helpmenu.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/filemenu.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/windowmenu.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/simulationmenu.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/treewindow.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/toolbar.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/editorwindow.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/console.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/viewmenu.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/editmenu.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/interface.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/menus.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/statusbar.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/sensorwindow.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/objectwindow.html ../../Util/SimRobot/Src/SimRobotHelp/Help/faq/faq.html ../../Util/SimRobot/Src/SimRobotHelp/Help/basics/architecture.html ../../Util/SimRobot/Src/SimRobotHelp/Help/basics/quickstart.html ../../Util/SimRobot/Src/SimRobotHelp/Help/basics/physics.html ../../Util/SimRobot/Src/SimRobotHelp/Help/basics/sensing.html ../../Util/SimRobot/Src/SimRobotHelp/Help/basics/specification.html ../../Util/SimRobot/Src/SimRobotHelp/Help/basics/basics.html ../../Util/SimRobot/Src/SimRobotHelp/Help/simrobothelp.css ../../Util/SimRobot/Src/SimRobotHelp/Help/helpcollection.qhcp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_update_view.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_monochrome_image.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_step.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_start.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_line_graph.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_shader_interface.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/status_bar.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_light.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_show_sensors.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/app_exit.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_surface_rendering.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_drag_and_drop_plane.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_cut.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_reset.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_stereogram.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_column_graph.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_grid.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_color_image.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_camera.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_motion_blur.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_open.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_tree_view.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_save.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_help.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_paste.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/crystal_toolbar.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_new.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_copy.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_clock.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_view_item.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_search.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/app_exit_xp.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/architecture.png ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/SimRobot.png
+	bash -c &quot;QT_SELECT=qt4 qhelpgenerator ../../Util/SimRobot/Src/SimRobotHelp/Help/help.qhp -o ../../Build/Linux/SimRobotHelp/Debug/help.qch&quot;
+../../Build/Linux/SimRobotHelp/Debug/helpcollection.qhc: ../../Util/SimRobot/Src/SimRobotHelp/Help/helpcollection.qhcp ../../Build/Linux/SimRobotHelp/Debug/help.qch
+	bash -c &quot;cp ../../Util/SimRobot/Src/SimRobotHelp/Help/helpcollection.qhcp ../../Build/Linux/SimRobotHelp/Debug/helpcollection.qhcp &amp;&amp; QT_SELECT=qt4 qcollectiongenerator ../../Build/Linux/SimRobotHelp/Debug/helpcollection.qhcp -o ../../Build/Linux/SimRobotHelp/Debug/helpcollection.qhc&quot;
+../../Build/Linux/SimRobotHelp/Debug/qrc_SimRobotHelpDebugLinux.cpp: ../../Util/SimRobot/Src/SimRobotHelp/SimRobotHelp.qrc ../../Util/SimRobot/Src/SimRobotHelp/Icons/help.png ../../Util/SimRobot/Src/SimRobotHelp/Icons/back.png ../../Util/SimRobot/Src/SimRobotHelp/Icons/home.png ../../Util/SimRobot/Src/SimRobotHelp/Icons/forward.png ../../Util/SimRobot/Src/SimRobotHelp/Icons/locate.png
+	rcc -name SimRobotHelp ../../Util/SimRobot/Src/SimRobotHelp/SimRobotHelp.qrc -o ../../Build/Linux/SimRobotHelp/Debug/qrc_SimRobotHelpDebugLinux.cpp
+</CustomPreBuild>
+      </AdditionalRules>
+    </Configuration>
+    <Configuration Name="Release" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="" C_Options="" Required="no" PreCompiledHeader=""/>
+      <Linker Options="" Required="no"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="../../Build/Linux/SimRobotHelp/Release/libSimRobotHelp.so" IntermediateDirectory="../../Build/Linux/SimRobotHelp/Release" Command="./../../Build/Linux/SimRobotHelp/Release/libSimRobotHelp.so" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="." PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="yes">
+        <RebuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare rebuild SimRobotHelp config=Release</RebuildCommand>
+        <CleanCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare clean SimRobotHelp config=Release</CleanCommand>
+        <BuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare SimRobotHelp config=Release</BuildCommand>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild>../../Build/Linux/SimRobotHelp/Release/moc_HelpWidgetReleaseLinux.cpp ../../Build/Linux/SimRobotHelp/Release/help.qch ../../Build/Linux/SimRobotHelp/Release/helpcollection.qhc ../../Build/Linux/SimRobotHelp/Release/qrc_SimRobotHelpReleaseLinux.cpp 
+../../Build/Linux/SimRobotHelp/Release/moc_HelpWidgetReleaseLinux.cpp: ../../Util/SimRobot/Src/SimRobotHelp/HelpWidget.h
+	moc-qt4 -DLINUX -DNDEBUG -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_HELP_LIB -DQT_NO_STL -DQT_NO_DEBUG  -I../../Util/SimRobot/Src/SimRobotHelp -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtHelp -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/QtHelp -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobotHelp/HelpWidget.h -o ../../Build/Linux/SimRobotHelp/Release/moc_HelpWidgetReleaseLinux.cpp
+../../Build/Linux/SimRobotHelp/Release/help.qch: ../../Util/SimRobot/Src/SimRobotHelp/Help/help.qhp ../../Util/SimRobot/Src/SimRobotHelp/Help/index.html ../../Util/SimRobot/Src/SimRobotHelp/Help/examples/examples.html ../../Util/SimRobot/Src/SimRobotHelp/Help/console/commands.html ../../Util/SimRobot/Src/SimRobotHelp/Help/api/api.html ../../Util/SimRobot/Src/SimRobotHelp/Help/rosiml/rosi_controller.html ../../Util/SimRobot/Src/SimRobotHelp/Help/rosiml/rosi.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/helpmenu.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/filemenu.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/windowmenu.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/simulationmenu.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/treewindow.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/toolbar.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/editorwindow.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/console.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/viewmenu.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/editmenu.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/interface.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/menus.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/statusbar.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/sensorwindow.html ../../Util/SimRobot/Src/SimRobotHelp/Help/interface/objectwindow.html ../../Util/SimRobot/Src/SimRobotHelp/Help/faq/faq.html ../../Util/SimRobot/Src/SimRobotHelp/Help/basics/architecture.html ../../Util/SimRobot/Src/SimRobotHelp/Help/basics/quickstart.html ../../Util/SimRobot/Src/SimRobotHelp/Help/basics/physics.html ../../Util/SimRobot/Src/SimRobotHelp/Help/basics/sensing.html ../../Util/SimRobot/Src/SimRobotHelp/Help/basics/specification.html ../../Util/SimRobot/Src/SimRobotHelp/Help/basics/basics.html ../../Util/SimRobot/Src/SimRobotHelp/Help/simrobothelp.css ../../Util/SimRobot/Src/SimRobotHelp/Help/helpcollection.qhcp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_update_view.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_monochrome_image.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_step.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_start.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_line_graph.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_shader_interface.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/status_bar.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_light.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_show_sensors.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/app_exit.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_surface_rendering.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_drag_and_drop_plane.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_cut.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_reset.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_stereogram.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_column_graph.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_grid.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_color_image.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_camera.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_motion_blur.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_open.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_tree_view.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_save.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_help.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_paste.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/crystal_toolbar.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_new.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_copy.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_clock.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_view_item.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/toolbar_search.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/app_exit_xp.bmp ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/architecture.png ../../Util/SimRobot/Src/SimRobotHelp/Help/Icons/SimRobot.png
+	bash -c &quot;QT_SELECT=qt4 qhelpgenerator ../../Util/SimRobot/Src/SimRobotHelp/Help/help.qhp -o ../../Build/Linux/SimRobotHelp/Release/help.qch&quot;
+../../Build/Linux/SimRobotHelp/Release/helpcollection.qhc: ../../Util/SimRobot/Src/SimRobotHelp/Help/helpcollection.qhcp ../../Build/Linux/SimRobotHelp/Release/help.qch
+	bash -c &quot;cp ../../Util/SimRobot/Src/SimRobotHelp/Help/helpcollection.qhcp ../../Build/Linux/SimRobotHelp/Release/helpcollection.qhcp &amp;&amp; QT_SELECT=qt4 qcollectiongenerator ../../Build/Linux/SimRobotHelp/Release/helpcollection.qhcp -o ../../Build/Linux/SimRobotHelp/Release/helpcollection.qhc&quot;
+../../Build/Linux/SimRobotHelp/Release/qrc_SimRobotHelpReleaseLinux.cpp: ../../Util/SimRobot/Src/SimRobotHelp/SimRobotHelp.qrc ../../Util/SimRobot/Src/SimRobotHelp/Icons/help.png ../../Util/SimRobot/Src/SimRobotHelp/Icons/back.png ../../Util/SimRobot/Src/SimRobotHelp/Icons/home.png ../../Util/SimRobot/Src/SimRobotHelp/Icons/forward.png ../../Util/SimRobot/Src/SimRobotHelp/Icons/locate.png
+	rcc -name SimRobotHelp ../../Util/SimRobot/Src/SimRobotHelp/SimRobotHelp.qrc -o ../../Build/Linux/SimRobotHelp/Release/qrc_SimRobotHelpReleaseLinux.cpp
+</CustomPreBuild>
+      </AdditionalRules>
+    </Configuration>
+  </Settings>
+  <Dependencies Name="Develop">
+  </Dependencies>
+  <Dependencies Name="Debug">
+  </Dependencies>
+  <Dependencies Name="Release">
+  </Dependencies>
+</CodeLite_Project>

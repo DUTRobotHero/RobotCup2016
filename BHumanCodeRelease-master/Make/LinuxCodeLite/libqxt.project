@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeLite_Project Name="libqxt" InternalType="Console">
+  <Description/>
+  <VirtualDirectory Name=".Qt">
+    <File Name="../../Build/Linux/libqxt/Develop/moc_qxtspansliderDevelopLinux.cpp" ExcludeProjConfig="Debug;Release"/>
+    <File Name="../../Build/Linux/libqxt/Develop/moc_qxtspanslider_pDevelopLinux.cpp" ExcludeProjConfig="Debug;Release"/>
+    <File Name="../../Build/Linux/libqxt/Debug/moc_qxtspansliderDebugLinux.cpp" ExcludeProjConfig="Develop;Release"/>
+    <File Name="../../Build/Linux/libqxt/Debug/moc_qxtspanslider_pDebugLinux.cpp" ExcludeProjConfig="Develop;Release"/>
+    <File Name="../../Build/Linux/libqxt/Release/moc_qxtspansliderReleaseLinux.cpp" ExcludeProjConfig="Develop;Debug"/>
+    <File Name="../../Build/Linux/libqxt/Release/moc_qxtspanslider_pReleaseLinux.cpp" ExcludeProjConfig="Develop;Debug"/>
+  </VirtualDirectory>
+  <File Name="../../Util/libqxt/qxtspanslider.cpp"/>
+  <File Name="../../Util/libqxt/qxtspanslider.h"/>
+  <File Name="../../Util/libqxt/qxtspanslider_p.h"/>
+  <Settings Type="Executable">
+    <GlobalSettings>
+      <Compiler Options="" C_Options="">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="">
+        <LibraryPath Value="."/>
+      </Linker>
+      <ResourceCompiler Options=""/>
+    </GlobalSettings>
+    <Configuration Name="Develop" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Static Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="" C_Options="" Required="no" PreCompiledHeader=""/>
+      <Linker Options="" Required="no"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="../../Build/Linux/libqxt/Develop/libqxt.a" IntermediateDirectory="../../Build/Linux/libqxt/Develop" Command="./../../Build/Linux/libqxt/Develop/libqxt.a" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="." PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="yes">
+        <RebuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare rebuild libqxt config=Develop</RebuildCommand>
+        <CleanCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare clean libqxt config=Develop</CleanCommand>
+        <BuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare libqxt config=Develop</BuildCommand>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild>../../Build/Linux/libqxt/Develop/moc_qxtspansliderDevelopLinux.cpp ../../Build/Linux/libqxt/Develop/moc_qxtspanslider_pDevelopLinux.cpp 
+../../Build/Linux/libqxt/Develop/moc_qxtspansliderDevelopLinux.cpp: ../../Util/libqxt/qxtspanslider.h
+	moc-qt4 -DLINUX -DNDEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQXT_STATIC -DQT_NO_DEBUG  -I../../Build/Linux/libqxt/Develop -I../../Util/libqxt -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/Qt ../../Util/libqxt/qxtspanslider.h -o ../../Build/Linux/libqxt/Develop/moc_qxtspansliderDevelopLinux.cpp
+../../Build/Linux/libqxt/Develop/moc_qxtspanslider_pDevelopLinux.cpp: ../../Util/libqxt/qxtspanslider_p.h
+	moc-qt4 -DLINUX -DNDEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQXT_STATIC -DQT_NO_DEBUG  -I../../Build/Linux/libqxt/Develop -I../../Util/libqxt -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/Qt ../../Util/libqxt/qxtspanslider_p.h -o ../../Build/Linux/libqxt/Develop/moc_qxtspanslider_pDevelopLinux.cpp
+</CustomPreBuild>
+      </AdditionalRules>
+    </Configuration>
+    <Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Static Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="" C_Options="" Required="no" PreCompiledHeader=""/>
+      <Linker Options="" Required="no"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="../../Build/Linux/libqxt/Debug/libqxt.a" IntermediateDirectory="../../Build/Linux/libqxt/Debug" Command="./../../Build/Linux/libqxt/Debug/libqxt.a" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="." PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="yes">
+        <RebuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare rebuild libqxt config=Debug</RebuildCommand>
+        <CleanCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare clean libqxt config=Debug</CleanCommand>
+        <BuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare libqxt config=Debug</BuildCommand>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild>../../Build/Linux/libqxt/Debug/moc_qxtspansliderDebugLinux.cpp ../../Build/Linux/libqxt/Debug/moc_qxtspanslider_pDebugLinux.cpp 
+../../Build/Linux/libqxt/Debug/moc_qxtspansliderDebugLinux.cpp: ../../Util/libqxt/qxtspanslider.h
+	moc-qt4 -DLINUX -D_DEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQXT_STATIC  -I../../Build/Linux/libqxt/Debug -I../../Util/libqxt -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/Qt ../../Util/libqxt/qxtspanslider.h -o ../../Build/Linux/libqxt/Debug/moc_qxtspansliderDebugLinux.cpp
+../../Build/Linux/libqxt/Debug/moc_qxtspanslider_pDebugLinux.cpp: ../../Util/libqxt/qxtspanslider_p.h
+	moc-qt4 -DLINUX -D_DEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQXT_STATIC  -I../../Build/Linux/libqxt/Debug -I../../Util/libqxt -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/Qt ../../Util/libqxt/qxtspanslider_p.h -o ../../Build/Linux/libqxt/Debug/moc_qxtspanslider_pDebugLinux.cpp
+</CustomPreBuild>
+      </AdditionalRules>
+    </Configuration>
+    <Configuration Name="Release" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Static Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="" C_Options="" Required="no" PreCompiledHeader=""/>
+      <Linker Options="" Required="no"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="../../Build/Linux/libqxt/Release/libqxt.a" IntermediateDirectory="../../Build/Linux/libqxt/Release" Command="./../../Build/Linux/libqxt/Release/libqxt.a" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="." PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="yes">
+        <RebuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare rebuild libqxt config=Release</RebuildCommand>
+        <CleanCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare clean libqxt config=Release</CleanCommand>
+        <BuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare libqxt config=Release</BuildCommand>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild>../../Build/Linux/libqxt/Release/moc_qxtspansliderReleaseLinux.cpp ../../Build/Linux/libqxt/Release/moc_qxtspanslider_pReleaseLinux.cpp 
+../../Build/Linux/libqxt/Release/moc_qxtspansliderReleaseLinux.cpp: ../../Util/libqxt/qxtspanslider.h
+	moc-qt4 -DLINUX -DNDEBUG -DQXT_STATIC -DQT_NO_DEBUG  -I../../Build/Linux/libqxt/Release -I../../Util/libqxt -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/Qt ../../Util/libqxt/qxtspanslider.h -o ../../Build/Linux/libqxt/Release/moc_qxtspansliderReleaseLinux.cpp
+../../Build/Linux/libqxt/Release/moc_qxtspanslider_pReleaseLinux.cpp: ../../Util/libqxt/qxtspanslider_p.h
+	moc-qt4 -DLINUX -DNDEBUG -DQXT_STATIC -DQT_NO_DEBUG  -I../../Build/Linux/libqxt/Release -I../../Util/libqxt -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/Qt ../../Util/libqxt/qxtspanslider_p.h -o ../../Build/Linux/libqxt/Release/moc_qxtspanslider_pReleaseLinux.cpp
+</CustomPreBuild>
+      </AdditionalRules>
+    </Configuration>
+  </Settings>
+  <Dependencies Name="Develop">
+  </Dependencies>
+  <Dependencies Name="Debug">
+  </Dependencies>
+  <Dependencies Name="Release">
+  </Dependencies>
+</CodeLite_Project>

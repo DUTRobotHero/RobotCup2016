@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeLite_Project Name="SimRobot" InternalType="Console">
+  <Description/>
+  <VirtualDirectory Name=".copy">
+    <File Name="../../Build/Linux/SimRobotHelp/Develop/help.qch" ExcludeProjConfig="Debug;Release"/>
+    <File Name="../../Build/Linux/SimRobotHelp/Develop/helpcollection.qhc" ExcludeProjConfig="Debug;Release"/>
+    <File Name="../../Build/Linux/SimRobotCore2/Develop/libSimRobotCore2.so" ExcludeProjConfig="Debug;Release"/>
+    <File Name="../../Build/Linux/SimRobotEditor/Develop/libSimRobotEditor.so" ExcludeProjConfig="Debug;Release"/>
+    <File Name="../../Build/Linux/SimRobotHelp/Develop/libSimRobotHelp.so" ExcludeProjConfig="Debug;Release"/>
+    <File Name="../../Build/Linux/SimulatedNao/Develop/libSimulatedNao.so" ExcludeProjConfig="Debug;Release"/>
+    <File Name="../../Build/Linux/SimRobotHelp/Debug/help.qch" ExcludeProjConfig="Develop;Release"/>
+    <File Name="../../Build/Linux/SimRobotHelp/Debug/helpcollection.qhc" ExcludeProjConfig="Develop;Release"/>
+    <File Name="../../Build/Linux/SimRobotCore2/Debug/libSimRobotCore2.so" ExcludeProjConfig="Develop;Release"/>
+    <File Name="../../Build/Linux/SimRobotEditor/Debug/libSimRobotEditor.so" ExcludeProjConfig="Develop;Release"/>
+    <File Name="../../Build/Linux/SimRobotHelp/Debug/libSimRobotHelp.so" ExcludeProjConfig="Develop;Release"/>
+    <File Name="../../Build/Linux/SimulatedNao/Debug/libSimulatedNao.so" ExcludeProjConfig="Develop;Release"/>
+    <File Name="../../Build/Linux/SimRobotHelp/Release/help.qch" ExcludeProjConfig="Develop;Debug"/>
+    <File Name="../../Build/Linux/SimRobotHelp/Release/helpcollection.qhc" ExcludeProjConfig="Develop;Debug"/>
+    <File Name="../../Build/Linux/SimRobotCore2/Release/libSimRobotCore2.so" ExcludeProjConfig="Develop;Debug"/>
+    <File Name="../../Build/Linux/SimRobotEditor/Release/libSimRobotEditor.so" ExcludeProjConfig="Develop;Debug"/>
+    <File Name="../../Build/Linux/SimRobotHelp/Release/libSimRobotHelp.so" ExcludeProjConfig="Develop;Debug"/>
+    <File Name="../../Build/Linux/SimulatedNao/Release/libSimulatedNao.so" ExcludeProjConfig="Develop;Debug"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name=".Qt">
+    <File Name="../../Build/Linux/SimRobot/Develop/qrc_SimRobotDevelopLinux.cpp" ExcludeProjConfig="Debug;Release"/>
+    <File Name="../../Build/Linux/SimRobot/Develop/moc_MainWindowDevelopLinux.cpp" ExcludeProjConfig="Debug;Release"/>
+    <File Name="../../Build/Linux/SimRobot/Develop/moc_RegisteredDockWidgetDevelopLinux.cpp" ExcludeProjConfig="Debug;Release"/>
+    <File Name="../../Build/Linux/SimRobot/Develop/moc_SceneGraphDockWidgetDevelopLinux.cpp" ExcludeProjConfig="Debug;Release"/>
+    <File Name="../../Build/Linux/SimRobot/Develop/moc_StatusBarDevelopLinux.cpp" ExcludeProjConfig="Debug;Release"/>
+    <File Name="../../Build/Linux/SimRobot/Debug/qrc_SimRobotDebugLinux.cpp" ExcludeProjConfig="Develop;Release"/>
+    <File Name="../../Build/Linux/SimRobot/Debug/moc_MainWindowDebugLinux.cpp" ExcludeProjConfig="Develop;Release"/>
+    <File Name="../../Build/Linux/SimRobot/Debug/moc_RegisteredDockWidgetDebugLinux.cpp" ExcludeProjConfig="Develop;Release"/>
+    <File Name="../../Build/Linux/SimRobot/Debug/moc_SceneGraphDockWidgetDebugLinux.cpp" ExcludeProjConfig="Develop;Release"/>
+    <File Name="../../Build/Linux/SimRobot/Debug/moc_StatusBarDebugLinux.cpp" ExcludeProjConfig="Develop;Release"/>
+    <File Name="../../Build/Linux/SimRobot/Release/qrc_SimRobotReleaseLinux.cpp" ExcludeProjConfig="Develop;Debug"/>
+    <File Name="../../Build/Linux/SimRobot/Release/moc_MainWindowReleaseLinux.cpp" ExcludeProjConfig="Develop;Debug"/>
+    <File Name="../../Build/Linux/SimRobot/Release/moc_RegisteredDockWidgetReleaseLinux.cpp" ExcludeProjConfig="Develop;Debug"/>
+    <File Name="../../Build/Linux/SimRobot/Release/moc_SceneGraphDockWidgetReleaseLinux.cpp" ExcludeProjConfig="Develop;Debug"/>
+    <File Name="../../Build/Linux/SimRobot/Release/moc_StatusBarReleaseLinux.cpp" ExcludeProjConfig="Develop;Debug"/>
+  </VirtualDirectory>
+  <File Name="../../Util/SimRobot/Src/SimRobot/MainWindow.cpp"/>
+  <File Name="../../Util/SimRobot/Src/SimRobot/RegisteredDockWidget.cpp"/>
+  <File Name="../../Util/SimRobot/Src/SimRobot/Main.cpp"/>
+  <File Name="../../Util/SimRobot/Src/SimRobot/StatusBar.cpp"/>
+  <File Name="../../Util/SimRobot/Src/SimRobot/SceneGraphDockWidget.cpp"/>
+  <File Name="../../Util/SimRobot/Src/SimRobot/MainWindow.h"/>
+  <File Name="../../Util/SimRobot/Src/SimRobot/resource.h"/>
+  <File Name="../../Util/SimRobot/Src/SimRobot/SimRobot.h"/>
+  <File Name="../../Util/SimRobot/Src/SimRobot/StatusBar.h"/>
+  <File Name="../../Util/SimRobot/Src/SimRobot/RegisteredDockWidget.h"/>
+  <File Name="../../Util/SimRobot/Src/SimRobot/qtdotnetstyle.h"/>
+  <File Name="../../Util/SimRobot/Src/SimRobot/SceneGraphDockWidget.h"/>
+  <File Name="../../Util/SimRobot/Src/SimRobot/MacFullscreen.h"/>
+  <File Name="../../Util/SimRobot/Src/SimRobot/SimRobot.qrc"/>
+  <Settings Type="Executable">
+    <GlobalSettings>
+      <Compiler Options="" C_Options="">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="">
+        <LibraryPath Value="."/>
+      </Linker>
+      <ResourceCompiler Options=""/>
+    </GlobalSettings>
+    <Configuration Name="Develop" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="" C_Options="" Required="no" PreCompiledHeader=""/>
+      <Linker Options="" Required="no"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="../../Build/Linux/SimRobot/Develop/SimRobot" IntermediateDirectory="../../Build/Linux/SimRobot/Develop" Command="./../../Build/Linux/SimRobot/Develop/SimRobot" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="." PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="yes">
+        <RebuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare rebuild SimRobot config=Develop</RebuildCommand>
+        <CleanCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare clean SimRobot config=Develop</CleanCommand>
+        <BuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare SimRobot config=Develop</BuildCommand>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild>../../Build/Linux/SimRobot/Develop/moc_MainWindowDevelopLinux.cpp ../../Build/Linux/SimRobot/Develop/moc_StatusBarDevelopLinux.cpp ../../Build/Linux/SimRobot/Develop/moc_RegisteredDockWidgetDevelopLinux.cpp ../../Build/Linux/SimRobot/Develop/moc_SceneGraphDockWidgetDevelopLinux.cpp ../../Build/Linux/SimRobot/Develop/help.qch ../../Build/Linux/SimRobot/Develop/helpcollection.qhc ../../Build/Linux/SimRobot/Develop/libSimRobotCore2.so ../../Build/Linux/SimRobot/Develop/libSimRobotEditor.so ../../Build/Linux/SimRobot/Develop/libSimRobotHelp.so ../../Build/Linux/SimRobot/Develop/libSimulatedNao.so ../../Build/Linux/SimRobot/Develop/qrc_SimRobotDevelopLinux.cpp 
+../../Build/Linux/SimRobot/Develop/moc_MainWindowDevelopLinux.cpp: ../../Util/SimRobot/Src/SimRobot/MainWindow.h
+	moc-qt4 -DLINUX -DNDEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_SVG_LIB -DQT_NO_STL -DQT_NO_DEBUG  -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/qt4/QtSvg -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/QtSvg -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobot/MainWindow.h -o ../../Build/Linux/SimRobot/Develop/moc_MainWindowDevelopLinux.cpp
+../../Build/Linux/SimRobot/Develop/moc_StatusBarDevelopLinux.cpp: ../../Util/SimRobot/Src/SimRobot/StatusBar.h
+	moc-qt4 -DLINUX -DNDEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_SVG_LIB -DQT_NO_STL -DQT_NO_DEBUG  -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/qt4/QtSvg -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/QtSvg -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobot/StatusBar.h -o ../../Build/Linux/SimRobot/Develop/moc_StatusBarDevelopLinux.cpp
+../../Build/Linux/SimRobot/Develop/moc_RegisteredDockWidgetDevelopLinux.cpp: ../../Util/SimRobot/Src/SimRobot/RegisteredDockWidget.h
+	moc-qt4 -DLINUX -DNDEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_SVG_LIB -DQT_NO_STL -DQT_NO_DEBUG  -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/qt4/QtSvg -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/QtSvg -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobot/RegisteredDockWidget.h -o ../../Build/Linux/SimRobot/Develop/moc_RegisteredDockWidgetDevelopLinux.cpp
+../../Build/Linux/SimRobot/Develop/moc_SceneGraphDockWidgetDevelopLinux.cpp: ../../Util/SimRobot/Src/SimRobot/SceneGraphDockWidget.h
+	moc-qt4 -DLINUX -DNDEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_SVG_LIB -DQT_NO_STL -DQT_NO_DEBUG  -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/qt4/QtSvg -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/QtSvg -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobot/SceneGraphDockWidget.h -o ../../Build/Linux/SimRobot/Develop/moc_SceneGraphDockWidgetDevelopLinux.cpp
+../../Build/Linux/SimRobot/Develop/help.qch: ../../Build/Linux/SimRobotHelp/Develop/help.qch
+	cp ../../Build/Linux/SimRobotHelp/Develop/help.qch ../../Build/Linux/SimRobot/Develop/help.qch
+../../Build/Linux/SimRobot/Develop/helpcollection.qhc: ../../Build/Linux/SimRobotHelp/Develop/helpcollection.qhc
+	cp ../../Build/Linux/SimRobotHelp/Develop/helpcollection.qhc ../../Build/Linux/SimRobot/Develop/helpcollection.qhc
+../../Build/Linux/SimRobot/Develop/libSimRobotCore2.so: ../../Build/Linux/SimRobotCore2/Develop/libSimRobotCore2.so
+	cp ../../Build/Linux/SimRobotCore2/Develop/libSimRobotCore2.so ../../Build/Linux/SimRobot/Develop/libSimRobotCore2.so
+../../Build/Linux/SimRobot/Develop/libSimRobotEditor.so: ../../Build/Linux/SimRobotEditor/Develop/libSimRobotEditor.so
+	cp ../../Build/Linux/SimRobotEditor/Develop/libSimRobotEditor.so ../../Build/Linux/SimRobot/Develop/libSimRobotEditor.so
+../../Build/Linux/SimRobot/Develop/libSimRobotHelp.so: ../../Build/Linux/SimRobotHelp/Develop/libSimRobotHelp.so
+	cp ../../Build/Linux/SimRobotHelp/Develop/libSimRobotHelp.so ../../Build/Linux/SimRobot/Develop/libSimRobotHelp.so
+../../Build/Linux/SimRobot/Develop/libSimulatedNao.so: ../../Build/Linux/SimulatedNao/Develop/libSimulatedNao.so
+	cp ../../Build/Linux/SimulatedNao/Develop/libSimulatedNao.so ../../Build/Linux/SimRobot/Develop/libSimulatedNao.so
+../../Build/Linux/SimRobot/Develop/qrc_SimRobotDevelopLinux.cpp: ../../Util/SimRobot/Src/SimRobot/SimRobot.qrc ../../Util/SimRobot/Src/SimRobot/Icons/page_paste.png ../../Util/SimRobot/Src/SimRobot/Icons/page_copy.png ../../Util/SimRobot/Src/SimRobot/Icons/textfield.png ../../Util/SimRobot/Src/SimRobot/Icons/tag_green.png ../../Util/SimRobot/Src/SimRobot/Icons/disk.png ../../Util/SimRobot/Src/SimRobot/Icons/arrow_redo.png ../../Util/SimRobot/Src/SimRobot/Icons/control_play_blue.png ../../Util/SimRobot/Src/SimRobot/Icons/control_step_blue.png ../../Util/SimRobot/Src/SimRobot/Icons/SimRobot.png ../../Util/SimRobot/Src/SimRobot/Icons/arrow_undo.png ../../Util/SimRobot/Src/SimRobot/Icons/cut.png ../../Util/SimRobot/Src/SimRobot/Icons/application_side_tree.png ../../Util/SimRobot/Src/SimRobot/Icons/control_start_blue.png ../../Util/SimRobot/Src/SimRobot/Icons/folder.png ../../Util/SimRobot/Src/SimRobot/Icons/folder_page.png
+	rcc -name SimRobot ../../Util/SimRobot/Src/SimRobot/SimRobot.qrc -o ../../Build/Linux/SimRobot/Develop/qrc_SimRobotDevelopLinux.cpp
+</CustomPreBuild>
+      </AdditionalRules>
+    </Configuration>
+    <Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="" C_Options="" Required="no" PreCompiledHeader=""/>
+      <Linker Options="" Required="no"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="../../Build/Linux/SimRobot/Debug/SimRobot" IntermediateDirectory="../../Build/Linux/SimRobot/Debug" Command="./../../Build/Linux/SimRobot/Debug/SimRobot" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="." PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="yes">
+        <RebuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare rebuild SimRobot config=Debug</RebuildCommand>
+        <CleanCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare clean SimRobot config=Debug</CleanCommand>
+        <BuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare SimRobot config=Debug</BuildCommand>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild>../../Build/Linux/SimRobot/Debug/moc_MainWindowDebugLinux.cpp ../../Build/Linux/SimRobot/Debug/moc_StatusBarDebugLinux.cpp ../../Build/Linux/SimRobot/Debug/moc_RegisteredDockWidgetDebugLinux.cpp ../../Build/Linux/SimRobot/Debug/moc_SceneGraphDockWidgetDebugLinux.cpp ../../Build/Linux/SimRobot/Debug/qrc_SimRobotDebugLinux.cpp ../../Build/Linux/SimRobot/Debug/help.qch ../../Build/Linux/SimRobot/Debug/helpcollection.qhc ../../Build/Linux/SimRobot/Debug/libSimRobotCore2.so ../../Build/Linux/SimRobot/Debug/libSimRobotEditor.so ../../Build/Linux/SimRobot/Debug/libSimRobotHelp.so ../../Build/Linux/SimRobot/Debug/libSimulatedNao.so 
+../../Build/Linux/SimRobot/Debug/moc_MainWindowDebugLinux.cpp: ../../Util/SimRobot/Src/SimRobot/MainWindow.h
+	moc-qt4 -DLINUX -D_DEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_SVG_LIB -DQT_NO_STL  -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/qt4/QtSvg -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/QtSvg -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobot/MainWindow.h -o ../../Build/Linux/SimRobot/Debug/moc_MainWindowDebugLinux.cpp
+../../Build/Linux/SimRobot/Debug/moc_StatusBarDebugLinux.cpp: ../../Util/SimRobot/Src/SimRobot/StatusBar.h
+	moc-qt4 -DLINUX -D_DEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_SVG_LIB -DQT_NO_STL  -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/qt4/QtSvg -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/QtSvg -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobot/StatusBar.h -o ../../Build/Linux/SimRobot/Debug/moc_StatusBarDebugLinux.cpp
+../../Build/Linux/SimRobot/Debug/moc_RegisteredDockWidgetDebugLinux.cpp: ../../Util/SimRobot/Src/SimRobot/RegisteredDockWidget.h
+	moc-qt4 -DLINUX -D_DEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_SVG_LIB -DQT_NO_STL  -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/qt4/QtSvg -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/QtSvg -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobot/RegisteredDockWidget.h -o ../../Build/Linux/SimRobot/Debug/moc_RegisteredDockWidgetDebugLinux.cpp
+../../Build/Linux/SimRobot/Debug/moc_SceneGraphDockWidgetDebugLinux.cpp: ../../Util/SimRobot/Src/SimRobot/SceneGraphDockWidget.h
+	moc-qt4 -DLINUX -D_DEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_SVG_LIB -DQT_NO_STL  -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/qt4/QtSvg -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/QtSvg -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobot/SceneGraphDockWidget.h -o ../../Build/Linux/SimRobot/Debug/moc_SceneGraphDockWidgetDebugLinux.cpp
+../../Build/Linux/SimRobot/Debug/qrc_SimRobotDebugLinux.cpp: ../../Util/SimRobot/Src/SimRobot/SimRobot.qrc ../../Util/SimRobot/Src/SimRobot/Icons/page_paste.png ../../Util/SimRobot/Src/SimRobot/Icons/page_copy.png ../../Util/SimRobot/Src/SimRobot/Icons/textfield.png ../../Util/SimRobot/Src/SimRobot/Icons/tag_green.png ../../Util/SimRobot/Src/SimRobot/Icons/disk.png ../../Util/SimRobot/Src/SimRobot/Icons/arrow_redo.png ../../Util/SimRobot/Src/SimRobot/Icons/control_play_blue.png ../../Util/SimRobot/Src/SimRobot/Icons/control_step_blue.png ../../Util/SimRobot/Src/SimRobot/Icons/SimRobot.png ../../Util/SimRobot/Src/SimRobot/Icons/arrow_undo.png ../../Util/SimRobot/Src/SimRobot/Icons/cut.png ../../Util/SimRobot/Src/SimRobot/Icons/application_side_tree.png ../../Util/SimRobot/Src/SimRobot/Icons/control_start_blue.png ../../Util/SimRobot/Src/SimRobot/Icons/folder.png ../../Util/SimRobot/Src/SimRobot/Icons/folder_page.png
+	rcc -name SimRobot ../../Util/SimRobot/Src/SimRobot/SimRobot.qrc -o ../../Build/Linux/SimRobot/Debug/qrc_SimRobotDebugLinux.cpp
+../../Build/Linux/SimRobot/Debug/help.qch: ../../Build/Linux/SimRobotHelp/Debug/help.qch
+	cp ../../Build/Linux/SimRobotHelp/Debug/help.qch ../../Build/Linux/SimRobot/Debug/help.qch
+../../Build/Linux/SimRobot/Debug/helpcollection.qhc: ../../Build/Linux/SimRobotHelp/Debug/helpcollection.qhc
+	cp ../../Build/Linux/SimRobotHelp/Debug/helpcollection.qhc ../../Build/Linux/SimRobot/Debug/helpcollection.qhc
+../../Build/Linux/SimRobot/Debug/libSimRobotCore2.so: ../../Build/Linux/SimRobotCore2/Debug/libSimRobotCore2.so
+	cp ../../Build/Linux/SimRobotCore2/Debug/libSimRobotCore2.so ../../Build/Linux/SimRobot/Debug/libSimRobotCore2.so
+../../Build/Linux/SimRobot/Debug/libSimRobotEditor.so: ../../Build/Linux/SimRobotEditor/Debug/libSimRobotEditor.so
+	cp ../../Build/Linux/SimRobotEditor/Debug/libSimRobotEditor.so ../../Build/Linux/SimRobot/Debug/libSimRobotEditor.so
+../../Build/Linux/SimRobot/Debug/libSimRobotHelp.so: ../../Build/Linux/SimRobotHelp/Debug/libSimRobotHelp.so
+	cp ../../Build/Linux/SimRobotHelp/Debug/libSimRobotHelp.so ../../Build/Linux/SimRobot/Debug/libSimRobotHelp.so
+../../Build/Linux/SimRobot/Debug/libSimulatedNao.so: ../../Build/Linux/SimulatedNao/Debug/libSimulatedNao.so
+	cp ../../Build/Linux/SimulatedNao/Debug/libSimulatedNao.so ../../Build/Linux/SimRobot/Debug/libSimulatedNao.so
+</CustomPreBuild>
+      </AdditionalRules>
+    </Configuration>
+    <Configuration Name="Release" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="" C_Options="" Required="no" PreCompiledHeader=""/>
+      <Linker Options="" Required="no"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="../../Build/Linux/SimRobot/Release/SimRobot" IntermediateDirectory="../../Build/Linux/SimRobot/Release" Command="./../../Build/Linux/SimRobot/Release/SimRobot" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="." PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="yes">
+        <RebuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare rebuild SimRobot config=Release</RebuildCommand>
+        <CleanCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare clean SimRobot config=Release</CleanCommand>
+        <BuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare SimRobot config=Release</BuildCommand>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild>../../Build/Linux/SimRobot/Release/moc_MainWindowReleaseLinux.cpp ../../Build/Linux/SimRobot/Release/moc_StatusBarReleaseLinux.cpp ../../Build/Linux/SimRobot/Release/moc_RegisteredDockWidgetReleaseLinux.cpp ../../Build/Linux/SimRobot/Release/moc_SceneGraphDockWidgetReleaseLinux.cpp ../../Build/Linux/SimRobot/Release/qrc_SimRobotReleaseLinux.cpp ../../Build/Linux/SimRobot/Release/help.qch ../../Build/Linux/SimRobot/Release/helpcollection.qhc ../../Build/Linux/SimRobot/Release/libSimRobotCore2.so ../../Build/Linux/SimRobot/Release/libSimRobotEditor.so ../../Build/Linux/SimRobot/Release/libSimRobotHelp.so ../../Build/Linux/SimRobot/Release/libSimulatedNao.so 
+../../Build/Linux/SimRobot/Release/moc_MainWindowReleaseLinux.cpp: ../../Util/SimRobot/Src/SimRobot/MainWindow.h
+	moc-qt4 -DLINUX -DNDEBUG -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_SVG_LIB -DQT_NO_STL -DQT_NO_DEBUG  -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/qt4/QtSvg -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/QtSvg -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobot/MainWindow.h -o ../../Build/Linux/SimRobot/Release/moc_MainWindowReleaseLinux.cpp
+../../Build/Linux/SimRobot/Release/moc_StatusBarReleaseLinux.cpp: ../../Util/SimRobot/Src/SimRobot/StatusBar.h
+	moc-qt4 -DLINUX -DNDEBUG -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_SVG_LIB -DQT_NO_STL -DQT_NO_DEBUG  -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/qt4/QtSvg -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/QtSvg -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobot/StatusBar.h -o ../../Build/Linux/SimRobot/Release/moc_StatusBarReleaseLinux.cpp
+../../Build/Linux/SimRobot/Release/moc_RegisteredDockWidgetReleaseLinux.cpp: ../../Util/SimRobot/Src/SimRobot/RegisteredDockWidget.h
+	moc-qt4 -DLINUX -DNDEBUG -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_SVG_LIB -DQT_NO_STL -DQT_NO_DEBUG  -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/qt4/QtSvg -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/QtSvg -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobot/RegisteredDockWidget.h -o ../../Build/Linux/SimRobot/Release/moc_RegisteredDockWidgetReleaseLinux.cpp
+../../Build/Linux/SimRobot/Release/moc_SceneGraphDockWidgetReleaseLinux.cpp: ../../Util/SimRobot/Src/SimRobot/SceneGraphDockWidget.h
+	moc-qt4 -DLINUX -DNDEBUG -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_SVG_LIB -DQT_NO_STL -DQT_NO_DEBUG  -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/qt4/QtSvg -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/QtSvg -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobot/SceneGraphDockWidget.h -o ../../Build/Linux/SimRobot/Release/moc_SceneGraphDockWidgetReleaseLinux.cpp
+../../Build/Linux/SimRobot/Release/qrc_SimRobotReleaseLinux.cpp: ../../Util/SimRobot/Src/SimRobot/SimRobot.qrc ../../Util/SimRobot/Src/SimRobot/Icons/page_paste.png ../../Util/SimRobot/Src/SimRobot/Icons/page_copy.png ../../Util/SimRobot/Src/SimRobot/Icons/textfield.png ../../Util/SimRobot/Src/SimRobot/Icons/tag_green.png ../../Util/SimRobot/Src/SimRobot/Icons/disk.png ../../Util/SimRobot/Src/SimRobot/Icons/arrow_redo.png ../../Util/SimRobot/Src/SimRobot/Icons/control_play_blue.png ../../Util/SimRobot/Src/SimRobot/Icons/control_step_blue.png ../../Util/SimRobot/Src/SimRobot/Icons/SimRobot.png ../../Util/SimRobot/Src/SimRobot/Icons/arrow_undo.png ../../Util/SimRobot/Src/SimRobot/Icons/cut.png ../../Util/SimRobot/Src/SimRobot/Icons/application_side_tree.png ../../Util/SimRobot/Src/SimRobot/Icons/control_start_blue.png ../../Util/SimRobot/Src/SimRobot/Icons/folder.png ../../Util/SimRobot/Src/SimRobot/Icons/folder_page.png
+	rcc -name SimRobot ../../Util/SimRobot/Src/SimRobot/SimRobot.qrc -o ../../Build/Linux/SimRobot/Release/qrc_SimRobotReleaseLinux.cpp
+../../Build/Linux/SimRobot/Release/help.qch: ../../Build/Linux/SimRobotHelp/Release/help.qch
+	cp ../../Build/Linux/SimRobotHelp/Release/help.qch ../../Build/Linux/SimRobot/Release/help.qch
+../../Build/Linux/SimRobot/Release/helpcollection.qhc: ../../Build/Linux/SimRobotHelp/Release/helpcollection.qhc
+	cp ../../Build/Linux/SimRobotHelp/Release/helpcollection.qhc ../../Build/Linux/SimRobot/Release/helpcollection.qhc
+../../Build/Linux/SimRobot/Release/libSimRobotCore2.so: ../../Build/Linux/SimRobotCore2/Release/libSimRobotCore2.so
+	cp ../../Build/Linux/SimRobotCore2/Release/libSimRobotCore2.so ../../Build/Linux/SimRobot/Release/libSimRobotCore2.so
+../../Build/Linux/SimRobot/Release/libSimRobotEditor.so: ../../Build/Linux/SimRobotEditor/Release/libSimRobotEditor.so
+	cp ../../Build/Linux/SimRobotEditor/Release/libSimRobotEditor.so ../../Build/Linux/SimRobot/Release/libSimRobotEditor.so
+../../Build/Linux/SimRobot/Release/libSimRobotHelp.so: ../../Build/Linux/SimRobotHelp/Release/libSimRobotHelp.so
+	cp ../../Build/Linux/SimRobotHelp/Release/libSimRobotHelp.so ../../Build/Linux/SimRobot/Release/libSimRobotHelp.so
+../../Build/Linux/SimRobot/Release/libSimulatedNao.so: ../../Build/Linux/SimulatedNao/Release/libSimulatedNao.so
+	cp ../../Build/Linux/SimulatedNao/Release/libSimulatedNao.so ../../Build/Linux/SimRobot/Release/libSimulatedNao.so
+</CustomPreBuild>
+      </AdditionalRules>
+    </Configuration>
+  </Settings>
+  <Dependencies Name="Develop">
+    <Project Name="SimRobotCore2"/>
+    <Project Name="SimRobotEditor"/>
+    <Project Name="SimRobotHelp"/>
+    <Project Name="SimulatedNao"/>
+  </Dependencies>
+  <Dependencies Name="Debug">
+    <Project Name="SimRobotCore2"/>
+    <Project Name="SimRobotEditor"/>
+    <Project Name="SimRobotHelp"/>
+    <Project Name="SimulatedNao"/>
+  </Dependencies>
+  <Dependencies Name="Release">
+    <Project Name="SimRobotCore2"/>
+    <Project Name="SimRobotEditor"/>
+    <Project Name="SimRobotHelp"/>
+    <Project Name="SimulatedNao"/>
+  </Dependencies>
+</CodeLite_Project>

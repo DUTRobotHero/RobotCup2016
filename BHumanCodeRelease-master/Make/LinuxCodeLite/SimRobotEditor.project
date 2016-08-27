@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeLite_Project Name="SimRobotEditor" InternalType="Console">
+  <Description/>
+  <VirtualDirectory Name=".Qt">
+    <File Name="../../Build/Linux/SimRobotEditor/Develop/qrc_SimRobotEditorDevelopLinux.cpp" ExcludeProjConfig="Debug;Release"/>
+    <File Name="../../Build/Linux/SimRobotEditor/Develop/moc_EditorWidgetDevelopLinux.cpp" ExcludeProjConfig="Debug;Release"/>
+    <File Name="../../Build/Linux/SimRobotEditor/Develop/moc_SyntaxHighlighterDevelopLinux.cpp" ExcludeProjConfig="Debug;Release"/>
+    <File Name="../../Build/Linux/SimRobotEditor/Debug/qrc_SimRobotEditorDebugLinux.cpp" ExcludeProjConfig="Develop;Release"/>
+    <File Name="../../Build/Linux/SimRobotEditor/Debug/moc_EditorWidgetDebugLinux.cpp" ExcludeProjConfig="Develop;Release"/>
+    <File Name="../../Build/Linux/SimRobotEditor/Debug/moc_SyntaxHighlighterDebugLinux.cpp" ExcludeProjConfig="Develop;Release"/>
+    <File Name="../../Build/Linux/SimRobotEditor/Release/qrc_SimRobotEditorReleaseLinux.cpp" ExcludeProjConfig="Develop;Debug"/>
+    <File Name="../../Build/Linux/SimRobotEditor/Release/moc_EditorWidgetReleaseLinux.cpp" ExcludeProjConfig="Develop;Debug"/>
+    <File Name="../../Build/Linux/SimRobotEditor/Release/moc_SyntaxHighlighterReleaseLinux.cpp" ExcludeProjConfig="Develop;Debug"/>
+  </VirtualDirectory>
+  <File Name="../../Util/SimRobot/Src/SimRobotEditor/EditorModule.cpp"/>
+  <File Name="../../Util/SimRobot/Src/SimRobotEditor/EditorWidget.cpp"/>
+  <File Name="../../Util/SimRobot/Src/SimRobotEditor/SyntaxHighlighter.cpp"/>
+  <File Name="../../Util/SimRobot/Src/SimRobotEditor/EditorModule.h"/>
+  <File Name="../../Util/SimRobot/Src/SimRobotEditor/EditorWidget.h"/>
+  <File Name="../../Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.h"/>
+  <File Name="../../Util/SimRobot/Src/SimRobotEditor/SyntaxHighlighter.h"/>
+  <File Name="../../Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.qrc"/>
+  <Settings Type="Executable">
+    <GlobalSettings>
+      <Compiler Options="" C_Options="">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="">
+        <LibraryPath Value="."/>
+      </Linker>
+      <ResourceCompiler Options=""/>
+    </GlobalSettings>
+    <Configuration Name="Develop" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="" C_Options="" Required="no" PreCompiledHeader=""/>
+      <Linker Options="" Required="no"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="../../Build/Linux/SimRobotEditor/Develop/libSimRobotEditor.so" IntermediateDirectory="../../Build/Linux/SimRobotEditor/Develop" Command="./../../Build/Linux/SimRobotEditor/Develop/libSimRobotEditor.so" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="." PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="yes">
+        <RebuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare rebuild SimRobotEditor config=Develop</RebuildCommand>
+        <CleanCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare clean SimRobotEditor config=Develop</CleanCommand>
+        <BuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare SimRobotEditor config=Develop</BuildCommand>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild>../../Build/Linux/SimRobotEditor/Develop/moc_EditorWidgetDevelopLinux.cpp ../../Build/Linux/SimRobotEditor/Develop/moc_SyntaxHighlighterDevelopLinux.cpp ../../Build/Linux/SimRobotEditor/Develop/qrc_SimRobotEditorDevelopLinux.cpp 
+../../Build/Linux/SimRobotEditor/Develop/moc_EditorWidgetDevelopLinux.cpp: ../../Util/SimRobot/Src/SimRobotEditor/EditorWidget.h
+	moc-qt4 -DLINUX -DNDEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQT_NO_DEBUG -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NO_STL  -I../../Util/SimRobot/Src/SimRobotEditor -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobotEditor/EditorWidget.h -o ../../Build/Linux/SimRobotEditor/Develop/moc_EditorWidgetDevelopLinux.cpp
+../../Build/Linux/SimRobotEditor/Develop/moc_SyntaxHighlighterDevelopLinux.cpp: ../../Util/SimRobot/Src/SimRobotEditor/SyntaxHighlighter.h
+	moc-qt4 -DLINUX -DNDEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQT_NO_DEBUG -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NO_STL  -I../../Util/SimRobot/Src/SimRobotEditor -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobotEditor/SyntaxHighlighter.h -o ../../Build/Linux/SimRobotEditor/Develop/moc_SyntaxHighlighterDevelopLinux.cpp
+../../Build/Linux/SimRobotEditor/Develop/qrc_SimRobotEditorDevelopLinux.cpp: ../../Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.qrc ../../Util/SimRobot/Src/SimRobotEditor/Icons/page_white_text.png ../../Util/SimRobot/Src/SimRobotEditor/Icons/page_white_stack.png
+	rcc -name SimRobotEditor ../../Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.qrc -o ../../Build/Linux/SimRobotEditor/Develop/qrc_SimRobotEditorDevelopLinux.cpp
+</CustomPreBuild>
+      </AdditionalRules>
+    </Configuration>
+    <Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="" C_Options="" Required="no" PreCompiledHeader=""/>
+      <Linker Options="" Required="no"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="../../Build/Linux/SimRobotEditor/Debug/libSimRobotEditor.so" IntermediateDirectory="../../Build/Linux/SimRobotEditor/Debug" Command="./../../Build/Linux/SimRobotEditor/Debug/libSimRobotEditor.so" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="." PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="yes">
+        <RebuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare rebuild SimRobotEditor config=Debug</RebuildCommand>
+        <CleanCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare clean SimRobotEditor config=Debug</CleanCommand>
+        <BuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare SimRobotEditor config=Debug</BuildCommand>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild>../../Build/Linux/SimRobotEditor/Debug/moc_EditorWidgetDebugLinux.cpp ../../Build/Linux/SimRobotEditor/Debug/moc_SyntaxHighlighterDebugLinux.cpp ../../Build/Linux/SimRobotEditor/Debug/qrc_SimRobotEditorDebugLinux.cpp 
+../../Build/Linux/SimRobotEditor/Debug/moc_EditorWidgetDebugLinux.cpp: ../../Util/SimRobot/Src/SimRobotEditor/EditorWidget.h
+	moc-qt4 -DLINUX -D_DEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQT_NO_DEBUG -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NO_STL  -I../../Util/SimRobot/Src/SimRobotEditor -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobotEditor/EditorWidget.h -o ../../Build/Linux/SimRobotEditor/Debug/moc_EditorWidgetDebugLinux.cpp
+../../Build/Linux/SimRobotEditor/Debug/moc_SyntaxHighlighterDebugLinux.cpp: ../../Util/SimRobot/Src/SimRobotEditor/SyntaxHighlighter.h
+	moc-qt4 -DLINUX -D_DEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQT_NO_DEBUG -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NO_STL  -I../../Util/SimRobot/Src/SimRobotEditor -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobotEditor/SyntaxHighlighter.h -o ../../Build/Linux/SimRobotEditor/Debug/moc_SyntaxHighlighterDebugLinux.cpp
+../../Build/Linux/SimRobotEditor/Debug/qrc_SimRobotEditorDebugLinux.cpp: ../../Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.qrc ../../Util/SimRobot/Src/SimRobotEditor/Icons/page_white_text.png ../../Util/SimRobot/Src/SimRobotEditor/Icons/page_white_stack.png
+	rcc -name SimRobotEditor ../../Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.qrc -o ../../Build/Linux/SimRobotEditor/Debug/qrc_SimRobotEditorDebugLinux.cpp
+</CustomPreBuild>
+      </AdditionalRules>
+    </Configuration>
+    <Configuration Name="Release" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="" C_Options="" Required="no" PreCompiledHeader=""/>
+      <Linker Options="" Required="no"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="../../Build/Linux/SimRobotEditor/Release/libSimRobotEditor.so" IntermediateDirectory="../../Build/Linux/SimRobotEditor/Release" Command="./../../Build/Linux/SimRobotEditor/Release/libSimRobotEditor.so" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="." PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;"/>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="yes">
+        <RebuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare rebuild SimRobotEditor config=Release</RebuildCommand>
+        <CleanCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare clean SimRobotEditor config=Release</CleanCommand>
+        <BuildCommand>../../Util/SimRobot/Util/mare/Linux/bin/mare SimRobotEditor config=Release</BuildCommand>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild>../../Build/Linux/SimRobotEditor/Release/moc_EditorWidgetReleaseLinux.cpp ../../Build/Linux/SimRobotEditor/Release/moc_SyntaxHighlighterReleaseLinux.cpp ../../Build/Linux/SimRobotEditor/Release/qrc_SimRobotEditorReleaseLinux.cpp 
+../../Build/Linux/SimRobotEditor/Release/moc_EditorWidgetReleaseLinux.cpp: ../../Util/SimRobot/Src/SimRobotEditor/EditorWidget.h
+	moc-qt4 -DLINUX -DNDEBUG -DQT_NO_DEBUG -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NO_STL  -I../../Util/SimRobot/Src/SimRobotEditor -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobotEditor/EditorWidget.h -o ../../Build/Linux/SimRobotEditor/Release/moc_EditorWidgetReleaseLinux.cpp
+../../Build/Linux/SimRobotEditor/Release/moc_SyntaxHighlighterReleaseLinux.cpp: ../../Util/SimRobot/Src/SimRobotEditor/SyntaxHighlighter.h
+	moc-qt4 -DLINUX -DNDEBUG -DQT_NO_DEBUG -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NO_STL  -I../../Util/SimRobot/Src/SimRobotEditor -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobotEditor/SyntaxHighlighter.h -o ../../Build/Linux/SimRobotEditor/Release/moc_SyntaxHighlighterReleaseLinux.cpp
+../../Build/Linux/SimRobotEditor/Release/qrc_SimRobotEditorReleaseLinux.cpp: ../../Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.qrc ../../Util/SimRobot/Src/SimRobotEditor/Icons/page_white_text.png ../../Util/SimRobot/Src/SimRobotEditor/Icons/page_white_stack.png
+	rcc -name SimRobotEditor ../../Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.qrc -o ../../Build/Linux/SimRobotEditor/Release/qrc_SimRobotEditorReleaseLinux.cpp
+</CustomPreBuild>
+      </AdditionalRules>
+    </Configuration>
+  </Settings>
+  <Dependencies Name="Develop">
+  </Dependencies>
+  <Dependencies Name="Debug">
+  </Dependencies>
+  <Dependencies Name="Release">
+  </Dependencies>
+</CodeLite_Project>
