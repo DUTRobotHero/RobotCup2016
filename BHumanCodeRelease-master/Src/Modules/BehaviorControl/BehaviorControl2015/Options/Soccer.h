@@ -14,7 +14,7 @@ option(Soccer)
     transition
     {
 		//pengwanli 
-		//SystemCall::getMode()返回值始终为physicalRobot
+		//SystemCall::getMode()根据不同的平台调用不同文件中的函数，从而得到不同的返回值
       if(SystemCall::getMode() == SystemCall::simulatedRobot)
         goto standUp; // Don't wait for the button in SimRobot
 
