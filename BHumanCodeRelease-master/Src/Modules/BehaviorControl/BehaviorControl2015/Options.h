@@ -31,6 +31,7 @@
 #include "Options/Output/PlaySound.h"
 
 #include "Options/Roles/Striker.h"
+#include "Options/Roles/StrikerDong1.h"
 
 #include "Options/Skills/ArmContact.h"
 #include "Options/Skills/GetUp.h"

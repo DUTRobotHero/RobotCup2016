@@ -4,7 +4,8 @@ option(PlayingState)
   {
     action
     {
-      Striker();
+      //Striker();
+	  StrikerDong1();
     }
   }
 }
