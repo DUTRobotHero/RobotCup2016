@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CodeLite_Workspace Name="B-Human" Database="./B-Human.tags">
-  <Project Name="SimRobot" Path="SimRobot.project" Active="No"/>
+  <Project Name="SimRobot" Path="SimRobot.project" Active="Yes"/>
   <Project Name="SimRobotCore2" Path="SimRobotCore2.project"/>
   <Project Name="SimRobotEditor" Path="SimRobotEditor.project" Active="No"/>
   <Project Name="SimRobotHelp" Path="SimRobotHelp.project"/>
@@ -10,7 +10,7 @@
   <Project Name="SimulatedNao" Path="SimulatedNao.project"/>
   <Project Name="libbhuman" Path="libbhuman.project"/>
   <Project Name="libgamectrl" Path="libgamectrl.project"/>
-  <Project Name="Nao" Path="Nao.project" Active="Yes"/>
+  <Project Name="Nao" Path="Nao.project" Active="No"/>
   <Project Name="bush" Path="bush.project"/>
   <Project Name="Tests" Path="Tests.project"/>
   <Project Name="ourNotes" Path="ourNotes/ourNotes.project" Active="No"/>

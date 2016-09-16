@@ -51,10 +51,13 @@
         <VirtualDirectory Name="Options">
           <VirtualDirectory Name="Roles">
             <File Name="../../Src/Modules/BehaviorControl/BehaviorControl2015/Options/Roles/Striker.h"/>
+            <File Name="../../Src/Modules/BehaviorControl/BehaviorControl2015/Options/Roles/StrikerDong1.h"/>
           </VirtualDirectory>
           <VirtualDirectory Name="Skills">
             <File Name="../../Src/Modules/BehaviorControl/BehaviorControl2015/Options/Skills/ArmContact.h"/>
             <File Name="../../Src/Modules/BehaviorControl/BehaviorControl2015/Options/Skills/GetUp.h"/>
+            <File Name="../../Src/Modules/BehaviorControl/BehaviorControl2015/Options/Skills/LeftKick.h"/>
+            <File Name="../../Src/Modules/BehaviorControl/BehaviorControl2015/Options/Skills/RightKick.h"/>
           </VirtualDirectory>
           <VirtualDirectory Name="GameControl">
             <File Name="../../Src/Modules/BehaviorControl/BehaviorControl2015/Options/GameControl/ReadyState.h"/>
@@ -83,6 +86,7 @@
             </VirtualDirectory>
             <File Name="../../Src/Modules/BehaviorControl/BehaviorControl2015/Options/Output/PlaySound.h"/>
             <File Name="../../Src/Modules/BehaviorControl/BehaviorControl2015/Options/Output/Annotation.h"/>
+            <File Name="../../Src/Modules/BehaviorControl/BehaviorControl2015/Options/Output/ShowRobotPose.h"/>
           </VirtualDirectory>
           <VirtualDirectory Name="HeadControl">
             <File Name="../../Src/Modules/BehaviorControl/BehaviorControl2015/Options/HeadControl/LookForward.h"/>
@@ -721,8 +725,7 @@
       </CustomBuild>
       <AdditionalRules>
         <CustomPostBuild/>
-        <CustomPreBuild>
-</CustomPreBuild>
+        <CustomPreBuild/>
       </AdditionalRules>
     </Configuration>
     <Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
@@ -749,8 +752,7 @@
       </CustomBuild>
       <AdditionalRules>
         <CustomPostBuild/>
-        <CustomPreBuild>
-</CustomPreBuild>
+        <CustomPreBuild/>
       </AdditionalRules>
     </Configuration>
     <Configuration Name="Release" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
@@ -777,8 +779,7 @@
       </CustomBuild>
       <AdditionalRules>
         <CustomPostBuild/>
-        <CustomPreBuild>
-</CustomPreBuild>
+        <CustomPreBuild/>
       </AdditionalRules>
     </Configuration>
   </Settings>
