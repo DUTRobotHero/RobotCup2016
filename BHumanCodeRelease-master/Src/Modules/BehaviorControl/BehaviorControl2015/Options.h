@@ -29,11 +29,15 @@
 #include "Options/Output/MotionRequest/WalkToTarget.h"
 
 #include "Options/Output/PlaySound.h"
+#include "Options/Skills/LeftKick.h"
+#include "Options/Skills/RightKick.h"
+
 
 #include "Options/Roles/Striker.h"
 #include "Options/Roles/StrikerDong1.h"
 
 #include "Options/Skills/ArmContact.h"
 #include "Options/Skills/GetUp.h"
+
 
 #include "Options/Tools/ButtonPressedAndReleased.h"
