@@ -6,6 +6,7 @@ option(PlayingState)
     {
       //Striker();
 	  StrikerDong1();
+	  ShowRobotPose(theRobotPose);
     }
   }
 }

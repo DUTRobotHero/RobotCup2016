@@ -29,6 +29,7 @@
 #include "Options/Output/MotionRequest/WalkToTarget.h"
 
 #include "Options/Output/PlaySound.h"
+#include "Options/Output/ShowRobotPose.h"
 #include "Options/Skills/LeftKick.h"
 #include "Options/Skills/RightKick.h"
 
