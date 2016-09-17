@@ -59,6 +59,15 @@
 #include "Tools/Math/Transformation.h"
 #include "Tools/Modeling/BallPhysics.h"
 #include "Tools/Module/Module.h"
+#include "Representations/Modeling/BallModelToField.h"
+#include "Representations/Modeling/GetAreaNumber.h"
+#include "Representations/Modeling/IsBallInPenaltyArea.h"
+#include "Representations/Modeling/IsInArea1.h"
+#include "Representations/Modeling/IsInArea2_3.h"
+#include "Representations/Modeling/IsInArea4.h"
+#include "Representations/Modeling/IsRobotInPenaltyArea.h"
+#include "Representations/Modeling/RobotMidPosition.h"
+
 
 #include <algorithm>
 #include <limits>

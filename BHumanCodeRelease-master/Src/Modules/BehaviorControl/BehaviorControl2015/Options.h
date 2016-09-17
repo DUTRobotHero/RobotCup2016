@@ -27,14 +27,29 @@
 #include "Options/Output/MotionRequest/WalkAtSpeed.h"
 #include "Options/Output/MotionRequest/WalkAtSpeedPercentage.h"
 #include "Options/Output/MotionRequest/WalkToTarget.h"
+#include "Options/Output/MotionRequest/WalkToTargetAbsolute.h"
 
 #include "Options/Output/PlaySound.h"
+
+#include "Options/Output/ShowBallToField.h"
+#include "Options/Output/ShowBallToRobot.h"
+#include "Options/Output/ShowBool.h"
+#include "Options/Output/ShowArea.h"
+
+#include "Options/Output/ShowRobotToField.h"
+#include "Options/Output/ShowSomething.h"
+#include "Options/Output/ShowTeamBallModel.h"
+
+
+
+#include "Options/Roles/Striker.h"
+#include "Options/Roles/Keeper.h"
+
 #include "Options/Output/ShowRobotPose.h"
 #include "Options/Skills/LeftKick.h"
 #include "Options/Skills/RightKick.h"
 
 
-#include "Options/Roles/Striker.h"
 #include "Options/Roles/StrikerDong1.h"
 
 #include "Options/Skills/ArmContact.h"
