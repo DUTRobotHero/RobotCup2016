@@ -1,2 +1,23 @@
+Striker和Keeper最新整合版本
+
+测试：
+用SimRobot的GAME2015.ros2
+在playingState.h中设置了robot1为Keepr，robot2为Stiker
+
+Keeper存在的问题：
+1.未加入坐下挡球动作，未能判断球速
+2.门柱边缘容易撞击
+3.倒下重新站立自定位偏差
+
+Striker存在的问题：
+1.禁区内左右脚踢球容易往回踢
+2.球从视野中消失，一直后退不转身找球
+3.倒下重新站立自定位偏差
+
+
+
+大家多多测试发现问题，不断改进，加油！
+
+
 Updated by Skye
-Date:2016/09/06
+Date:2016/09/17
