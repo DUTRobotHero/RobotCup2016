@@ -16,3 +16,30 @@ option(PlayingState)
     }
   }
 }
+
+
+  state(Keeper)
+  {
+      transition
+      {
+          ;
+      }
+      action
+      {
+          Keeper();
+      }
+  }
+
+
+  state(Striker)
+  {
+      transition
+      {
+          ;
+      }
+      action
+      {
+          Striker();
+      }
+  }
+}
