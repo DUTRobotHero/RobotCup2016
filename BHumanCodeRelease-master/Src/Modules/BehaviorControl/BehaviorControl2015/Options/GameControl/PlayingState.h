@@ -12,33 +12,7 @@ option(PlayingState)
     }
     action
     {
-      /*Keeper();*/
-      ;
+      
     }
-  }
-  
-  state(Keeper)
-  {
-      transition
-      {
-          ;
-      }
-      action
-      {
-          Keeper();
-      }
-  }
-
-
-  state(Striker)
-  {
-      transition
-      {
-          ;
-      }
-      action
-      {
-          Striker();
-      }
   }
 }

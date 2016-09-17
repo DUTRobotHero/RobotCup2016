@@ -30,6 +30,7 @@
 #include "Options/Output/MotionRequest/WalkToTargetAbsolute.h"
 
 #include "Options/Output/PlaySound.h"
+<<<<<<< HEAD
 #include "Options/Output/ShowBallToField.h"
 #include "Options/Output/ShowBallToRobot.h"
 #include "Options/Output/ShowBool.h"
@@ -43,8 +44,18 @@
 
 #include "Options/Roles/Striker.h"
 #include "Options/Roles/Keeper.h"
+=======
+#include "Options/Output/ShowRobotPose.h"
+#include "Options/Skills/LeftKick.h"
+#include "Options/Skills/RightKick.h"
+
+
+#include "Options/Roles/Striker.h"
+#include "Options/Roles/StrikerDong1.h"
+>>>>>>> 9a5becf9679a023525fe1c63a9d01c440ef10758
 
 #include "Options/Skills/ArmContact.h"
 #include "Options/Skills/GetUp.h"
+
 
 #include "Options/Tools/ButtonPressedAndReleased.h"
