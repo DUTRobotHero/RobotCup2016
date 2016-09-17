@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CodeLite_Project Name="libgamectrl" InternalType="Console">
   <Description/>
-  <File Name="../../Src/libgamectrl/UdpComm.cpp"/>
   <File Name="../../Src/libgamectrl/GameCtrl.cpp"/>
+  <File Name="../../Src/libgamectrl/UdpComm.cpp"/>
   <File Name="../../Src/libgamectrl/UdpComm.h"/>
   <Settings Type="Executable">
     <GlobalSettings>

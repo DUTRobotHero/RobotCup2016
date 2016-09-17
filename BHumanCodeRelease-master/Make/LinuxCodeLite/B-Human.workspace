@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CodeLite_Workspace Name="B-Human" Database="./B-Human.tags">
-  <Project Name="SimRobot" Path="SimRobot.project" Active="No"/>
+  <Project Name="SimRobot" Path="SimRobot.project" Active="Yes"/>
   <Project Name="SimRobotCore2" Path="SimRobotCore2.project"/>
-  <Project Name="SimRobotEditor" Path="SimRobotEditor.project" Active="No"/>
+  <Project Name="SimRobotEditor" Path="SimRobotEditor.project"/>
   <Project Name="SimRobotHelp" Path="SimRobotHelp.project"/>
-  <Project Name="qtpropertybrowser" Path="qtpropertybrowser.project"/>
-  <Project Name="libqxt" Path="libqxt.project"/>
+  <Project Name="qtpropertybrowser" Path="qtpropertybrowser.project" Active="No"/>
+  <Project Name="libqxt" Path="libqxt.project" Active="No"/>
   <Project Name="Controller" Path="Controller.project"/>
   <Project Name="SimulatedNao" Path="SimulatedNao.project"/>
   <Project Name="libbhuman" Path="libbhuman.project"/>
   <Project Name="libgamectrl" Path="libgamectrl.project"/>
-  <Project Name="Nao" Path="Nao.project" Active="Yes"/>
+  <Project Name="Nao" Path="Nao.project" Active="No"/>
   <Project Name="bush" Path="bush.project"/>
   <Project Name="Tests" Path="Tests.project"/>
-  <Project Name="ourNotes" Path="ourNotes/ourNotes.project" Active="No"/>
   <BuildMatrix>
-    <WorkspaceConfiguration Name="Develop" Selected="yes">
+    <WorkspaceConfiguration Name="Develop" Selected="no">
       <Environment/>
       <Project Name="SimRobot" ConfigName="Develop"/>
       <Project Name="SimRobotCore2" ConfigName="Develop"/>
@@ -30,9 +29,8 @@
       <Project Name="Nao" ConfigName="Develop"/>
       <Project Name="bush" ConfigName="Develop"/>
       <Project Name="Tests" ConfigName="Develop"/>
-      <Project Name="ourNotes" ConfigName="Debug"/>
     </WorkspaceConfiguration>
-    <WorkspaceConfiguration Name="Debug" Selected="yes">
+    <WorkspaceConfiguration Name="Debug" Selected="no">
       <Environment/>
       <Project Name="SimRobot" ConfigName="Debug"/>
       <Project Name="SimRobotCore2" ConfigName="Debug"/>
@@ -47,7 +45,6 @@
       <Project Name="Nao" ConfigName="Debug"/>
       <Project Name="bush" ConfigName="Debug"/>
       <Project Name="Tests" ConfigName="Debug"/>
-      <Project Name="ourNotes" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
@@ -64,7 +61,6 @@
       <Project Name="Nao" ConfigName="Release"/>
       <Project Name="bush" ConfigName="Release"/>
       <Project Name="Tests" ConfigName="Release"/>
-      <Project Name="ourNotes" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

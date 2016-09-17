@@ -15,8 +15,8 @@
   <File Name="../../Util/SimRobot/Src/SimRobotEditor/EditorModule.cpp"/>
   <File Name="../../Util/SimRobot/Src/SimRobotEditor/EditorWidget.cpp"/>
   <File Name="../../Util/SimRobot/Src/SimRobotEditor/SyntaxHighlighter.cpp"/>
-  <File Name="../../Util/SimRobot/Src/SimRobotEditor/EditorModule.h"/>
   <File Name="../../Util/SimRobot/Src/SimRobotEditor/EditorWidget.h"/>
+  <File Name="../../Util/SimRobot/Src/SimRobotEditor/EditorModule.h"/>
   <File Name="../../Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.h"/>
   <File Name="../../Util/SimRobot/Src/SimRobotEditor/SyntaxHighlighter.h"/>
   <File Name="../../Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.qrc"/>
@@ -59,7 +59,7 @@
 	moc-qt4 -DLINUX -DNDEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQT_NO_DEBUG -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NO_STL  -I../../Util/SimRobot/Src/SimRobotEditor -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobotEditor/EditorWidget.h -o ../../Build/Linux/SimRobotEditor/Develop/moc_EditorWidgetDevelopLinux.cpp
 ../../Build/Linux/SimRobotEditor/Develop/moc_SyntaxHighlighterDevelopLinux.cpp: ../../Util/SimRobot/Src/SimRobotEditor/SyntaxHighlighter.h
 	moc-qt4 -DLINUX -DNDEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQT_NO_DEBUG -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NO_STL  -I../../Util/SimRobot/Src/SimRobotEditor -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobotEditor/SyntaxHighlighter.h -o ../../Build/Linux/SimRobotEditor/Develop/moc_SyntaxHighlighterDevelopLinux.cpp
-../../Build/Linux/SimRobotEditor/Develop/qrc_SimRobotEditorDevelopLinux.cpp: ../../Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.qrc ../../Util/SimRobot/Src/SimRobotEditor/Icons/page_white_text.png ../../Util/SimRobot/Src/SimRobotEditor/Icons/page_white_stack.png
+../../Build/Linux/SimRobotEditor/Develop/qrc_SimRobotEditorDevelopLinux.cpp: ../../Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.qrc ../../Util/SimRobot/Src/SimRobotEditor/Icons/page_white_stack.png ../../Util/SimRobot/Src/SimRobotEditor/Icons/page_white_text.png
 	rcc -name SimRobotEditor ../../Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.qrc -o ../../Build/Linux/SimRobotEditor/Develop/qrc_SimRobotEditorDevelopLinux.cpp
 </CustomPreBuild>
       </AdditionalRules>
@@ -93,7 +93,7 @@
 	moc-qt4 -DLINUX -D_DEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQT_NO_DEBUG -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NO_STL  -I../../Util/SimRobot/Src/SimRobotEditor -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobotEditor/EditorWidget.h -o ../../Build/Linux/SimRobotEditor/Debug/moc_EditorWidgetDebugLinux.cpp
 ../../Build/Linux/SimRobotEditor/Debug/moc_SyntaxHighlighterDebugLinux.cpp: ../../Util/SimRobot/Src/SimRobotEditor/SyntaxHighlighter.h
 	moc-qt4 -DLINUX -D_DEBUG -DEIGEN_INITIALIZE_MATRICES_BY_NAN -DQT_NO_DEBUG -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NO_STL  -I../../Util/SimRobot/Src/SimRobotEditor -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobotEditor/SyntaxHighlighter.h -o ../../Build/Linux/SimRobotEditor/Debug/moc_SyntaxHighlighterDebugLinux.cpp
-../../Build/Linux/SimRobotEditor/Debug/qrc_SimRobotEditorDebugLinux.cpp: ../../Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.qrc ../../Util/SimRobot/Src/SimRobotEditor/Icons/page_white_text.png ../../Util/SimRobot/Src/SimRobotEditor/Icons/page_white_stack.png
+../../Build/Linux/SimRobotEditor/Debug/qrc_SimRobotEditorDebugLinux.cpp: ../../Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.qrc ../../Util/SimRobot/Src/SimRobotEditor/Icons/page_white_stack.png ../../Util/SimRobot/Src/SimRobotEditor/Icons/page_white_text.png
 	rcc -name SimRobotEditor ../../Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.qrc -o ../../Build/Linux/SimRobotEditor/Debug/qrc_SimRobotEditorDebugLinux.cpp
 </CustomPreBuild>
       </AdditionalRules>
@@ -127,7 +127,7 @@
 	moc-qt4 -DLINUX -DNDEBUG -DQT_NO_DEBUG -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NO_STL  -I../../Util/SimRobot/Src/SimRobotEditor -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobotEditor/EditorWidget.h -o ../../Build/Linux/SimRobotEditor/Release/moc_EditorWidgetReleaseLinux.cpp
 ../../Build/Linux/SimRobotEditor/Release/moc_SyntaxHighlighterReleaseLinux.cpp: ../../Util/SimRobot/Src/SimRobotEditor/SyntaxHighlighter.h
 	moc-qt4 -DLINUX -DNDEBUG -DQT_NO_DEBUG -DQT_SHARED -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NO_STL  -I../../Util/SimRobot/Src/SimRobotEditor -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4 -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/Qt ../../Util/SimRobot/Src/SimRobotEditor/SyntaxHighlighter.h -o ../../Build/Linux/SimRobotEditor/Release/moc_SyntaxHighlighterReleaseLinux.cpp
-../../Build/Linux/SimRobotEditor/Release/qrc_SimRobotEditorReleaseLinux.cpp: ../../Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.qrc ../../Util/SimRobot/Src/SimRobotEditor/Icons/page_white_text.png ../../Util/SimRobot/Src/SimRobotEditor/Icons/page_white_stack.png
+../../Build/Linux/SimRobotEditor/Release/qrc_SimRobotEditorReleaseLinux.cpp: ../../Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.qrc ../../Util/SimRobot/Src/SimRobotEditor/Icons/page_white_stack.png ../../Util/SimRobot/Src/SimRobotEditor/Icons/page_white_text.png
 	rcc -name SimRobotEditor ../../Util/SimRobot/Src/SimRobotEditor/SimRobotEditor.qrc -o ../../Build/Linux/SimRobotEditor/Release/qrc_SimRobotEditorReleaseLinux.cpp
 </CustomPreBuild>
       </AdditionalRules>
