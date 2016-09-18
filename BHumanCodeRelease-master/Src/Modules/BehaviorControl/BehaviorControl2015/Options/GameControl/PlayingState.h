@@ -4,18 +4,21 @@ option(PlayingState)
   {
     transition
     {
+        
         if ( theRobotInfo.number == 1)
-          goto Keeper;
-      else if( theRobotInfo.number == 2)
-          goto Striker;
+            goto Keeper;
+        else if( theRobotInfo.number == 2)
+            goto StrikerMing;
+        else if(theRobotInfo.number == 11)
+            goto StrikerDong1;
           
     }
     action
     {
-      
+      ;
     }
   }
-}
+
 
 
   state(Keeper)
@@ -31,7 +34,7 @@ option(PlayingState)
   }
 
 
-  state(Striker)
+  state(StrikerMing)
   {
       transition
       {
@@ -39,7 +42,19 @@ option(PlayingState)
       }
       action
       {
-          Striker();
+          StrikerMing();
+      }
+  }
+  
+  state(StrikerDong1)
+  {
+      transition
+      {
+          ;
+      }
+      action
+      {
+          StrikerDong1();
       }
   }
 }

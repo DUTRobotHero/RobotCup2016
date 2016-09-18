@@ -51,6 +51,7 @@
 
 
 #include "Options/Roles/StrikerDong1.h"
+#include "Options/Roles/StrikerMing.h"
 
 #include "Options/Skills/ArmContact.h"
 #include "Options/Skills/GetUp.h"
