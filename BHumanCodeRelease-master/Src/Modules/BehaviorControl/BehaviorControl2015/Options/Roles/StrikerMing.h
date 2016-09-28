@@ -127,17 +127,23 @@ option(StrikerMing)
         
         if(libCodeRelease.timeSinceBallWasSeen() > 7000)
             goto searchForBall;
-        if(std::abs(libCodeRelease.angleToGoal) < 13_deg && std::abs(theBallModel.estimate.position.y()) < 100.f && theRobotPose.translation.y() > 50.f)
+        if(std::abs(libCodeRelease.angleToGoal) < 13_deg && std::abs(theBallModel.estimate.position.y() < 100.f ) && theRobotPose.translation.x() > 100.f)
             goto alignBehindBallLeft;
-        else if(std::abs(libCodeRelease.angleToGoal) < 13_deg && std::abs(theBallModel.estimate.position.y()) < 100.f && theRobotPose.translation.y() < -50.f)
+        else if(std::abs(libCodeRelease.angleToGoal) < 13_deg
+                    && std::abs(theBallModel.estimate.position.y() )< 100.f && 
+                      theRobotPose.translation.x() > 100.f)
             goto alignBehindBallRight;
-        else
+        else if(std::abs(libCodeRelease.angleToGoal) < 13_deg
+                    && std::abs(theBallModel.estimate.position.y() )< 100.f )
             goto alignBehindBallRight;
+       /*  if(theGoalPost.positionOnField .x() < 800.f)
+                goto  ScoreDirection;*/
     }
     action
     {
+        /*ShowGoalPost(theGoalPost.positionOnField);*/
         theHeadControlMode = HeadControl::lookForward;
-        WalkToTarget(Pose2f(100.f,100.f,100.f), Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 200.f, theBallModel.estimate.position.y()));
+        WalkToTarget(Pose2f(100.f,100.f,100.f), Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 250.f, theBallModel.estimate.position.y()));
     }
   }
 
@@ -159,7 +165,7 @@ option(StrikerMing)
     action
     {
         theHeadControlMode = HeadControl::lookForward;
-        WalkToTarget(Pose2f(100.f,100.f,100.f), Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 35.f));
+        WalkToTarget(Pose2f(100.f,100.f,100.f), Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 30.f));
     }
   }
   
@@ -246,6 +252,18 @@ option(StrikerMing)
       InWalkKick(WalkRequest::sidewardsRight, Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() + 55.f));
     }
   }
+  
+ /* state(ScoreDirection)
+  {
+      transition
+      {
+          ;
+      }
+      action
+      {
+          ;
+      }
+  }*/
   
   state(searchForBall)
   {

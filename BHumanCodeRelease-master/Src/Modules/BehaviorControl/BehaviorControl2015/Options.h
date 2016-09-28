@@ -37,6 +37,7 @@
 #include "Options/Output/ShowArea.h"
 
 #include "Options/Output/ShowRobotToField.h"
+#include "Options/Output/ShowGoalPost.h"
 #include "Options/Output/ShowSomething.h"
 #include "Options/Output/ShowTeamBallModel.h"
 

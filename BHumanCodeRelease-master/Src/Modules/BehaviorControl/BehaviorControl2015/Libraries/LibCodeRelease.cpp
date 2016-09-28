@@ -14,7 +14,15 @@ namespace Behavior2015
   
   void LibCodeRelease::preProcess()
   {
-    angleToGoal = (theRobotPose.inverse() * Vector2f(theFieldDimensions.xPosOpponentGroundline, 0.f)).angle();
+      float x =  theGoalPost.positionOnField.x();
+    if(GoalPost::Position()== GoalPost::IS_UNKNOWN || theRobotPose.translation.y() < 4000.f)
+    {
+        angleToGoal = (theRobotPose.inverse() * Vector2f(theFieldDimensions.xPosOpponentGroundline, 0.f)).angle();
+    }
+    else if(theRobotPose.translation.y() >= 4000.f)
+         angleToGoal = (theRobotPose.inverse() * Vector2f(theFieldDimensions.xPosOpponentGroundline, 0.f)).angle();
+    
+    
   }
 
   void LibCodeRelease::postProcess()
