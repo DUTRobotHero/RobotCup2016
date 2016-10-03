@@ -5,11 +5,11 @@ option(PlayingState)
     transition
     {
         
-        if ( theRobotInfo.number == 3)
+        if ( theRobotInfo.number == 1)
             goto Keeper;
         else if( theRobotInfo.number == 2)
             goto StrikerMing;
-        else if(theRobotInfo.number == 4)
+        else if(theRobotInfo.number == 11)
             goto StrikerDong1;
           
     }
