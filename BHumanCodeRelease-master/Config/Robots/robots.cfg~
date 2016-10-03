@@ -2,6 +2,6 @@
 robotsIds = [
   { name = "Thor"; headId = "ALDT1312N007903"; bodyId = "ALDR1312N007793"; },
   { name = "Flash"; headId = "ALDT1312N007825"; bodyId = "ALDR1312N007857"; },
-  { name = "Petter"; headId = "ALDT1109F003574"; bodyId = "ALDR1109F004006"; },
+  //{ name = "IronMan"; headId = "ALDT1109F003574"; bodyId = "ALDR1109F004006"; },
   { name = "Hawkeye"; headId = "ALDT1312N009571"; bodyId = "ALDR1312N009257"; }
 ];
