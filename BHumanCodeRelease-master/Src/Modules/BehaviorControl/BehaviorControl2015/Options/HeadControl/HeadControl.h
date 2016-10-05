@@ -9,6 +9,7 @@ option(HeadControl)
     {
       case HeadControl::off: goto off;
       case HeadControl::lookForward: goto lookForward;
+      case HeadControl::leftAndRight: goto leftAndRight;
       default: goto none;
     }
   }
@@ -16,6 +17,7 @@ option(HeadControl)
   initial_state(none) {}
   state(off) {action SetHeadPanTilt(JointAngles::off, JointAngles::off, 0.f);}
   state(lookForward) {action LookForward();}
+  state(leftAndRight)  {action LeftAndRight();}
 }
 
 struct HeadControl
@@ -25,6 +27,7 @@ struct HeadControl
     none,
     off,
     lookForward,
+    leftAndRight,
   });
 };
 

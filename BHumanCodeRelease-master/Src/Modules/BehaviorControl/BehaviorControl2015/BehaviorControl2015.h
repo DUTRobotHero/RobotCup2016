@@ -67,6 +67,8 @@
 #include "Representations/Modeling/IsInArea4.h"
 #include "Representations/Modeling/IsRobotInPenaltyArea.h"
 #include "Representations/Modeling/RobotMidPosition.h"
+#include "Representations/Modeling/AbsolutePointToRobot.h"
+
 
 
 #include <algorithm>

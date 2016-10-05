@@ -5,11 +5,11 @@ option(PlayingState)
     transition
     {
         
-        if ( theRobotInfo.number == 3)
+        if ( theRobotInfo.number == 3)      //Flash
             goto Keeper;
-        else if( theRobotInfo.number == 2)
+        else if( theRobotInfo.number == 2)  //Thor
             goto StrikerMing;
-        else if(theRobotInfo.number == 4)
+        else if(theRobotInfo.number == 4)  //Hawkeye
             goto StrikerDong1;
           
     }
