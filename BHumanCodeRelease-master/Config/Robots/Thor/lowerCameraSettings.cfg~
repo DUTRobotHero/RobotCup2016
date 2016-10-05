@@ -9,13 +9,21 @@ contrast = {
   value = 60;
 };
 exposure = {
+<<<<<<< HEAD
+  value = 150;
+=======
   value = 200;
+>>>>>>> 178b21aa91e1929cdbda9669a87d8e75ea8f8bda
 };
 fadeToBlack = {
   value = 0;
 };
 gain = {
+<<<<<<< HEAD
+  value = 180;
+=======
   value = 250;
+>>>>>>> 178b21aa91e1929cdbda9669a87d8e75ea8f8bda
 };
 hue = {
   value = 0;
@@ -27,5 +35,9 @@ sharpness = {
   value = 2;
 };
 whiteBalance = {
+<<<<<<< HEAD
+  value = 3906;
+=======
   value = 6500;
+>>>>>>> 178b21aa91e1929cdbda9669a87d8e75ea8f8bda
 };
