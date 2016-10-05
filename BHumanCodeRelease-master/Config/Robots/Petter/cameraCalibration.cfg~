@@ -1,14 +1,20 @@
+<<<<<<< HEAD
+lowerCameraRotationCorrection = { x = 0deg; y = 0deg; z = 0deg; };
+upperCameraRotationCorrection = { x = 0deg; y = 0deg; z = 0deg; };
+bodyRotationCorrection = { x = 0deg; y = 0deg; };
+=======
 lowerCameraRotationCorrection = {
-  x = -nandeg;
-  y = -nandeg;
+  x = -0.371515deg;
+  y = -3.74874deg;
   z = 0deg;
 };
 upperCameraRotationCorrection = {
-  x = -0.380666deg;
-  y = -3.50478deg;
+  x = -1.75914deg;
+  y = -1.9556deg;
   z = 0deg;
 };
 bodyRotationCorrection = {
-  x = 1.04953deg;
-  y = 8.05423deg;
+  x = -0.736981deg;
+  y = 5.58681deg;
 };
+>>>>>>> 178b21aa91e1929cdbda9669a87d8e75ea8f8bda

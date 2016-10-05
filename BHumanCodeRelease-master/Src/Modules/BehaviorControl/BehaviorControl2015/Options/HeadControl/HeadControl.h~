@@ -19,9 +19,12 @@ option(HeadControl)
   state(off) {action SetHeadPanTilt(JointAngles::off, JointAngles::off, 0.f);}
   state(lookForward) {action LookForward();}
   state(leftAndRight)  {action LeftAndRight();}
+<<<<<<< HEAD
+=======
   state(focusBall){action SetHeadTarget(Vector3f(theBallModel.estimate.position.x(),
 																				theBallModel.estimate.position.y(),
 																				theBallModel.estimate.radius/2.0));}
+>>>>>>> 64004df0cc7cd4b3331e7a403e15c1be2acd74a5
 }
 
 struct HeadControl
@@ -32,7 +35,10 @@ struct HeadControl
     off,
     lookForward,
     leftAndRight,
-    focusBall,
+<<<<<<< HEAD
+=======
+	focusBall,
+>>>>>>> 64004df0cc7cd4b3331e7a403e15c1be2acd74a5
   });
 };
 

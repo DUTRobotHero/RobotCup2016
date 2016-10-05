@@ -1,0 +1,43 @@
+camera = upper;
+autoExposure = {
+  value = 0;
+};
+autoWhiteBalance = {
+  value = 0;
+};
+contrast = {
+  value = 64;
+};
+exposure = {
+<<<<<<< HEAD
+  value = 160;
+=======
+  value = 220;
+>>>>>>> 178b21aa91e1929cdbda9669a87d8e75ea8f8bda
+};
+fadeToBlack = {
+  value = 0;
+};
+gain = {
+<<<<<<< HEAD
+  value = 180;
+=======
+  value = 210;
+>>>>>>> 178b21aa91e1929cdbda9669a87d8e75ea8f8bda
+};
+hue = {
+  value = 0;
+};
+saturation = {
+<<<<<<< HEAD
+  value = 240;
+=======
+  value = 220;
+>>>>>>> 178b21aa91e1929cdbda9669a87d8e75ea8f8bda
+};
+sharpness = {
+  value = 2;
+};
+whiteBalance = {
+  value = 5823;
+};

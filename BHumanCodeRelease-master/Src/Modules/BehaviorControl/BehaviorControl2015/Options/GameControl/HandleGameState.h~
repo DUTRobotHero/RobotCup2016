@@ -77,6 +77,11 @@ option(HandleGameState)
             PlayingState();
         }
     }
+<<<<<<< HEAD
+=======
+  }
+
+>>>>>>> 64004df0cc7cd4b3331e7a403e15c1be2acd74a5
 }
 
  

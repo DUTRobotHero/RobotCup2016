@@ -13,6 +13,10 @@
 #include "Options/HeadControl/HeadControl.h"
 #include "Options/HeadControl/LookForward.h"
 #include "Options/HeadControl/LeftAndRight.h"
+<<<<<<< HEAD
+
+=======
+>>>>>>> 64004df0cc7cd4b3331e7a403e15c1be2acd74a5
 
 #include "Options/Output/Annotation.h"
 
