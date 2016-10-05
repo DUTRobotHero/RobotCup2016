@@ -1,27 +1,33 @@
 option(PlayingState)
 {
-  initial_state(play)
+	initial_state(upstand)
   {
     transition
     {
-        
-        if ( theRobotInfo.number == 3)
-            goto Keeper;
-        else if( theRobotInfo.number == 2)
-            goto StrikerMing;
-        else if(theRobotInfo.number == 4)
-            goto StrikerDong1;
-          
+      if(theFallDownState.state == FallDownState::upright && action_done)
+        goto play;
     }
     action
     {
-      ;
+      theHeadControlMode = HeadControl::lookForward;
+      Stand();
+    }
+  }
+  state(play)
+  {
+    transition
+    {
+        if (state_time>5000){
+			goto changeRoles;
+		}
+    }
+    action
+    {
+      theHeadControlMode = HeadControl::leftAndRight;
     }
   }
 
-
-
-  state(Keeper)
+  state(changeRoles)
   {
       transition
       {
@@ -29,32 +35,10 @@ option(PlayingState)
       }
       action
       {
-          Keeper();
-      }
-  }
-
-
-  state(StrikerMing)
-  {
-      transition
-      {
-          ;
-      }
-      action
-      {
-          StrikerMing();
-      }
-  }
-  
-  state(StrikerDong1)
-  {
-      transition
-      {
-          ;
-      }
-      action
-      {
-          StrikerDong1();
+		  
+          ChooseRoles();
       }
   }
 }
+  
+

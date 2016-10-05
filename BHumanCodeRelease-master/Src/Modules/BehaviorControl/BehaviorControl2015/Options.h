@@ -5,11 +5,13 @@
 
 #include "Options/GameControl/HandleGameState.h"
 #include "Options/GameControl/HandlePenaltyState.h"
+#include "Options/GameControl/ChooseRoles.h"
 #include "Options/GameControl/PlayingState.h"
 #include "Options/GameControl/ReadyState.h"
 
 #include "Options/HeadControl/HeadControl.h"
 #include "Options/HeadControl/LookForward.h"
+#include "Options/HeadControl/LeftAndRight.h"
 
 #include "Options/Output/Annotation.h"
 
@@ -40,11 +42,14 @@
 #include "Options/Output/ShowGoalPost.h"
 #include "Options/Output/ShowSomething.h"
 #include "Options/Output/ShowTeamBallModel.h"
+#include "Options/Output/ShowTeammateData.h"
 
 
 
 #include "Options/Roles/Striker.h"
 #include "Options/Roles/Keeper.h"
+#include "Options/Roles/Supporter.h"
+#include "Options/Roles/TestPlayer.h"
 
 #include "Options/Output/ShowRobotPose.h"
 #include "Options/Skills/LeftKick.h"

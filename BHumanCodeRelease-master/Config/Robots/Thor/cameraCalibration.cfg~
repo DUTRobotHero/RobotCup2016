@@ -1,0 +1,14 @@
+lowerCameraRotationCorrection = {
+  x = -nandeg;
+  y = -nandeg;
+  z = 0deg;
+};
+upperCameraRotationCorrection = {
+  x = 1.08076deg;
+  y = 0.86481deg;
+  z = 0deg;
+};
+bodyRotationCorrection = {
+  x = -0.337115deg;
+  y = 4.7386deg;
+};

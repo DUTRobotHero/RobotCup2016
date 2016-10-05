@@ -9,6 +9,8 @@ option(HeadControl)
     {
       case HeadControl::off: goto off;
       case HeadControl::lookForward: goto lookForward;
+      case HeadControl::leftAndRight: goto leftAndRight;
+	  case HeadControl::focusBall: goto focusBall;
       default: goto none;
     }
   }
@@ -16,6 +18,10 @@ option(HeadControl)
   initial_state(none) {}
   state(off) {action SetHeadPanTilt(JointAngles::off, JointAngles::off, 0.f);}
   state(lookForward) {action LookForward();}
+  state(leftAndRight)  {action LeftAndRight();}
+  state(focusBall){action SetHeadTarget(Vector3f(theBallModel.estimate.position.x(),
+																				theBallModel.estimate.position.y(),
+																				theBallModel.estimate.radius/2.0));}
 }
 
 struct HeadControl
@@ -25,6 +31,8 @@ struct HeadControl
     none,
     off,
     lookForward,
+    leftAndRight,
+	focusBall,
   });
 };
 
