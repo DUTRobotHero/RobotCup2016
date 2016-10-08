@@ -2,7 +2,8 @@ option(ChooseRoles)
 {
 	char KEEPER_NUM=1;
 	char DEFANDER_NUM=2;
-	Teammate otherTeammate;
+	char STRIKER_NUM=3;//not use
+	char SUPPORTER_NUM=4;//not use
   common_transition
   {
 		if ( theRobotInfo.number == KEEPER_NUM )
@@ -63,7 +64,7 @@ option(ChooseRoles)
 	  
 	  action
 	  {
-			ShowTeammateData(otherTeammate.number,otherTeammate.ball);
+			//ShowTeammateData(otherTeammate.number,otherTeammate.ball);
 			TestPlayer();
 		}
 	}
@@ -71,7 +72,7 @@ state(Striker)
   {
 	  action
 	  {
-		  ShowTeammateData(otherTeammate.number,otherTeammate.ball);
+		  //ShowTeammateData(otherTeammate.number,otherTeammate.ball);
 		  StrikerDong1();
 		}
 	}
@@ -79,7 +80,7 @@ state(Striker)
   {
 	  action
 	  {
-			ShowTeammateData(otherTeammate.number,otherTeammate.ball);
+			//ShowTeammateData(otherTeammate.number,otherTeammate.ball);
 		    Supporter();
 		}
 	}
@@ -88,10 +89,10 @@ state(Striker)
 	  
 	  action
 	  {
-			ShowTeammateData(otherTeammate.number,otherTeammate.ball);
+			//ShowTeammateData(otherTeammate.number,otherTeammate.ball);
 			StrikerDong1();
 		}
 	}
 }
-
+	Teammate otherTeammate;
  

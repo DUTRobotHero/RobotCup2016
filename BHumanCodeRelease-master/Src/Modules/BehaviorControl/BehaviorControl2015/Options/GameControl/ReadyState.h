@@ -2,10 +2,10 @@
 option(ReadyState)
 {
     float distance;
-    float setDistance = 2000.0;
-    float setVelocity = 20.f;
-    float setAdjustVelocity = 20.f;
-    int STRIKER_NUMBER = 2;
+    float setDistance = 1000.0;
+    float setVelocity = 5.f;
+    float setAdjustVelocity = 5.f;
+    int STRIKER_NUMBER = 3;
     int KEEPER_NUMBER = 1;
     int SUPPORTER_NUMBER = 4;
     float ATTACK_STRIKER_X = -250.0;

@@ -11,6 +11,7 @@ option(Supporter)
     action
     {
       theHeadControlMode = HeadControl::lookForward;
+	  theBehaviorStatus.role = Role::supporter;
       Stand();
     }
   }
