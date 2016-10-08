@@ -67,4 +67,14 @@ namespace Behavior2015
   {
     return value >= min && value <= max;
   }  
+
+  float LibCodeRelease::getAngle(const Vector2f& vector1, const Vector2f& vector2)
+  {
+	float angles = 0.0;
+	float length[2] = {0.0};
+	length[0] = std::sqrt(vector1.x()*vector1.x() + vector1.y()*vector1.y());
+	length[1] = std::sqrt(vector2.x()*vector2.x() + vector2.y()*vector2.y());
+	angles = std::acos((vector1.x() * vector2.x() + vector1.y() * vector2.y())/(length[0]*length[1]));
+	return angles;
+  }
 }
