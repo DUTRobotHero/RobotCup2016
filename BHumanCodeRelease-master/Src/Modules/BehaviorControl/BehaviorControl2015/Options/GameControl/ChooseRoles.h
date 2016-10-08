@@ -1,7 +1,7 @@
 option(ChooseRoles)
 {
-	char KEEPER_NUM=1;
-	char DEFANDER_NUM=2;
+	char KEEPER_NUM= 1;
+	char DEFANDER_NUM= 5 ;
 	Teammate otherTeammate;
   common_transition
   {
