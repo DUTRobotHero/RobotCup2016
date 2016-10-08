@@ -56,6 +56,7 @@ option(HandleGameState)
     state(ready) {
         action {
              ShowRobotToField(theRobotPose);
+             ShowSomething((float)theRobotInfo.number);
             ArmContact();
             ReadyState();
         }

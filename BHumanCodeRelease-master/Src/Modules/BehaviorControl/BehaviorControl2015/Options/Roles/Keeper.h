@@ -53,8 +53,8 @@ option(Keeper)
             int area = GetAreaNumber(theBallModel,theRobotPose);
             ShowArea(area);
             WalkToTargetAbsolute(Pose2f(theRobotPose.rotation - Ball2Field.rotation > 0 ? -pi / 32 : pi / 32,
-            theRobotPose.translation.x()+3900 > 0? -60.f: 60.f,
-            theRobotPose.translation.y()-Ball2Field.translation.y() > 0? -60.f: 60.f),Pose2f(0.0,-3830.0,Ball2Field.translation.y()));
+            theRobotPose.translation.x()+3900 > 0? -30.f: 30.f,
+            theRobotPose.translation.y()-Ball2Field.translation.y() > 0? -30.f: 30.f),Pose2f(0.0,-3830.0,Ball2Field.translation.y()));
             ShowSomething(theBallModel.estimate.position.norm());
 
         }
@@ -80,8 +80,8 @@ option(Keeper)
 
             Vector2f mid = RobotMidPosition(theBallModel,theRobotPose);
             WalkToTargetAbsolute(Pose2f(theRobotPose.rotation - Ball2Field.rotation > 0 ? -pi / 32 : pi / 32,
-            theRobotPose.translation.x()-mid.x() > 0? -80.f: 80.f,
-            theRobotPose.translation.y()-mid.y() > 0? -80.f: 80.f),Pose2f(Ball2Field.rotation,mid.x(),mid.y()));
+            theRobotPose.translation.x()-mid.x() > 0? -20.f: 20.f,
+            theRobotPose.translation.y()-mid.y() > 0? -20.f: 20.f),Pose2f(Ball2Field.rotation,mid.x(),mid.y()));
 
             ShowRobotToField(theRobotPose);
             ShowBallToField(Ball2Field);
@@ -116,7 +116,7 @@ option(Keeper)
             int area = GetAreaNumber(theBallModel,theRobotPose);
             ShowArea(area);
             if ( theRobotPose.translation.x() >= -3900 )
-                WalkToTarget(Pose2f(1.0f,1.0f,1.0f),Pose2f(0.f,-50.f,0.f));
+                WalkToTarget(Pose2f(10.0f,10.0f,10.0f),Pose2f(0.f,-50.f,0.f));
             ShowSomething(theBallModel.estimate.position.norm());
 
         }
