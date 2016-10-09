@@ -17,7 +17,7 @@ namespace Behavior2015
 
       if ( theBehaviorStatus.role == Role::striker ) {
 	  float y = 0.0;
-	  if ( theRobotPose.translation.x () > 2500.f ) {
+	  if ( theRobotPose.translation.x () > 1500.f ) {
 
 	      std::vector<Obstacle> p = theObstacleModel.obstacles;
 	      std::vector<float> angles;
