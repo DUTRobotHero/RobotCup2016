@@ -1,6 +1,7 @@
 /**
  * This option lets the robot kick the ball use right leg,the kick type decide the way to kick ,kick straight or sidewards .
  * @param kickType The WalkRequest::KickType to be executed. Only right and sidewardsRight
+ * This option use Shoot.h ，which is the Shoot pose.
  * By JiangDong
  */
 option(RightKick,((WalkRequest) KickType) kickType)
@@ -10,7 +11,7 @@ option(RightKick,((WalkRequest) KickType) kickType)
     transition
     {
 		if(libCodeRelease.between(theBallModel.estimate.position.y(), -50.f, -20.f)
-          && libCodeRelease.between(theBallModel.estimate.position.x(), 140.f, 170.f)
+          && libCodeRelease.between(theBallModel.estimate.position.x(), 120.f, 150.f)
           && std::abs(libCodeRelease.angleToGoal) < 2_deg)
         goto rightkick;
     }
@@ -30,7 +31,7 @@ option(RightKick,((WalkRequest) KickType) kickType)
     {
 		  Annotation("Kick use right'");
 		 theHeadControlMode = HeadControl::lookForward;
-		  InWalkKick(kickType, Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 160.f, theBallModel.estimate.position.y() + 55.f));
+		 Shoot(KickRequest::kickForward);
     }
   }
 }
