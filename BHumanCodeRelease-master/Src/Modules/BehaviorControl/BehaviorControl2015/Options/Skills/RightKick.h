@@ -29,7 +29,7 @@ option(RightKick,((WalkRequest) KickType) kickType)
     action
     {
 		  Annotation("Kick use right'");
-		  theHeadControlMode = HeadControl::lookForward;
+		 theHeadControlMode = HeadControl::lookForward;
 		  InWalkKick(kickType, Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 160.f, theBallModel.estimate.position.y() + 55.f));
     }
   }

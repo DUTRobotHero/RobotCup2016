@@ -11,6 +11,7 @@ option(StrikerDong1)
     action
     {
       theHeadControlMode = HeadControl::lookForward;
+	  theBehaviorStatus.role = Role::striker;
       Stand();
     }
   }
@@ -59,7 +60,7 @@ option(StrikerDong1)
     action
     {
 
-      theHeadControlMode = HeadControl::lookForward;
+      theHeadControlMode = HeadControl::lookHigh;
       WalkToTarget(Pose2f(100.f, 100.f, 100.f), Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 400.f, theBallModel.estimate.position.y()));
     }
   }
@@ -79,10 +80,8 @@ option(StrikerDong1)
 						goto sideKickLeft;
 					else if (theRobotPose.translation.y()<-2000.f)
 						goto sideKickRight;
-					else if (theRobotPose.translation.y()>0.f)
-						goto kickLeft;
 					else 
-						goto kickRight;
+						goto kickLeft;
 				}
 			//else if (theObstacleModel.obstacles.size()==1 && theObstacleModel.obstacles[0].type == Obstacle::goalpost)//判断是否只有目标物一个障碍
 			//	  goto kick;//此处可继续加强条件以达到射门条件　未测试
@@ -107,10 +106,8 @@ option(StrikerDong1)
 							goto sideKickLeft;
 						else if (theRobotPose.translation.y()<-2000.f)
 							goto sideKickRight;
-						else if (theRobotPose.translation.y()>0.f)
-							goto kickLeft;
 						else 
-							goto kickRight;
+							goto kickLeft;
 					}					
 					//障碍较近 并在一条线的情况  向左或者向右变向
 					else if ( libCodeRelease.between(libCodeRelease.angleToGoal, 
@@ -125,10 +122,11 @@ option(StrikerDong1)
 					//障碍较近  但是没有在一条线的情况  直接向前踢
 					else
 					{
-						if (theRobotPose.translation.y()>0.f)
-							goto kickLeft;
-						else 
-							goto kickRight;
+						goto kickLeft;
+//						if (theRobotPose.translation.y()>0.f)
+//							goto kickLeft;
+//						else 
+//							goto kickRight;
 					}
 				}	 
 			}
@@ -145,12 +143,21 @@ state(kickLeft)
 	transition
 	{
 		if(state_time > 3000 || (state_time > 10 && action_done))
-				goto start;
+				goto turnToBall;
 		if(libCodeRelease.timeSinceBallWasSeen() > 7000)
 		       goto searchForBall;
+		if( !theObstacleModel.obstacles.empty()  )
+		{
+				for (Obstacle o:theObstacleModel.obstacles)
+					{
+						if ( o.type == Obstacle::goalpost )
+							goto shoot;
+					}
+		}
 	}
 	action
 	{
+		theHeadControlMode = HeadControl::lookForward;
 		LeftKick(WalkRequest::left);
 	}
 }
@@ -160,7 +167,7 @@ state(sideKickLeft)
 	transition
 	{
 		if(state_time > 3000 || (state_time > 10 && action_done))
-				goto start;
+				goto turnToBall;
 		if(libCodeRelease.timeSinceBallWasSeen() > 7000)
 		       goto searchForBall;
 	}
@@ -175,7 +182,7 @@ state(kickRight)
 	transition
 	{
 		if(state_time > 3000 || (state_time > 10 && action_done))
-				goto start;
+				goto turnToBall;
 		if(libCodeRelease.timeSinceBallWasSeen() > 7000)
 		       goto searchForBall;
 	}
@@ -190,13 +197,28 @@ state(sideKickRight)
 	transition
 	{
 		if(state_time > 3000 || (state_time > 10 && action_done))
-				goto start;
+				goto turnToBall;
 		if(libCodeRelease.timeSinceBallWasSeen() > 7000)
 		       goto searchForBall;
 	}
 	action
 	{
 		RightKick(WalkRequest::sidewardsRight);
+	}
+}
+//**Kick with right leg straight**//
+state(shoot)
+{
+	transition
+	{
+		if(state_time > 3000 || (state_time > 10 && action_done))
+				goto turnToBall;
+		if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+		       goto searchForBall;
+	}
+	action
+	{
+		RightKick(WalkRequest::right);
 	}
 }
  state(searchForBall)

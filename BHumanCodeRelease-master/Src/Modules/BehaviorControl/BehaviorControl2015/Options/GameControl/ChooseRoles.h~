@@ -1,9 +1,15 @@
 option(ChooseRoles)
 {
+<<<<<<< HEAD
 	char KEEPER_NUM=1;
 	char DEFANDER_NUM=2;
 	char STRIKER_NUM=3;//not use
 	char SUPPORTER_NUM=4;//not use
+=======
+	char KEEPER_NUM= 1;
+	char DEFANDER_NUM= 5 ;
+	Teammate otherTeammate;
+>>>>>>> 5ebfcdb24cc012bf90a02b2a39d9725387749723
   common_transition
   {
 		if ( theRobotInfo.number == KEEPER_NUM )
