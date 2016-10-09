@@ -43,7 +43,7 @@ option(StrikerDong1)
     }
     action
     {
-      theHeadControlMode = HeadControl::lookForward;
+      theHeadControlMode = HeadControl::focusBall;
       WalkToTarget(Pose2f(50.f, 50.f, 50.f), theBallModel.estimate.position);
     }
   }
@@ -111,8 +111,8 @@ option(StrikerDong1)
 					}					
 					//障碍较近 并在一条线的情况  向左或者向右变向
 					else if ( libCodeRelease.between(libCodeRelease.angleToGoal, 
-																	nearist.right.angle() -15_deg, 
-																	nearist.left.angle() +15_deg) )//15_deg为拓展的角度大约15度
+																	nearist.right.angle() -5_deg, 
+																	nearist.left.angle() +5_deg) )//5_deg为拓展的角度大约5度
 					{
 						if (theRobotPose.translation.y()>0.f)
 							goto sideKickLeft;
@@ -133,7 +133,7 @@ option(StrikerDong1)
 	}
 	action
 	{
-		theHeadControlMode = HeadControl::focusBall;
+		theHeadControlMode = HeadControl::lookHigh;
         WalkToTarget(Pose2f(80.f, 80.f, 80.f), Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 0.f));
 	}
 }
