@@ -31,6 +31,7 @@
 #include "Options/Output/MotionRequest/WalkAtSpeedPercentage.h"
 #include "Options/Output/MotionRequest/WalkToTarget.h"
 #include "Options/Output/MotionRequest/WalkToTargetAbsolute.h"
+#include "Options/Output/MotionRequest/Shoot.h"
 
 #include "Options/Output/PlaySound.h"
 
@@ -51,6 +52,7 @@
 #include "Options/Roles/Keeper.h"
 #include "Options/Roles/Supporter.h"
 #include "Options/Roles/TestPlayer.h"
+#include "Options/Roles/StrikerTestShoot.h"
 
 #include "Options/Output/ShowRobotPose.h"
 #include "Options/Skills/LeftKick.h"

@@ -8,7 +8,7 @@ option(LeftAndRight)
                 goto lookRight;
         }
         action {
-            SetHeadPanTilt(-0.8, 0.f, 50_deg);
+            SetHeadPanTilt(-0.8f, 0.f, 50_deg);
         }
     }
     state(lookRight) {

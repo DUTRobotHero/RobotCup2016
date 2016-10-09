@@ -69,7 +69,7 @@ class BehaviorControl2015 : public BehaviorControl2015Base
     MODIFY("parameters:BehaviorControl2015", p);
     if(theFrameInfo.time)
     {
-      theBehaviorStatus.role = theRole.role;
+      //theBehaviorStatus.role = theRole.role;
 
       theSPLStandardBehaviorStatus.walkingTo  = theRobotPose.translation;
       theSPLStandardBehaviorStatus.shootingTo = theRobotPose.translation;
