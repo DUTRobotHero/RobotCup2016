@@ -1,8 +1,8 @@
 option(ChooseRoles)
 {
 	char KEEPER_NUM=1;
-	char DEFANDER_NUM=2;
-	char STRIKER_NUM=3;//not use
+	char DEFANDER_NUM=3;
+	char STRIKER_NUM=2;//not use
 	char SUPPORTER_NUM=4;//not use
   common_transition
   {
@@ -90,7 +90,7 @@ state(Striker)
 	  action
 	  {
 			//ShowTeammateData(otherTeammate.number,otherTeammate.ball);
-			StrikerDong1();
+			 StrikerDong1();
 		}
 	}
 }

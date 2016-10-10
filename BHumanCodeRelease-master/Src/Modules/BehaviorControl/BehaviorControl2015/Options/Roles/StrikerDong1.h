@@ -43,7 +43,7 @@ option(StrikerDong1)
     }
     action
     {
-      theHeadControlMode = HeadControl::lookForward;
+      theHeadControlMode = HeadControl::focusBall;
       WalkToTarget(Pose2f(50.f, 50.f, 50.f), theBallModel.estimate.position);
     }
   }
@@ -54,14 +54,14 @@ option(StrikerDong1)
     {
       if(libCodeRelease.timeSinceBallWasSeen() > 7000)
         goto searchForBall;
-      if(std::abs(libCodeRelease.angleToGoal) < 10_deg && std::abs(theBallModel.estimate.position.y()) < 100.f)
+      if(std::abs(libCodeRelease.angleToGoalForStriker) < 10_deg && std::abs(theBallModel.estimate.position.y()) < 100.f)
         goto alignBehindBall;
     }
     action
     {
 
       theHeadControlMode = HeadControl::lookHigh;
-      WalkToTarget(Pose2f(100.f, 100.f, 100.f), Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 400.f, theBallModel.estimate.position.y()));
+      WalkToTarget(Pose2f(100.f, 100.f, 100.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 400.f, theBallModel.estimate.position.y()));
     }
   }
  state(alignBehindBall)
@@ -72,7 +72,7 @@ option(StrikerDong1)
 		       goto searchForBall;
 		 if(libCodeRelease.between(theBallModel.estimate.position.y(), -30.f, 30.f)
           && libCodeRelease.between(theBallModel.estimate.position.x(), 140.f, 170.f)
-          && std::abs(libCodeRelease.angleToGoal) < 2_deg)
+          && std::abs(libCodeRelease.angleToGoalForStriker) < 2_deg)
 		  {
 			if (theObstacleModel.obstacles.empty() )//若无障碍　则根据当前位置决定踢球方式
 				{
@@ -92,7 +92,7 @@ option(StrikerDong1)
 					float minDeltaAngle=100.f;//test value
 					for (Obstacle o:theObstacleModel.obstacles)
 					{
-						float delta_angle=fabs(o.center.angle()-libCodeRelease.angleToGoal);
+						float delta_angle=fabs(o.center.angle()-libCodeRelease.angleToGoalForStriker);
 						if ( delta_angle < minDeltaAngle)
 						{
 								minDeltaAngle=delta_angle;
@@ -110,9 +110,9 @@ option(StrikerDong1)
 							goto kickLeft;
 					}					
 					//障碍较近 并在一条线的情况  向左或者向右变向
-					else if ( libCodeRelease.between(libCodeRelease.angleToGoal, 
-																	nearist.right.angle() -15_deg, 
-																	nearist.left.angle() +15_deg) )//15_deg为拓展的角度大约15度
+					else if ( libCodeRelease.between(libCodeRelease.angleToGoalForStriker, 
+																	nearist.right.angle() -5_deg, 
+																	nearist.left.angle() +5_deg) )//5_deg为拓展的角度大约5度
 					{
 						if (theRobotPose.translation.y()>0.f)
 							goto sideKickLeft;
@@ -133,8 +133,8 @@ option(StrikerDong1)
 	}
 	action
 	{
-		theHeadControlMode = HeadControl::focusBall;
-        WalkToTarget(Pose2f(80.f, 80.f, 80.f), Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 0.f));
+		theHeadControlMode = HeadControl::lookHigh;
+        WalkToTarget(Pose2f(80.f, 80.f, 80.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 0.f));
 	}
 }
 //**Kick with left leg straight**//
@@ -218,7 +218,7 @@ state(shoot)
 	}
 	action
 	{
-		RightKick(WalkRequest::right);
+		RightKick(WalkRequest::right);//shoot type
 	}
 }
  state(searchForBall)

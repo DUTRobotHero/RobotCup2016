@@ -19,6 +19,6 @@ public:
   
  
   float angleToGoal;
-
+  float angleToGoalForStriker;
   float getAngle(const Vector2f& vector1, const Vector2f& vector2);
 };
