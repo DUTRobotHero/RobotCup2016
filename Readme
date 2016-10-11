@@ -1,19 +1,14 @@
-Striker和Keeper最新整合版本
+2016年10月11日最新整合版本
 
-测试：
-用SimRobot的GAME2015.ros2
-在playingState.h中设置了robot1为Keepr，robot2为Stiker
+角色分配：
+Flash  1  Keeper
+Thor   2  Striker
+Petter 3  Defender
+Hawkeye 4 Supporter
 
-Keeper存在的问题：
-1.未加入坐下挡球动作，未能判断球速
-2.门柱边缘容易撞击
-3.倒下重新站立自定位偏差
-
-Striker存在的问题：
-1.禁区内左右脚踢球容易往回踢
-2.球从视野中消失，一直后退不转身找球
-3.倒下重新站立自定位偏差
-
+问题总结：
+1.自定位镜像
+2.裁判盒上场位置测试，在哪个半场要分清楚
 
 
 大家多多测试发现问题，不断改进，加油！
@@ -24,4 +19,4 @@ Striker存在的问题：
 3.机器人进入球场的默认位置
 
 Updated by Skye
-Date:2016/09/17
+Date:2016/10/11
