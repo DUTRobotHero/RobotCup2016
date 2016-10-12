@@ -12,11 +12,4 @@ option(TeamBallModel, (const Vector2f&) TeamBallModel)
     }
   }
 
-  target_state(waitForNewAnnotation)
-  {
-    transition
-    {
-     ;
-    }
-  }
 }

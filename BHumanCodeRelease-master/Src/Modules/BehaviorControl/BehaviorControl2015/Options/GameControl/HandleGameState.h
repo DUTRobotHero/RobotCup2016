@@ -30,7 +30,12 @@ option(HandleGameState)
                 ? "penaltyStriker.wav" : "penaltyKeeper.wav");
 
             if(theGameInfo.secondaryState == STATE2_PENALTYSHOOT)
-                Stand();
+			{
+					if (theGameInfo.kickOffTeam == theOwnTeamInfo.teamNumber)
+						StrikerDong1();
+					else 
+						Keeper();
+			}
             else
                 SpecialAction(SpecialActionRequest::standHigh);
         }
@@ -65,7 +70,7 @@ option(HandleGameState)
     /** Stand and look around. */
     state(set) {
         action {
-            theHeadControlMode = HeadControl::lookForward;
+            //theHeadControlMode = HeadControl::lookForward;
             Stand();
             SetState();
         }

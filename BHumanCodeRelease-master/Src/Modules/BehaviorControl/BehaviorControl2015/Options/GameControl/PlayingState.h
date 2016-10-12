@@ -1,5 +1,10 @@
 option(PlayingState)
 {
+
+//    int STRIKER_NUMBER = 2;
+    int KEEPER_NUMBER = 1;
+ //   int SUPPORTER_NUMBER = 3;
+	
 	initial_state(upstand)
   {
     transition
@@ -31,12 +36,39 @@ option(PlayingState)
   {
       transition
       {
-          ;
+          if ((theOwnSideModel.returnFromGameControllerPenalty || 
+				theOwnSideModel.returnFromManualPenalty) )
+			goto backToField;
       }
       action
       {
-		  
           ChooseRoles();
+      }
+  }
+  state(backToField)
+  {
+      transition
+      {
+		  if ( theRobotInfo.number == KEEPER_NUMBER ){
+				Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,theFieldDimensions.xPosOwnPenaltyMark,0);
+				if (relatePoint.translation.norm() < 500.f)
+					goto changeRoles;
+		   }else{
+			   Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,theFieldDimensions.xPosOwnPenaltyMark+1000.f,0);
+				if (relatePoint.translation.norm() < 500.f)
+					goto changeRoles;
+		   }
+      }
+      action
+      {
+		  if ( theRobotInfo.number == KEEPER_NUMBER ){
+				Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,theFieldDimensions.xPosOwnPenaltyMark,0);
+				WalkToTarget(Pose2f(10.f,10.f,10.f),relatePoint);
+		   }
+		   else {
+				Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,theFieldDimensions.xPosOwnPenaltyMark+1000.f,0);
+			   WalkToTarget(Pose2f(10.f,10.f,10.f),relatePoint);
+			}
       }
   }
 }

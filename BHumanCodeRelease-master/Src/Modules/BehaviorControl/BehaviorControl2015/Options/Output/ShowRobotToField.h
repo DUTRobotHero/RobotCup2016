@@ -12,12 +12,4 @@ option(ShowRobotToField, (const Pose2f&) RobotToField)
      ;
     }
   }
-
-  target_state(waitForNewAnnotation)
-  {
-    transition
-    {
-     ;
-    }
-  }
 }

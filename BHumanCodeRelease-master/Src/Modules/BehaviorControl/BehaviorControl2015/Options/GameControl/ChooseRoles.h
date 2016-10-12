@@ -1,16 +1,16 @@
 option(ChooseRoles)
 {
 	char KEEPER_NUM=1;
-	char DEFANDER_NUM=3;
-	char STRIKER_NUM=2;//not use
-	char SUPPORTER_NUM=4;//not use
+	char DEFANDER_NUM=4;
+	char STRIKER_NUM=2;
+	char SUPPORTER_NUM=3;
   common_transition
   {
 		if ( theRobotInfo.number == KEEPER_NUM )
 			goto Keeper;
 		else if  ( theRobotInfo.number == DEFANDER_NUM )
 			goto TestPlayer;//应该为Defender,不过还没有写完
-		else//默认为striker
+		else if (theRobotInfo.number == STRIKER_NUM ||theRobotInfo.number == SUPPORTER_NUM )
 		{
 			if ( theTeammateData.numberOfActiveTeammates !=0 ){//判断是否有发送消息的队友，没有的情况默认为defaultRole
 				

@@ -154,6 +154,8 @@ state(kickLeft)
 							goto shoot;
 					}
 		}
+		if (theGameInfo.secondaryState == STATE2_PENALTYSHOOT)
+			goto shoot;
 	}
 	action
 	{

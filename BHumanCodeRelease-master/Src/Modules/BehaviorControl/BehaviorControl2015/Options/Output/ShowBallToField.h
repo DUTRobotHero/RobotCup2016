@@ -12,12 +12,4 @@ option(ShowBallToField, (const Pose2f&) BallToField)
      ;
     }
   }
-
-  target_state(waitForNewAnnotation)
-  {
-    transition
-    {
-     ;
-    }
-  }
 }

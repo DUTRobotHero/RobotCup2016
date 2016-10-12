@@ -13,11 +13,4 @@ option(ShowSomething, (const float&) Distance)
     }
   }
 
-  target_state(waitForNewAnnotation)
-  {
-    transition
-    {
-     ;
-    }
-  }
 }

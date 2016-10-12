@@ -13,11 +13,4 @@ option(ShowArea, (const int&) BallArea)
     }
   }
 
-  target_state(waitForNewAnnotation)
-  {
-    transition
-    {
-     ;
-    }
-  }
 }

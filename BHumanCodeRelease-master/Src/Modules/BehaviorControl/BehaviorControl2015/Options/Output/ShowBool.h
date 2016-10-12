@@ -13,11 +13,4 @@ option(ShowBool, (const bool&) IsBallInPenaltyArea)
     }
   }
 
-  target_state(waitForNewAnnotation)
-  {
-    transition
-    {
-     ;
-    }
-  }
 }

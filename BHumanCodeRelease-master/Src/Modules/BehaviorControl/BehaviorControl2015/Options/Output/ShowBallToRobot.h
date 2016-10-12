@@ -12,12 +12,4 @@ option(ShowBallToRobot, (const Pose2f&) Position_BallToRobot)
      ;
     }
   }
-
-  target_state(waitForNewAnnotation)
-  {
-    transition
-    {
-     ;
-    }
-  }
 }

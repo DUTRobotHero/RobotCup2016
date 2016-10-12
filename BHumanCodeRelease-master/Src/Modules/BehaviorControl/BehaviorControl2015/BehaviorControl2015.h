@@ -29,6 +29,7 @@
 #include "Representations/Modeling/BallModel.h"
 #include "Representations/Modeling/ObstacleModel.h"
 #include "Representations/Modeling/Odometer.h"
+#include "Representations/Modeling/OwnSideModel.h"
 #include "Representations/Modeling/RobotPose.h"
 #include "Representations/Modeling/SideConfidence.h"
 #include "Representations/Modeling/TeamBallModel.h"
@@ -106,6 +107,7 @@ MODULE(BehaviorControl2015,
   REQUIRES(ObstacleModel),
   REQUIRES(Odometer),
   REQUIRES(OpponentTeamInfo),
+  REQUIRES(OwnSideModel),
   REQUIRES(OwnTeamInfo),
   REQUIRES(RawGameInfo),
   REQUIRES(RobotDimensions),
