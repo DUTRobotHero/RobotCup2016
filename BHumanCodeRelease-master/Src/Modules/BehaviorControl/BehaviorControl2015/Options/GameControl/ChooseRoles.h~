@@ -1,22 +1,21 @@
 option(ChooseRoles)
 {
-<<<<<<< HEAD
 	char KEEPER_NUM=1;
-	char DEFANDER_NUM=2;
-	char STRIKER_NUM=3;//not use
-	char SUPPORTER_NUM=4;//not use
-=======
-	char KEEPER_NUM= 1;
-	char DEFANDER_NUM= 5 ;
-	Teammate otherTeammate;
->>>>>>> 5ebfcdb24cc012bf90a02b2a39d9725387749723
+	char DEFANDER_NUM=4;
+	char STRIKER_NUM=2;
+	char SUPPORTER_NUM=3;
   common_transition
   {
 		if ( theRobotInfo.number == KEEPER_NUM )
 			goto Keeper;
 		else if  ( theRobotInfo.number == DEFANDER_NUM )
+<<<<<<< HEAD
 			goto TestPlayer;//应该为Defender,不过还没有写完
+		else if (theRobotInfo.number == STRIKER_NUM ||theRobotInfo.number == SUPPORTER_NUM )
+=======
+			goto Defender;//应该为Defender,不过还没有写完
 		else//默认为striker
+>>>>>>> 6615a5c692d124b74a1330cc5ea52b5972bf8e28
 		{
 			if ( theTeammateData.numberOfActiveTeammates !=0 ){//判断是否有发送消息的队友，没有的情况默认为defaultRole
 				
@@ -65,13 +64,15 @@ option(ChooseRoles)
 		  Keeper();
 		}
 	}
-	state(TestPlayer)
+	state(Defender)
   {
 	  
 	  action
 	  {
 			//ShowTeammateData(otherTeammate.number,otherTeammate.ball);
-			TestPlayer();
+            for(Obstacle o:theObstacleModel.obstacles)
+                ShowObstacles(o.center);
+			Defender();
 		}
 	}
 state(Striker)
@@ -96,7 +97,9 @@ state(Striker)
 	  action
 	  {
 			//ShowTeammateData(otherTeammate.number,otherTeammate.ball);
-			StrikerDong1();
+			 StrikerDong1();
+             KeyFrameLeftArm(ArmKeyFrameRequest::back, true);
+             KeyFrameRightArm(ArmKeyFrameRequest::back, true);
 		}
 	}
 }

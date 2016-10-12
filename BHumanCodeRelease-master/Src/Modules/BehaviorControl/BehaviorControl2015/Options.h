@@ -13,8 +13,10 @@
 #include "Options/HeadControl/HeadControl.h"
 #include "Options/HeadControl/LookForward.h"
 #include "Options/HeadControl/LeftAndRight.h"
+#include "Options/HeadControl/LookAround.h"
 
 #include "Options/Output/Annotation.h"
+
 
 #include "Options/Output/ArmMotionRequest/KeyFrameArms.h"
 
@@ -30,6 +32,7 @@
 #include "Options/Output/MotionRequest/WalkAtSpeed.h"
 #include "Options/Output/MotionRequest/WalkAtSpeedPercentage.h"
 #include "Options/Output/MotionRequest/WalkToTarget.h"
+#include "Options/Output/MotionRequest/WalkToPosition.h"
 #include "Options/Output/MotionRequest/WalkToTargetAbsolute.h"
 #include "Options/Output/MotionRequest/Shoot.h"
 
@@ -39,11 +42,14 @@
 #include "Options/Output/ShowBallToRobot.h"
 #include "Options/Output/ShowBool.h"
 #include "Options/Output/ShowArea.h"
+#include "Options/Output/Value.h"
+#include "Options/Output/Position.h"
 
 #include "Options/Output/ShowRobotToField.h"
 #include "Options/Output/ShowGoalPost.h"
 #include "Options/Output/ShowSomething.h"
 #include "Options/Output/ShowTeamBallModel.h"
+#include "Options/Output/ShowObstacles.h"
 
 #include "Options/Output/ShowReadyPosition.h"
 #include "Options/Output/ShowTeammateData.h"
@@ -53,6 +59,8 @@
 #include "Options/Roles/Supporter.h"
 #include "Options/Roles/TestPlayer.h"
 #include "Options/Roles/StrikerTestShoot.h"
+#include "Options/Roles/Defender.h"
+
 
 #include "Options/Output/ShowRobotPose.h"
 #include "Options/Skills/LeftKick.h"
