@@ -2,7 +2,7 @@
  *  This option also invokes the get up behavior after a fall, as this is needed in most game states.
  */
 option(HandleGameState)
-{
+{            
     /** As game state changes are discrete external events and all states are independent of each other,
         a common transition can be used here. */
     common_transition {
@@ -74,8 +74,22 @@ option(HandleGameState)
     /** Play soccer! */
     state(playing) {
         action {
-            ArmContact();
-            PlayingState();
+             if(theGameInfo.kickOffTeam != theOwnTeamInfo.teamNumber)
+            {
+                if(theBallModel.estimate.velocity.x() > 0.0 || theBallModel.estimate.velocity.y() > 0.0 || state_time  > 10000)
+                {
+                    ArmContact();
+                    PlayingState();
+                }
+            }
+            
+            else
+            {
+                ArmContact();
+                PlayingState();
+            }
+            
+            
         }
     }
 }

@@ -91,6 +91,8 @@ state(Striker)
 	  {
 			//ShowTeammateData(otherTeammate.number,otherTeammate.ball);
 			 StrikerDong1();
+             KeyFrameLeftArm(ArmKeyFrameRequest::back, true);
+             KeyFrameRightArm(ArmKeyFrameRequest::back, true);
 		}
 	}
 }

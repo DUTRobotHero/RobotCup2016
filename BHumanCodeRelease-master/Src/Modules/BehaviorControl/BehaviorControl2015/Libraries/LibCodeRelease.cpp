@@ -49,7 +49,7 @@ namespace Behavior2015
 	      angleToGoalForStriker
 	          = ( theRobotPose.inverse () * Vector2f ( theFieldDimensions.xPosOpponentGroundline, y ) ).angle ();
 
-	      printf ( "the info of Goal-after: %f\n", angleToGoal * 180 / 3.1415926 );
+	      //printf ( "the info of Goal-after: %f\n", angleToGoal * 180 / 3.1415926 );
         } 
     
         else 
@@ -57,7 +57,7 @@ namespace Behavior2015
 	      y = 0.0f;
 	      angleToGoal
 	          = ( theRobotPose.inverse () * Vector2f ( theFieldDimensions.xPosOpponentGroundline, y ) ).angle ();
-	      printf ( "the info of Goal-before: %f\n", angleToGoal * 180 / 3.1515926 );
+	      //printf ( "the info of Goal-before: %f\n", angleToGoal * 180 / 3.1515926 );
         }
 
 	  angleToGoal= ( theRobotPose.inverse () * Vector2f ( theFieldDimensions.xPosOpponentGroundline, 0.0f ) ).angle ();
