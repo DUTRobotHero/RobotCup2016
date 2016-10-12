@@ -9,7 +9,7 @@ option(ChooseRoles)
 		if ( theRobotInfo.number == KEEPER_NUM )
 			goto Keeper;
 		else if  ( theRobotInfo.number == DEFANDER_NUM )
-			goto TestPlayer;//应该为Defender,不过还没有写完
+			goto Defender;//应该为Defender,不过还没有写完
 		else//默认为striker
 		{
 			if ( theTeammateData.numberOfActiveTeammates !=0 ){//判断是否有发送消息的队友，没有的情况默认为defaultRole
@@ -59,13 +59,15 @@ option(ChooseRoles)
 		  Keeper();
 		}
 	}
-	state(TestPlayer)
+	state(Defender)
   {
 	  
 	  action
 	  {
 			//ShowTeammateData(otherTeammate.number,otherTeammate.ball);
-			TestPlayer();
+            for(Obstacle o:theObstacleModel.obstacles)
+                ShowObstacles(o.center);
+			Defender();
 		}
 	}
 state(Striker)
