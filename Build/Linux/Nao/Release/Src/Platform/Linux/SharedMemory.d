@@ -1,0 +1,37 @@
+../../Build/Linux/Nao/Release/Src/Platform/Linux/SharedMemory.o: \
+  ../../Src/Platform/Linux/SharedMemory.cpp \
+  ../../Src/Platform/Linux/SharedMemory.h \
+  ../../Util/Buildchain/gcc/include/sys/mman.h \
+  ../../Util/Buildchain/gcc/include/features.h \
+  ../../Util/Buildchain/gcc/include/sys/cdefs.h \
+  ../../Util/Buildchain/gcc/include/bits/wordsize.h \
+  ../../Util/Buildchain/gcc/include/gnu/stubs.h \
+  ../../Util/Buildchain/gcc/include/gnu/stubs-32.h \
+  ../../Util/Buildchain/gcc/include/bits/types.h \
+  ../../Util/Buildchain/gcc/include/bits/typesizes.h \
+  ../../Util/Buildchain/clang/include/stddef.h \
+  ../../Util/Buildchain/gcc/include/bits/mman.h \
+  ../../Util/Buildchain/gcc/include/fcntl.h \
+  ../../Util/Buildchain/gcc/include/bits/fcntl.h \
+  ../../Util/Buildchain/gcc/include/sys/types.h \
+  ../../Util/Buildchain/gcc/include/time.h \
+  ../../Util/Buildchain/gcc/include/endian.h \
+  ../../Util/Buildchain/gcc/include/bits/endian.h \
+  ../../Util/Buildchain/gcc/include/bits/byteswap.h \
+  ../../Util/Buildchain/gcc/include/sys/select.h \
+  ../../Util/Buildchain/gcc/include/bits/select.h \
+  ../../Util/Buildchain/gcc/include/bits/sigset.h \
+  ../../Util/Buildchain/gcc/include/bits/time.h \
+  ../../Util/Buildchain/gcc/include/sys/sysmacros.h \
+  ../../Util/Buildchain/gcc/include/bits/pthreadtypes.h \
+  ../../Util/Buildchain/gcc/include/bits/uio.h \
+  ../../Util/Buildchain/gcc/include/bits/stat.h \
+  ../../Util/Buildchain/gcc/include/semaphore.h \
+  ../../Util/Buildchain/gcc/include/bits/semaphore.h \
+  ../../Util/Buildchain/gcc/include/c++/5.2.0/string \
+  ../../Util/Buildchain/gcc/include/unistd.h \
+  ../../Util/Buildchain/gcc/include/bits/posix_opt.h \
+  ../../Util/Buildchain/gcc/include/bits/environments.h \
+  ../../Util/Buildchain/gcc/include/bits/confname.h \
+  ../../Util/Buildchain/gcc/include/getopt.h \
+  ../../Util/Buildchain/gcc/include/c++/5.2.0/ctime

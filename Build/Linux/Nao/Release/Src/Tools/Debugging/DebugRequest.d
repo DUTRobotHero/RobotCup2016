@@ -1,0 +1,9 @@
+../../Build/Linux/Nao/Release/Src/Tools/Debugging/DebugRequest.o: \
+  ../../Src/Tools/Debugging/DebugRequest.cpp \
+  ../../Util/Buildchain/gcc/include/c++/5.2.0/cstring \
+  ../../Util/Buildchain/gcc/include/c++/5.2.0/cstdio \
+  ../../Src/Tools/Debugging/DebugRequest.h \
+  ../../Src/Tools/Streams/InOut.h \
+  ../../Util/Buildchain/gcc/include/c++/5.2.0/string \
+  ../../Util/Buildchain/gcc/include/c++/5.2.0/unordered_map \
+  ../../Src/Platform/BHAssert.h ../../Src/Platform/Linux/BHAssert.h

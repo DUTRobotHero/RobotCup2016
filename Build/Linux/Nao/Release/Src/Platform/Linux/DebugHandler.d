@@ -1,0 +1,50 @@
+../../Build/Linux/Nao/Release/Src/Platform/Linux/DebugHandler.o: \
+  ../../Src/Platform/Linux/DebugHandler.cpp \
+  ../../Src/Platform/Linux/DebugHandler.h \
+  ../../Src/Tools/Debugging/TcpConnection.h \
+  ../../Src/Tools/Network/TcpComm.h \
+  ../../Util/Buildchain/gcc/include/netinet/in.h \
+  ../../Util/Buildchain/gcc/include/features.h \
+  ../../Util/Buildchain/gcc/include/sys/cdefs.h \
+  ../../Util/Buildchain/gcc/include/bits/wordsize.h \
+  ../../Util/Buildchain/gcc/include/gnu/stubs.h \
+  ../../Util/Buildchain/gcc/include/gnu/stubs-32.h \
+  ../../Util/Buildchain/gcc/include/stdint.h \
+  ../../Util/Buildchain/gcc/include/bits/wchar.h \
+  ../../Util/Buildchain/gcc/include/sys/socket.h \
+  ../../Util/Buildchain/gcc/include/sys/uio.h \
+  ../../Util/Buildchain/gcc/include/sys/types.h \
+  ../../Util/Buildchain/gcc/include/bits/types.h \
+  ../../Util/Buildchain/gcc/include/bits/typesizes.h \
+  ../../Util/Buildchain/gcc/include/time.h \
+  ../../Util/Buildchain/clang/include/stddef.h \
+  ../../Util/Buildchain/gcc/include/endian.h \
+  ../../Util/Buildchain/gcc/include/bits/endian.h \
+  ../../Util/Buildchain/gcc/include/bits/byteswap.h \
+  ../../Util/Buildchain/gcc/include/sys/select.h \
+  ../../Util/Buildchain/gcc/include/bits/select.h \
+  ../../Util/Buildchain/gcc/include/bits/sigset.h \
+  ../../Util/Buildchain/gcc/include/bits/time.h \
+  ../../Util/Buildchain/gcc/include/sys/sysmacros.h \
+  ../../Util/Buildchain/gcc/include/bits/pthreadtypes.h \
+  ../../Util/Buildchain/gcc/include/bits/uio.h \
+  ../../Util/Buildchain/gcc/include/bits/socket.h \
+  ../../Util/Buildchain/gcc/include/bits/sockaddr.h \
+  ../../Util/Buildchain/gcc/include/asm/socket.h \
+  ../../Util/Buildchain/gcc/include/asm-generic/socket.h \
+  ../../Util/Buildchain/gcc/include/asm/sockios.h \
+  ../../Util/Buildchain/gcc/include/asm-generic/sockios.h \
+  ../../Util/Buildchain/gcc/include/bits/in.h \
+  ../../Src/Tools/MessageQueue/MessageQueue.h \
+  ../../Src/Tools/MessageQueue/MessageQueueBase.h \
+  ../../Util/Buildchain/gcc/include/c++/5.2.0/cstddef \
+  ../../Util/Buildchain/gcc/include/c++/5.2.0/string \
+  ../../Src/Tools/MessageQueue/MessageIDs.h ../../Src/Tools/Enum.h \
+  ../../Src/Tools/MessageQueue/InMessage.h \
+  ../../Src/Tools/Streams/InStreams.h \
+  ../../Src/Tools/Streams/SimpleMap.h ../../Src/Tools/Streams/InOut.h \
+  ../../Util/Buildchain/gcc/include/c++/5.2.0/unordered_map \
+  ../../Util/Buildchain/gcc/include/c++/5.2.0/vector \
+  ../../Src/Tools/MessageQueue/OutMessage.h \
+  ../../Src/Tools/Streams/OutStreams.h ../../Src/Platform/BHAssert.h \
+  ../../Src/Platform/Linux/BHAssert.h

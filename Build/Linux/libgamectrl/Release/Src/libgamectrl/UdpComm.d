@@ -1,0 +1,45 @@
+../../Build/Linux/libgamectrl/Release/Src/libgamectrl/UdpComm.o: \
+  ../../Src/libgamectrl/UdpComm.cpp ../../Src/libgamectrl/UdpComm.h \
+  ../../Util/Buildchain/gcc/include/c++/5.2.0/iostream \
+  ../../Util/Buildchain/gcc/include/c++/5.2.0/cassert \
+  ../../Util/Buildchain/gcc/include/c++/5.2.0/cerrno \
+  ../../Util/Buildchain/gcc/include/unistd.h \
+  ../../Util/Buildchain/gcc/include/bits/posix_opt.h \
+  ../../Util/Buildchain/gcc/include/bits/environments.h \
+  ../../Util/Buildchain/clang/include/stddef.h \
+  ../../Util/Buildchain/gcc/include/bits/confname.h \
+  ../../Util/Buildchain/gcc/include/getopt.h \
+  ../../Util/Buildchain/gcc/include/fcntl.h \
+  ../../Util/Buildchain/gcc/include/bits/fcntl.h \
+  ../../Util/Buildchain/gcc/include/bits/uio.h \
+  ../../Util/Buildchain/gcc/include/bits/stat.h \
+  ../../Util/Buildchain/gcc/include/sys/socket.h \
+  ../../Util/Buildchain/gcc/include/sys/uio.h \
+  ../../Util/Buildchain/gcc/include/bits/sigset.h \
+  ../../Util/Buildchain/gcc/include/bits/socket.h \
+  ../../Util/Buildchain/gcc/include/bits/sockaddr.h \
+  ../../Util/Buildchain/gcc/include/asm/socket.h \
+  ../../Util/Buildchain/gcc/include/asm-generic/socket.h \
+  ../../Util/Buildchain/gcc/include/asm/sockios.h \
+  ../../Util/Buildchain/gcc/include/asm-generic/sockios.h \
+  ../../Util/Buildchain/gcc/include/sys/ioctl.h \
+  ../../Util/Buildchain/gcc/include/bits/ioctls.h \
+  ../../Util/Buildchain/gcc/include/asm/ioctls.h \
+  ../../Util/Buildchain/gcc/include/asm-generic/ioctls.h \
+  ../../Util/Buildchain/gcc/include/linux/ioctl.h \
+  ../../Util/Buildchain/gcc/include/asm/ioctl.h \
+  ../../Util/Buildchain/gcc/include/asm-generic/ioctl.h \
+  ../../Util/Buildchain/gcc/include/bits/ioctl-types.h \
+  ../../Util/Buildchain/gcc/include/sys/ttydefaults.h \
+  ../../Util/Buildchain/gcc/include/net/if.h \
+  ../../Util/Buildchain/gcc/include/netinet/in.h \
+  ../../Util/Buildchain/gcc/include/bits/in.h \
+  ../../Util/Buildchain/gcc/include/bits/byteswap.h \
+  ../../Util/Buildchain/gcc/include/arpa/inet.h \
+  ../../Util/Buildchain/gcc/include/netdb.h \
+  ../../Util/Buildchain/gcc/include/rpc/netdb.h \
+  ../../Util/Buildchain/gcc/include/bits/siginfo.h \
+  ../../Util/Buildchain/gcc/include/bits/wordsize.h \
+  ../../Util/Buildchain/gcc/include/bits/netdb.h \
+  ../../Util/Buildchain/gcc/include/c++/5.2.0/cstring \
+  ../../Util/Buildchain/gcc/include/ifaddrs.h
