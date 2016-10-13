@@ -16,7 +16,7 @@ option(HandleGameState)
             goto ready;
         else if(theGameInfo.state == STATE_SET)
             goto set;
-        else if(theGameInfo.state == STATE_PLAYING)
+        else if(theGameInfo.state == STATE_PLAYING || theWhistle.confidenceOfLastWhistleDetection != 0)
             goto playing;
     }
 
@@ -90,6 +90,7 @@ option(HandleGameState)
             
             else
             {
+                ShowWhistle(theWhistle.confidenceOfLastWhistleDetection);
                 ArmContact();
                 PlayingState();
             }
