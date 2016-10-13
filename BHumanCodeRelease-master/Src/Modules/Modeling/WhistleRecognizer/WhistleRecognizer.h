@@ -59,7 +59,7 @@ public:
 
   /** Destructor */
   ~WhistleRecognizer();
-
+   double correlation1;
 private:
   RingBuffer<float, WHISTLE_BUFF_LEN> inputChannel0; /** Audio data from the first channel */
   RingBuffer<float, WHISTLE_BUFF_LEN> inputChannel1; /** Audio data from the second channel */

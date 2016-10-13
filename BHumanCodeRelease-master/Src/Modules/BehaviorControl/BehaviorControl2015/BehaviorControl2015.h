@@ -71,7 +71,6 @@
 #include "Representations/Modeling/AbsolutePointToRobot.h"
 
 
-
 #include <algorithm>
 #include <limits>
 #include <sstream>

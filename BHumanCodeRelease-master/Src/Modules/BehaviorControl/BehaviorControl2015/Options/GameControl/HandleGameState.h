@@ -2,7 +2,7 @@
  *  This option also invokes the get up behavior after a fall, as this is needed in most game states.
  */
 option(HandleGameState)
-{            
+{
     /** As game state changes are discrete external events and all states are independent of each other,
         a common transition can be used here. */
     common_transition {
@@ -16,7 +16,7 @@ option(HandleGameState)
             goto ready;
         else if(theGameInfo.state == STATE_SET)
             goto set;
-        else if(theGameInfo.state == STATE_PLAYING)
+        else if(theGameInfo.state == STATE_PLAYING || theWhistle.lastTimeWhistleDetected != 0)
             goto playing;
     }
 
@@ -29,14 +29,12 @@ option(HandleGameState)
                 PlaySound(theGameInfo.kickOffTeam == theOwnTeamInfo.teamNumber
                 ? "penaltyStriker.wav" : "penaltyKeeper.wav");
 
-            if(theGameInfo.secondaryState == STATE2_PENALTYSHOOT)
-			{
-					if (theGameInfo.kickOffTeam == theOwnTeamInfo.teamNumber)
-						StrikerDong1();
-					else 
-						Keeper();
-			}
-            else
+            if(theGameInfo.secondaryState == STATE2_PENALTYSHOOT) {
+                if (theGameInfo.kickOffTeam == theOwnTeamInfo.teamNumber)
+                    StrikerDong1();
+                else
+                    Keeper();
+            } else
                 SpecialAction(SpecialActionRequest::standHigh);
         }
     }
@@ -60,8 +58,8 @@ option(HandleGameState)
     /** Walk to kickoff position. */
     state(ready) {
         action {
-             ShowRobotToField(theRobotPose);
-             ShowSomething((float)theRobotInfo.number);
+            ShowRobotToField(theRobotPose);
+            ShowSomething((float)theRobotInfo.number);
             ArmContact();
             ReadyState();
         }
@@ -73,30 +71,32 @@ option(HandleGameState)
             //theHeadControlMode = HeadControl::lookForward;
             Stand();
             SetState();
+            ShowWhistle(theWhistle.confidenceOfLastWhistleDetection);
+            ShowCorrelation(theWhistle.lastTimeWhistleDetected);
+            ShowCorrelation(theWhistle.lastTimeOfIncomingSound);
+
+
         }
     }
 
     /** Play soccer! */
     state(playing) {
         action {
-             if(theGameInfo.kickOffTeam != theOwnTeamInfo.teamNumber)
+            /*  WhistleRecognizer whistleRecognizer;
+              bool detectWhistle = whistleRecognizer.detectWhistle();*/
+            ShowCorrelation(theWhistle.lastTimeWhistleDetected);
+            ShowCorrelation(theWhistle.lastTimeOfIncomingSound);
+            if(theGameInfo.kickOffTeam != theOwnTeamInfo.teamNumber)
             {
-                if(theBallModel.estimate.velocity.x() > 0.0 || theBallModel.estimate.velocity.y() > 0.0 || state_time  > 10000)
-                {
-                    ArmContact();
-                    PlayingState();
-                }
-            }
-            
-            else
-            {
+            if(theBallModel.estimate.velocity.x() > 0.0 || theBallModel.estimate.velocity.y() > 0.0 || state_time  > 10000) {
                 ArmContact();
                 PlayingState();
             }
-            
-            
+            }
+            else {
+                ArmContact();
+                PlayingState();
+            }
         }
     }
 }
-
- 

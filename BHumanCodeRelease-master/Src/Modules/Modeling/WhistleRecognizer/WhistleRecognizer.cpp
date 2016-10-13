@@ -72,7 +72,8 @@ void WhistleRecognizer::update(Whistle& whistle)
   {
     whistle.lastTimeWhistleDetected = theFrameInfo.time;
     whistle.lastTimeOfIncomingSound = theFrameInfo.time;
-    whistle.confidenceOfLastWhistleDetection = 100;
+    whistle.confidenceOfLastWhistleDetection = 100;   //原始是100
+    whistle.correlation2 = correlation1;
     return;
   }
   DEBUG_RESPONSE_ONCE("module:WhistleRecognizer:sound")
@@ -228,9 +229,11 @@ bool WhistleRecognizer::detectWhistle(const RingBuffer<float, WHISTLE_BUFF_LEN>&
     else if(correlation < -corrBuff[j])
       correlation = -corrBuff[j];
   }
+
   if (correlation >= whistleThreshold)
   {
     OUTPUT_TEXT("Whistle has been blown!" << correlation);
+    correlation1 = correlation;
     return true;
   }
   return false;

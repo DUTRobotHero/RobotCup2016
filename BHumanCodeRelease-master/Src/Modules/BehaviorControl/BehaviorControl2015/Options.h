@@ -50,6 +50,9 @@
 #include "Options/Output/ShowSomething.h"
 #include "Options/Output/ShowTeamBallModel.h"
 #include "Options/Output/ShowObstacles.h"
+#include "Options/Output/ShowWhistle.h"
+#include "Options/Output/ShowCorrelation.h"
+
 
 #include "Options/Output/ShowReadyPosition.h"
 #include "Options/Output/ShowTeammateData.h"
