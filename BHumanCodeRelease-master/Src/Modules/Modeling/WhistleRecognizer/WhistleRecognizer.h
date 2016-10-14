@@ -73,6 +73,7 @@ private:
   int cmpCnt;                    /**< Number of new audio samples */
   uint8_t lastGameState;         /**< Keep last game state for checking state transition to SET */
   unsigned int lastTimeWhistleDetectedInBothChannels; /**< As the name says ... */
+  double correlation1;
 
   /**
    * Method for recognizing a whistle in one channel

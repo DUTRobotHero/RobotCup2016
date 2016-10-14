@@ -73,6 +73,8 @@ option(HandleGameState)
             //theHeadControlMode = HeadControl::lookForward;
             Stand();
             SetState();
+            ShowCorrelation(theWhistle.correlation2);
+            ShowWhistle(theWhistle.lastTimeOfIncomingSound);
         }
     }
 
