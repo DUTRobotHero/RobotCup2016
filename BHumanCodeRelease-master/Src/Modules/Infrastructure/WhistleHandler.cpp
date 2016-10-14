@@ -16,6 +16,10 @@ void WhistleHandler::update(GameInfo& gameInfo)
 
   if(gameInfo.state != STATE_SET)
     overrideGameState = false;
+    else if(theWhistle.correlation2 > 0.15)    //根据实际的哨声进行修改
+        gameInfo.state = STATE_PLAYING;
+    
+    /*
   else if(!overrideGameState && gameInfo.gameType == GAME_PLAYOFF && gameInfo.secondaryState == STATE2_NORMAL)
     //overrideGameState = checkWhistle() && checkBall();
     overrideGameState = checkWhistle() ;
@@ -32,6 +36,7 @@ void WhistleHandler::update(GameInfo& gameInfo)
       gameInfo.state = STATE_PLAYING;
     }
   }
+   * */
 }
 
 bool WhistleHandler::checkWhistle() const

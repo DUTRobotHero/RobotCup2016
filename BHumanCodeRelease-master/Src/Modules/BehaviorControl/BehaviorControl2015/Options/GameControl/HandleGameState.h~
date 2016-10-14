@@ -5,6 +5,7 @@ option(HandleGameState)
 {
     /** As game state changes are discrete external events and all states are independent of each other,
         a common transition can be used here. */
+    int numOfObstacles = theObstacleModel.obstacles.size();
     common_transition {
         if(theGameInfo.state == STATE_INITIAL)
             goto initial;
@@ -29,9 +30,12 @@ option(HandleGameState)
                 PlaySound(theGameInfo.kickOffTeam == theOwnTeamInfo.teamNumber
                 ? "penaltyStriker.wav" : "penaltyKeeper.wav");
 
-            if(theGameInfo.secondaryState == STATE2_PENALTYSHOOT)
-                Stand();
-            else
+            if(theGameInfo.secondaryState == STATE2_PENALTYSHOOT) {
+                if (theGameInfo.kickOffTeam == theOwnTeamInfo.teamNumber)
+                    StrikerDong1();
+                else
+                    Keeper();
+            } else
                 SpecialAction(SpecialActionRequest::standHigh);
         }
     }
@@ -55,7 +59,8 @@ option(HandleGameState)
     /** Walk to kickoff position. */
     state(ready) {
         action {
-             ShowRobotToField(theRobotPose);
+            ShowRobotToField(theRobotPose);
+            ShowSomething((float)theRobotInfo.number);
             ArmContact();
             ReadyState();
         }
@@ -64,24 +69,45 @@ option(HandleGameState)
     /** Stand and look around. */
     state(set) {
         action {
-            theHeadControlMode = HeadControl::lookForward;
+            //theHeadControlMode = HeadControl::lookForward;
             Stand();
             SetState();
+
+            ShowCorrelation(theWhistle.correlation2);
+            ShowWhistle(theWhistle.lastTimeOfIncomingSound);
+
         }
     }
 
     /** Play soccer! */
     state(playing) {
         action {
-            ArmContact();
-            PlayingState();
+            /*  WhistleRecognizer whistleRecognizer;
+              bool detectWhistle = whistleRecognizer.detectWhistle();*/
+            ShowCorrelation(theWhistle.lastTimeWhistleDetected);
+            ShowCorrelation(theWhistle.lastTimeOfIncomingSound);
+            if(theGameInfo.kickOffTeam != theOwnTeamInfo.teamNumber)
+            {
+                if(theBallModel.estimate.velocity.x() > 0.0 || theBallModel.estimate.velocity.y() > 0.0 || state_time  > 10000)
+                {
+                    ArmContact();
+                    PlayingState();
+                    if(numOfObstacles != 0)
+                        KeyFrameRightArm(ArmKeyFrameRequest::back, false);
+                    else
+                        KeyFrameRightArm(ArmKeyFrameRequest::useDefault, false);
+                }
+
+            }
+            else
+            {
+                ArmContact();
+                PlayingState();
+                if(numOfObstacles != 0)
+                    KeyFrameRightArm(ArmKeyFrameRequest::back, false);
+                else
+                    KeyFrameRightArm(ArmKeyFrameRequest::useDefault, false);
+            }
         }
     }
-<<<<<<< HEAD
-=======
-  }
-
->>>>>>> 64004df0cc7cd4b3331e7a403e15c1be2acd74a5
 }
-
- 

@@ -59,7 +59,6 @@ public:
 
   /** Destructor */
   ~WhistleRecognizer();
-   double correlation1;
 private:
   RingBuffer<float, WHISTLE_BUFF_LEN> inputChannel0; /** Audio data from the first channel */
   RingBuffer<float, WHISTLE_BUFF_LEN> inputChannel1; /** Audio data from the second channel */
@@ -73,6 +72,7 @@ private:
   int cmpCnt;                    /**< Number of new audio samples */
   uint8_t lastGameState;         /**< Keep last game state for checking state transition to SET */
   unsigned int lastTimeWhistleDetectedInBothChannels; /**< As the name says ... */
+  double correlation1;
 
   /**
    * Method for recognizing a whistle in one channel

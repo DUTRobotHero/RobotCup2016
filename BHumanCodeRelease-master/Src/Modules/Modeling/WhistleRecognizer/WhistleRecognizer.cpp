@@ -154,6 +154,7 @@ void WhistleRecognizer::update(Whistle& whistle)
       lastTimeWhistleDetectedInBothChannels = theFrameInfo.time;
       whistle.lastTimeWhistleDetected = theFrameInfo.time;
       whistle.confidenceOfLastWhistleDetection = 100;
+      whistle.correlation2 = correlation1;
     }
     // One ear ist damaged but I can hear the sound on the other ear:
     else if((w0 && vol && !theDamageConfigurationHead.audioChannel0Defect && theDamageConfigurationHead.audioChannel1Defect) ||
@@ -161,12 +162,14 @@ void WhistleRecognizer::update(Whistle& whistle)
     {
       whistle.lastTimeWhistleDetected = theFrameInfo.time;
       whistle.confidenceOfLastWhistleDetection = 66;
+      whistle.correlation2 = correlation1;
     }
     // Last (positive) case: Both ears are OK, but I can hear the sound on one ear, only:
     else if(!theDamageConfigurationHead.audioChannel0Defect && !theDamageConfigurationHead.audioChannel1Defect &&
             ((w0 && !w1) || (!w0 && w1)) && vol)
     {
       whistle.lastTimeWhistleDetected = theFrameInfo.time;
+      whistle.correlation2 = correlation1;
       if(theFrameInfo.getTimeSince(lastTimeWhistleDetectedInBothChannels) > timeForOneChannelAcceptance)
         whistle.confidenceOfLastWhistleDetection = 33;
       else
@@ -175,6 +178,7 @@ void WhistleRecognizer::update(Whistle& whistle)
     // Finally, a completely deaf robot has a negative confidence:
     else if(theDamageConfigurationHead.audioChannel0Defect && theDamageConfigurationHead.audioChannel1Defect)
     {
+      whistle.correlation2 = correlation1;
       whistle.confidenceOfLastWhistleDetection = -1; // Not a detection but other robots get the information to ignore me
     }
   }
@@ -229,6 +233,8 @@ bool WhistleRecognizer::detectWhistle(const RingBuffer<float, WHISTLE_BUFF_LEN>&
     else if(correlation < -corrBuff[j])
       correlation = -corrBuff[j];
   }
+
+  correlation1 = correlation;
 
   if (correlation >= whistleThreshold)
   {

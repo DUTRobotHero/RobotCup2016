@@ -1,5 +1,5 @@
 
-option(ShowBool, (const bool&) IsBallInPenaltyArea)
+option(ShowBool, (const bool&) Whistle)
 {
   initial_state(send)
   {

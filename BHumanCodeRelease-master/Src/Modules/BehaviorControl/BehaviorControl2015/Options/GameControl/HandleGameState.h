@@ -5,6 +5,7 @@ option(HandleGameState)
 {
     /** As game state changes are discrete external events and all states are independent of each other,
         a common transition can be used here. */
+    int numOfObstacles = theObstacleModel.obstacles.size();
     common_transition {
         if(theGameInfo.state == STATE_INITIAL)
             goto initial;
@@ -14,13 +15,9 @@ option(HandleGameState)
             goto getUp;
         else if(theGameInfo.state == STATE_READY)
             goto ready;
-        else if(theGameInfo.state == STATE_SET)
+        else if(theGameInfo.state == STATE_SET )
             goto set;
-<<<<<<< HEAD
-        else if(theGameInfo.state == STATE_PLAYING || theWhistle.lastTimeWhistleDetected != 0)
-=======
-        else if(theGameInfo.state == STATE_PLAYING || theWhistle.confidenceOfLastWhistleDetection != 0)
->>>>>>> 48fa3a823d796d866d81841845cbf069e3f8b94d
+        else if(theGameInfo.state == STATE_PLAYING )
             goto playing;
     }
 
@@ -75,38 +72,39 @@ option(HandleGameState)
             //theHeadControlMode = HeadControl::lookForward;
             Stand();
             SetState();
-            ShowWhistle(theWhistle.confidenceOfLastWhistleDetection);
-            ShowCorrelation(theWhistle.lastTimeWhistleDetected);
-            ShowCorrelation(theWhistle.lastTimeOfIncomingSound);
 
-
+            ShowCorrelation(theWhistle.correlation2);
+            ShowWhistle(theWhistle.lastTimeOfIncomingSound);
         }
     }
 
     /** Play soccer! */
     state(playing) {
         action {
-            /*  WhistleRecognizer whistleRecognizer;
-              bool detectWhistle = whistleRecognizer.detectWhistle();*/
+            ShowCorrelation(theWhistle.correlation2);
             ShowCorrelation(theWhistle.lastTimeWhistleDetected);
             ShowCorrelation(theWhistle.lastTimeOfIncomingSound);
             if(theGameInfo.kickOffTeam != theOwnTeamInfo.teamNumber)
             {
-            if(theBallModel.estimate.velocity.x() > 0.0 || theBallModel.estimate.velocity.y() > 0.0 || state_time  > 10000) {
-                ArmContact();
-                PlayingState();
+                if(theBallModel.estimate.velocity.x() > 0.0 || theBallModel.estimate.velocity.y() > 0.0 || state_time  > 10000)
+                {
+                    ArmContact();
+                    PlayingState();
+                    if(numOfObstacles != 0)
+                        KeyFrameRightArm(ArmKeyFrameRequest::back, false);
+                    else
+                        KeyFrameRightArm(ArmKeyFrameRequest::useDefault, false);
+                }
+
             }
-<<<<<<< HEAD
-            }
-            else {
-=======
-            
-            else
+            else 
             {
-                ShowWhistle(theWhistle.confidenceOfLastWhistleDetection);
->>>>>>> 48fa3a823d796d866d81841845cbf069e3f8b94d
                 ArmContact();
                 PlayingState();
+                if(numOfObstacles != 0)
+                    KeyFrameRightArm(ArmKeyFrameRequest::back, false);
+                else
+                    KeyFrameRightArm(ArmKeyFrameRequest::useDefault, false);
             }
         }
     }

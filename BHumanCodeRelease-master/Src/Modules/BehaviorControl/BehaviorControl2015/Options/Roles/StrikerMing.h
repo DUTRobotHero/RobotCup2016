@@ -3,17 +3,18 @@
 option(StrikerMing)
 {
   std::vector<Obstacle> avoidthings = theObstacleModel.obstacles;
+  int numOfObstacles = avoidthings.size();
   int frontObstacle = 0;
   int behindObstacle =0;
   int obstacleOnLine = 0;
   int ballAndObstacle_mixed = 0;
-  for(int i = 0; i < avoidthings.size(); i++)
+  for(int i = 0; i < numOfObstacles; i++)
   {
       printf("center_x: %f \n",avoidthings[i].center.x() );
   }
   if(!avoidthings.empty())//判断各个位置的障碍物数量。
   {
-    for(int i = 0; i < avoidthings.size(); i++)
+    for(int i = 0; i < numOfObstacles; i++)
     {
         if(avoidthings[i].center.x() + 100.f < theBallModel.estimate.position.x())
             frontObstacle++;
@@ -45,11 +46,6 @@ option(StrikerMing)
     }
     action
     {
-      
-      /*for(Obstacle o:theObstacleModel.obstacles)
-          ShowObstacle(o.center);*/
-        KeyFrameLeftArm(ArmKeyFrameRequest::back, true);
-        KeyFrameRightArm(ArmKeyFrameRequest::back, true);
         theHeadControlMode = HeadControl::lookForward;
         Stand();
     }
@@ -66,8 +62,6 @@ option(StrikerMing)
     }
     action
     {
-        KeyFrameLeftArm(ArmKeyFrameRequest::back, true);
-        KeyFrameRightArm(ArmKeyFrameRequest::back, true);
 
         theHeadControlMode = HeadControl::lookForward;
         WalkToTarget(Pose2f(50.f,50.f,50.f), Pose2f(theBallModel.estimate.position.angle(), 0.f, 0.f));
@@ -85,9 +79,6 @@ option(StrikerMing)
     }
     action
     {
-        
-        KeyFrameLeftArm(ArmKeyFrameRequest::back, true);
-        KeyFrameRightArm(ArmKeyFrameRequest::back, true);
        
         theHeadControlMode = HeadControl::lookForward;
       
@@ -106,7 +97,7 @@ option(StrikerMing)
     }
     action
     {
-        for(int i = 0; i < avoidthings.size(); i++)
+        for(int i = 0; i < numOfObstacles; i++)
         {
             if(std::abs(std::tan(libCodeRelease.angleToGoal) - avoidthings[i].right.x() / avoidthings[i].right.y()) < 
             std::abs(std::tan(libCodeRelease.angleToGoal) - avoidthings[i].left.x() / avoidthings[i].left.y()))
@@ -127,7 +118,7 @@ option(StrikerMing)
         
         if(libCodeRelease.timeSinceBallWasSeen() > 7000)
             goto searchForBall;
-        if(std::abs(libCodeRelease.angleToGoal) < 13_deg && std::abs(theBallModel.estimate.position.y() < 100.f ) && theRobotPose.translation.x() > 100.f)
+        if(std::abs(libCodeRelease.angleToGoal) < 13_deg && std::abs(theBallModel.estimate.position.y()) < 100.f  && theRobotPose.translation.x() > 100.f)
             goto alignBehindBallLeft;
         else if(std::abs(libCodeRelease.angleToGoal) < 13_deg
                     && std::abs(theBallModel.estimate.position.y() )< 100.f && 
@@ -136,12 +127,10 @@ option(StrikerMing)
         else if(std::abs(libCodeRelease.angleToGoal) < 13_deg
                     && std::abs(theBallModel.estimate.position.y() )< 100.f )
             goto alignBehindBallRight;
-       /*  if(theGoalPost.positionOnField .x() < 800.f)
-                goto  ScoreDirection;*/
+       
     }
     action
     {
-        /*ShowGoalPost(theGoalPost.positionOnField);*/
         theHeadControlMode = HeadControl::lookForward;
         WalkToTarget(Pose2f(100.f,100.f,100.f), Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 250.f, theBallModel.estimate.position.y()));
     }
@@ -252,18 +241,6 @@ option(StrikerMing)
       InWalkKick(WalkRequest::sidewardsRight, Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() + 55.f));
     }
   }
-  
- /* state(ScoreDirection)
-  {
-      transition
-      {
-          ;
-      }
-      action
-      {
-          ;
-      }
-  }*/
   
   state(searchForBall)
   {
