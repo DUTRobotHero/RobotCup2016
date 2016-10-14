@@ -16,7 +16,11 @@ option(HandleGameState)
             goto ready;
         else if(theGameInfo.state == STATE_SET)
             goto set;
+<<<<<<< HEAD
         else if(theGameInfo.state == STATE_PLAYING || theWhistle.lastTimeWhistleDetected != 0)
+=======
+        else if(theGameInfo.state == STATE_PLAYING || theWhistle.confidenceOfLastWhistleDetection != 0)
+>>>>>>> 48fa3a823d796d866d81841845cbf069e3f8b94d
             goto playing;
     }
 
@@ -92,8 +96,15 @@ option(HandleGameState)
                 ArmContact();
                 PlayingState();
             }
+<<<<<<< HEAD
             }
             else {
+=======
+            
+            else
+            {
+                ShowWhistle(theWhistle.confidenceOfLastWhistleDetection);
+>>>>>>> 48fa3a823d796d866d81841845cbf069e3f8b94d
                 ArmContact();
                 PlayingState();
             }
