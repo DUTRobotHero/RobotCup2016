@@ -1,4 +1,4 @@
-option(ShowWhistle, (const char&) confidence)
+option(ShowWhistle, (const unsigned int&) lastTimeOfIncomingSound)
 {
   initial_state(show)
   {

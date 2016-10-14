@@ -15,6 +15,7 @@ option(HandlePenaltyState)
     action
     {
       HandleGameState();
+      
     }
   }
 
