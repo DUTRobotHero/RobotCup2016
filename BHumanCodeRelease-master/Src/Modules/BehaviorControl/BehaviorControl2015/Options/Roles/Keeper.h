@@ -15,7 +15,7 @@ option(Keeper)
                 goto turnToBall;
         }
         action {
-			theBehaviorStatus.role = Role::keeper;
+			
             theHeadControlMode = HeadControl::lookForward;
             Annotation("I am in initial_state");
             Pose2f Ball2Field = BallModel2Field(theBallModel,theRobotPose);

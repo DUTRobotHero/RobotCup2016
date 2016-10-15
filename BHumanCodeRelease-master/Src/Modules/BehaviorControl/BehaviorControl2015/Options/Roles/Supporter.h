@@ -2,15 +2,25 @@ option(helpStriker)
 {
 	float setAdjustVelocity = 1.f/2;
 	
-	common_transition{
+	/*common_transition{
 		 if(otherTeammate.pose.translation.y()>=0.f)
 		  goto sideleft;
 		else
 			goto sideright;
-	}	
-	initial_state(start);
+	}	*/
+	initial_state(start)
+	{
+		transition{
+			goto sideright;
+		}
+	}
+	//当strikerd的位置大于50cm，supporter去右边
 	state(sideleft)
 	{
+		transition{
+			if(otherTeammate.pose.translation.y()>=500.f)
+					goto sideright;
+		}
 		action{
 			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x()-400.f,
 																														otherTeammate.pose.translation.y()-1000.f);
@@ -18,8 +28,13 @@ option(helpStriker)
                     Pose2f(0,relatePoint.translation.x(),relatePoint.translation.y()));
 		}
 	}
+	//当strikerd的位置小于-50cm，supporter去左边
 	state(sideright)
-	{
+	{	
+		transition{
+			if(otherTeammate.pose.translation.y()<=-500.f)
+					goto sideleft;
+		}
 		action{
 			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x()-400.f,
 																														otherTeammate.pose.translation.y()+1000.f);
