@@ -36,9 +36,10 @@ option(PlayingState)
   {
       transition
       {
-          if ((theOwnSideModel.returnFromGameControllerPenalty || 
-				theOwnSideModel.returnFromManualPenalty) )
-			goto backToField;
+          if (libCodeRelease.returnFormPenalty == true ){
+			  libCodeRelease.returnFormPenalty=false;
+			  goto backToField;
+			  }
       }
       action
       {

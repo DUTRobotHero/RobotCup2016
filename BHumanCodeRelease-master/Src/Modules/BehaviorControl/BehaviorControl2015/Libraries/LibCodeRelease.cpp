@@ -9,12 +9,14 @@ namespace Behavior2015
   #include "LibCodeRelease.h"
   
   LibCodeRelease::LibCodeRelease():
-    angleToGoal(0.f),angleToGoalForStriker(0.f)
+    angleToGoal(0.f),
+	angleToGoalForStriker(0.f),
+	returnFormPenalty(false)
   {}
   
   void LibCodeRelease::preProcess()
   {
-	  float y = 0.f;
+	  //float y = 0.f;
 	  /*if ( theRobotPose.translation.x () > 1500.f ) {
 
 	      std::vector<Obstacle> p = theObstacleModel.obstacles;
@@ -60,7 +62,10 @@ namespace Behavior2015
 	      //printf ( "the info of Goal-before: %f\n", angleToGoal * 180 / 3.1515926 );
         //}*/
 
-	  angleToGoal= ( theRobotPose.inverse () * Vector2f ( theFieldDimensions.xPosOpponentGroundline, 0.0f ) ).angle ();
+	  angleToGoal = ( theRobotPose.inverse () * Vector2f ( theFieldDimensions.xPosOpponentGroundline, 0.0f ) ).angle ();
+	  if (theOwnSideModel.returnFromGameControllerPenalty || theOwnSideModel.returnFromManualPenalty ){
+		  returnFormPenalty=true;
+		  }
   }
 
   void LibCodeRelease::postProcess()

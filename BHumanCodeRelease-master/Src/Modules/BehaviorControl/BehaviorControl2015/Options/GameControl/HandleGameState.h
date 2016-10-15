@@ -90,11 +90,6 @@ option(HandleGameState)
                 {
                     ArmContact();
                     PlayingState();
-                    
-                    /*if(numOfObstacles != 0)
-                        KeyFrameRightArm(ArmKeyFrameRequest::back, false);
-                    else
-                        KeyFrameRightArm(ArmKeyFrameRequest::useDefault, false);*/
                 }
 
             }
@@ -102,10 +97,6 @@ option(HandleGameState)
             {
                 ArmContact();
                 PlayingState();
-                /*if(numOfObstacles != 0)
-                    KeyFrameRightArm(ArmKeyFrameRequest::back, false);
-                else
-                    KeyFrameRightArm(ArmKeyFrameRequest::useDefault, false);*/
             }
         }
     }
