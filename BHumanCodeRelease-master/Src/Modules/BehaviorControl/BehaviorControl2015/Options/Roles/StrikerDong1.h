@@ -46,7 +46,14 @@ option(StrikerDong1)
     action
     {
       theHeadControlMode = HeadControl::focusBall;
-      WalkToTarget(Pose2f(50.f, 50.f, 50.f), theBallModel.estimate.position);
+	  Pose2f speed(0.f,0.f,0.f);
+	  if  ( theBallModel.estimate.position.norm() > 3500.f )
+		  speed=Pose2f(1.f,1.f,1.f);
+	  else if (theBallModel.estimate.position.norm() > 2000.f)
+		  speed=Pose2f(25.f,25.f,25.f);
+	  else
+		  speed=Pose2f(50.f, 50.f, 50.f);
+      WalkToTarget(speed, theBallModel.estimate.position);
     }
   }
 
