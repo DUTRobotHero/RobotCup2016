@@ -70,7 +70,7 @@ option(StrikerDong1)
 	 {
 		  if(libCodeRelease.timeSinceBallWasSeen() > 7000)
 		       goto searchForBall;
-		 if(libCodeRelease.between(theBallModel.estimate.position.y(), -30.f, 30.f)
+		 if(libCodeRelease.between(theBallModel.estimate.position.y(), -20.f, 20.f)
           && libCodeRelease.between(theBallModel.estimate.position.x(), 140.f, 170.f)
           && std::abs(libCodeRelease.angleToGoalForStriker) < 2_deg)
 		  {
@@ -133,7 +133,7 @@ option(StrikerDong1)
 	}
 	action
 	{
-		theHeadControlMode = HeadControl::lookHigh;
+		theHeadControlMode = HeadControl::focusBall;
         WalkToTarget(Pose2f(80.f, 80.f, 80.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 0.f));
 	}
 }
@@ -159,7 +159,7 @@ state(kickLeft)
 	}
 	action
 	{
-		theHeadControlMode = HeadControl::lookForward;
+		theHeadControlMode = HeadControl::focusBall;
 		LeftKick(WalkRequest::left);
 	}
 }
@@ -175,22 +175,8 @@ state(sideKickLeft)
 	}
 	action
 	{
+		theHeadControlMode = HeadControl::focusBall;
 		LeftKick(WalkRequest::sidewardsLeft);
-	}
-}
-//**Kick with right leg straight**//
-state(kickRight)
-{
-	transition
-	{
-		if(state_time > 3000 || (state_time > 10 && action_done))
-				goto turnToBall;
-		if(libCodeRelease.timeSinceBallWasSeen() > 7000)
-		       goto searchForBall;
-	}
-	action
-	{
-		RightKick(WalkRequest::right);
 	}
 }
 //**Kick with left leg sidewards**//
@@ -205,6 +191,7 @@ state(sideKickRight)
 	}
 	action
 	{
+		theHeadControlMode = HeadControl::focusBall;
 		RightKick(WalkRequest::sidewardsRight);
 	}
 }
@@ -220,7 +207,8 @@ state(shoot)
 	}
 	action
 	{
-		RightKick(WalkRequest::right);//shoot type
+		theHeadControlMode = HeadControl::focusBall;
+		ShootKick();//shoot type
 	}
 }
  state(searchForBall)

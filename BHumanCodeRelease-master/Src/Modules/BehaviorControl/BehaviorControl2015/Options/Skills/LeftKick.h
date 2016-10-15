@@ -16,7 +16,7 @@ option(LeftKick,((WalkRequest) KickType) kickType)
     }
     action
     {
-		theHeadControlMode = HeadControl::lookForward;
+		theHeadControlMode = HeadControl::focusBall;
         WalkToTarget(Pose2f(80.f, 80.f, 80.f), Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 30.f));
     }
   }
@@ -29,7 +29,7 @@ option(LeftKick,((WalkRequest) KickType) kickType)
     action
     {
 		  Annotation("Kick use left'");
-		  theHeadControlMode = HeadControl::lookForward;
+		  theHeadControlMode = HeadControl::focusBall;
 		  InWalkKick(kickType, Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 160.f, theBallModel.estimate.position.y() - 55.f));
     }
   }

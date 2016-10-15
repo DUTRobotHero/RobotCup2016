@@ -67,6 +67,7 @@
 #include "Options/Output/ShowRobotPose.h"
 #include "Options/Skills/LeftKick.h"
 #include "Options/Skills/RightKick.h"
+#include "Options/Skills/ShootKick.h"
 
 
 #include "Options/Roles/StrikerDong1.h"

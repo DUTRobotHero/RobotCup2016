@@ -49,7 +49,7 @@ namespace Behavior2015
                   }
 	      }*/
 	      angleToGoalForStriker
-	          = ( theRobotPose.inverse () * Vector2f ( theFieldDimensions.xPosOpponentGroundline, 600.f ) ).angle ();
+	          = ( theRobotPose.inverse () * Vector2f ( theFieldDimensions.xPosOpponentGroundline, 500.f ) ).angle ();
 
 	      //printf ( "the info of Goal-after: %f\n", angleToGoal * 180 / 3.1415926 );
         /*} 
