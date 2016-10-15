@@ -70,17 +70,6 @@ option(PlayingState)
       action
       {
           ReadyState();
-          
-          /*
-		  if ( theRobotInfo.number == KEEPER_NUMBER ){
-				Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,theFieldDimensions.xPosOwnPenaltyMark,0);
-				WalkToTarget(Pose2f(0.f,2.f,0.f),relatePoint);
-		   }
-		   else {
-				Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,theFieldDimensions.xPosOwnPenaltyMark,0);
-			   WalkToTarget(Pose2f(0.f,2.f,0.f),relatePoint);
-			}
-             * */
       }
   }
 }
