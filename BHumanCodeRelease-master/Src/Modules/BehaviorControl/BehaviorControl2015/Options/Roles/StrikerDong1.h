@@ -50,9 +50,11 @@ option(StrikerDong1)
 	  if  ( theBallModel.estimate.position.norm() > 3500.f )
 		  speed=Pose2f(1.f,1.f,1.f);
 	  else if (theBallModel.estimate.position.norm() > 2000.f)
-		  speed=Pose2f(25.f,25.f,25.f);
+		  speed=Pose2f(10.f,10.f,10.f);
+	  else if (theBallModel.estimate.position.norm() > 2000.f)
+		  speed=Pose2f(20.f,20.f,20.f);
 	  else
-		  speed=Pose2f(50.f, 50.f, 50.f);
+		  speed=Pose2f(30.f, 30.f, 30.f);
       WalkToTarget(speed, theBallModel.estimate.position);
     }
   }
@@ -70,7 +72,7 @@ option(StrikerDong1)
     {
 
       theHeadControlMode = HeadControl::lookHigh;
-      WalkToTarget(Pose2f(100.f, 100.f, 100.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 400.f, theBallModel.estimate.position.y()));
+      WalkToTarget(Pose2f(60.f, 60.f, 60.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 400.f, theBallModel.estimate.position.y()));
     }
   }
  state(alignBehindBall)
@@ -143,7 +145,7 @@ option(StrikerDong1)
 	action
 	{
 		theHeadControlMode = HeadControl::focusBall;
-        WalkToTarget(Pose2f(80.f, 80.f, 80.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 0.f));
+        WalkToTarget(Pose2f(pi/8, 20.f, 20.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 0.f));
 	}
 }
 //**Kick with left leg straight**//
