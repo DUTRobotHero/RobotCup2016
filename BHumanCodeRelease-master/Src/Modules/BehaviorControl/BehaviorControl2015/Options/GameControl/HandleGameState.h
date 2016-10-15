@@ -5,7 +5,6 @@ option(HandleGameState)
 {
     /** As game state changes are discrete external events and all states are independent of each other,
         a common transition can be used here. */
-    int numOfObstacles = theObstacleModel.obstacles.size();
     common_transition {
         if(theGameInfo.state == STATE_INITIAL)
             goto initial;
@@ -90,10 +89,6 @@ option(HandleGameState)
                 {
                     ArmContact();
                     PlayingState();
-                    if(numOfObstacles != 0)
-                        KeyFrameRightArm(ArmKeyFrameRequest::back, false);
-                    else
-                        KeyFrameRightArm(ArmKeyFrameRequest::useDefault, false);
                 }
 
             }
@@ -101,10 +96,6 @@ option(HandleGameState)
             {
                 ArmContact();
                 PlayingState();
-                if(numOfObstacles != 0)
-                    KeyFrameRightArm(ArmKeyFrameRequest::back, false);
-                else
-                    KeyFrameRightArm(ArmKeyFrameRequest::useDefault, false);
             }
         }
     }

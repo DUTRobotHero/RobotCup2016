@@ -42,6 +42,8 @@ option(PlayingState)
       }
       action
       {
+          ShowBool(theOwnSideModel.returnFromGameControllerPenalty);
+          ShowBool(theOwnSideModel.returnFromManualPenalty);
           ChooseRoles();
       }
   }
