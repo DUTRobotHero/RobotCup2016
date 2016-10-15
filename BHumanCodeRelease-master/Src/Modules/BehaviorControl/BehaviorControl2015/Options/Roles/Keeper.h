@@ -24,8 +24,9 @@ option(Keeper)
             ShowRobotToField(theRobotPose);
             int area = GetAreaNumber(theBallModel,theRobotPose);
             ShowArea(area);
-            ShowSomething(theBallModel.estimate.position.norm());
-            Stand();
+
+            Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,-4200.0,0.0);
+            WalkToTarget(Pose2f(pi/8,1.f,1.f),relatePoint);
         }
     }
 
@@ -268,7 +269,10 @@ option(Keeper)
                 else if( area == 1)
                     goto WalkToVerticalPoint;
             }
-
+            if( state_time > 5000 )
+            {
+                goto start;
+            }
         }
         action {
             theHeadControlMode = HeadControl::searchForBall;

@@ -84,8 +84,8 @@ state(Striker)
 		  //ShowTeammateData(otherTeammate.number,otherTeammate.ball);
 		  StrikerDong1();
           theBehaviorStatus.role = Role::striker;
-          KeyFrameRightArm(ArmKeyFrameRequest::back, false);
-          KeyFrameLeftArm(ArmKeyFrameRequest::back, false);
+          //KeyFrameRightArm(ArmKeyFrameRequest::back, false);
+          //KeyFrameLeftArm(ArmKeyFrameRequest::back, false);
 		}
 	}
 	state(Supporter)
@@ -95,8 +95,8 @@ state(Striker)
 			//ShowTeammateData(otherTeammate.number,otherTeammate.ball);
             theBehaviorStatus.role = Role::supporter;
 		    Supporter();
-            KeyFrameRightArm(ArmKeyFrameRequest::useDefault, false);
-            KeyFrameLeftArm(ArmKeyFrameRequest::useDefault, false);
+            //KeyFrameRightArm(ArmKeyFrameRequest::useDefault, false);
+            //KeyFrameLeftArm(ArmKeyFrameRequest::useDefault, false);
 		}
 	}
 	state(defaultRole)
@@ -113,8 +113,8 @@ state(Striker)
             else if (theRobotInfo.number == STRIKER_NUM){
                 theBehaviorStatus.role = Role::striker;
                 StrikerDong1();
-                KeyFrameLeftArm(ArmKeyFrameRequest::back, false);
-                KeyFrameRightArm(ArmKeyFrameRequest::back, false);
+                //KeyFrameLeftArm(ArmKeyFrameRequest::back, false);
+                //KeyFrameRightArm(ArmKeyFrameRequest::back, false);
                 }
 			//ShowTeammateData(otherTeammate.number,otherTeammate.ball);
 			 
