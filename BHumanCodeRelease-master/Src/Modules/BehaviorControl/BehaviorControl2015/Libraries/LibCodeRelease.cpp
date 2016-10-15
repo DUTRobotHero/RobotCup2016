@@ -15,7 +15,7 @@ namespace Behavior2015
   void LibCodeRelease::preProcess()
   {
 	  float y = 0.f;
-	  if ( theRobotPose.translation.x () > 1500.f ) {
+	  /*if ( theRobotPose.translation.x () > 1500.f ) {
 
 	      std::vector<Obstacle> p = theObstacleModel.obstacles;
 	      std::vector<float> angles;
@@ -45,20 +45,20 @@ namespace Behavior2015
                       }
                       y = ( p[numOfObstacel].left.y () + p[numOfObstacel].right.y () ) / 2.000;
                   }
-	      }
+	      }*/
 	      angleToGoalForStriker
-	          = ( theRobotPose.inverse () * Vector2f ( theFieldDimensions.xPosOpponentGroundline, y ) ).angle ();
+	          = ( theRobotPose.inverse () * Vector2f ( theFieldDimensions.xPosOpponentGroundline, 600.f ) ).angle ();
 
 	      //printf ( "the info of Goal-after: %f\n", angleToGoal * 180 / 3.1415926 );
-        } 
-    
+        /*} 
+    /*
         else 
         {
-	      y = 0.0f;
-	      angleToGoal
-	          = ( theRobotPose.inverse () * Vector2f ( theFieldDimensions.xPosOpponentGroundline, y ) ).angle ();
+	      y = 0.0f;*/
+	      //angleToGoalForStriker
+	          //= ( theRobotPose.inverse () * Vector2f ( theFieldDimensions.xPosOpponentGroundline, y ) ).angle ();
 	      //printf ( "the info of Goal-before: %f\n", angleToGoal * 180 / 3.1515926 );
-        }
+        //}*/
 
 	  angleToGoal= ( theRobotPose.inverse () * Vector2f ( theFieldDimensions.xPosOpponentGroundline, 0.0f ) ).angle ();
   }

@@ -19,6 +19,8 @@ option(ReadyState)
 
     float SUPPORTER_X = -250.0;
     float SUPPORTER_Y = -900.0;
+    float DEFEND_SUPPORTER_X = -900.0;
+    float DEFEND_SUPPORTER_Y = -900.0;
     float KEEPER_X = -4000.0;
     float KEEPER_Y = 0.0;
 
@@ -147,7 +149,7 @@ option(ReadyState)
     state(WalkToPosition_Defend) {
         transition {
             if ( theRobotInfo.number == SUPPORTER_NUMBER) {
-                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,SUPPORTER_X,SUPPORTER_Y);
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFEND_SUPPORTER_X,DEFEND_SUPPORTER_Y);
                 distance = relatePoint.translation.norm();
 
                 if ( distance < deltaDistance )
@@ -169,7 +171,7 @@ option(ReadyState)
         }
         action {
             if ( theRobotInfo.number == SUPPORTER_NUMBER) {        //Hawkeye
-                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,SUPPORTER_X,SUPPORTER_Y);
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFEND_SUPPORTER_X,DEFEND_SUPPORTER_Y);
 
                 WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
                 Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));

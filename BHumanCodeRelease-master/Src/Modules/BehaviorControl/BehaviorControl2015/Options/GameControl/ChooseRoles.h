@@ -12,7 +12,7 @@ option(ChooseRoles)
 			goto Defender;//应该为Defender,不过还没有写完
 		else if (theRobotInfo.number == STRIKER_NUM ||theRobotInfo.number == SUPPORTER_NUM )
 		{
-			if ( theTeammateData.numberOfActiveTeammates !=0 ){//判断是否有发送消息的队友，没有的情况默认为defaultRole
+			if ( theTeammateData.numberOfActiveTeammates !=0 ){//判断是否有发送消息的队友，没有的情况默认为Striker
 				
 				for (Teammate tempTeammate:theTeammateData.teammates)
 				{		//找到对应号的teammate,排除keeper ,defender和自己
@@ -21,24 +21,29 @@ option(ChooseRoles)
 							tempTeammate.number != theRobotInfo.number )
 							{otherTeammate=tempTeammate;}
 				}
-				//确保队友的信息是准确的，不准确就会进入默认模式defaultdefaultRole
+				//确保队友的信息是准确的
 				if (otherTeammate.number !=-1 && //不为空
 					otherTeammate.status == Teammate::Status::FULLY_ACTIVE && //正在活动
 					theFrameInfo.getTimeSince(otherTeammate.ball.timeWhenLastSeen) < 300 )//没有丢失球
 				{
 					//如果离球比较近，则为Striker ,否则为Supporter
-					if (otherTeammate.ball.estimate.position.norm() > theBallModel.estimate.position.norm() )	
+					if (otherTeammate.ball.estimate.position.norm() > theBallModel.estimate.position.norm()+500.f )	
 					{goto Striker;}
 					else
-					{goto Supporter;}
+					{goto defaultRole;}
 				}
-				else//不准确就会进入默认模式defaultdefaultRole
-				{goto defaultRole;}
+				else{//队友信息不准确的情况
+                    if (libCodeRelease.timeSinceBallWasSeen()<300 || 
+                        otherTeammate.status != Teammate::Status::FULLY_ACTIVE){//如果自己检测到球 或者 队友没有完全在踢球
+                        goto Striker;}
+                    else{
+                        goto defaultRole;}
+                }
 				
 			}
 			else{
-				//没有队友的情况默认为defaultRole
-				goto defaultRole;
+				//没有队友的情况默认为Striker
+				goto Striker;
 			}
 		}
   }
@@ -57,6 +62,7 @@ option(ChooseRoles)
 	  action
 	  {
 		  Keeper();
+          theBehaviorStatus.role = Role::keeper;
 		}
 	}
 	state(Defender)
@@ -68,6 +74,7 @@ option(ChooseRoles)
             for(Obstacle o:theObstacleModel.obstacles)
                 ShowObstacles(o.center);
 			Defender();
+            theBehaviorStatus.role = Role::defender;
 		}
 	}
 state(Striker)
@@ -76,6 +83,9 @@ state(Striker)
 	  {
 		  //ShowTeammateData(otherTeammate.number,otherTeammate.ball);
 		  StrikerDong1();
+          theBehaviorStatus.role = Role::striker;
+          KeyFrameRightArm(ArmKeyFrameRequest::back, false);
+          KeyFrameLeftArm(ArmKeyFrameRequest::back, false);
 		}
 	}
 	state(Supporter)
@@ -83,7 +93,10 @@ state(Striker)
 	  action
 	  {
 			//ShowTeammateData(otherTeammate.number,otherTeammate.ball);
+            theBehaviorStatus.role = Role::supporter;
 		    Supporter();
+            KeyFrameRightArm(ArmKeyFrameRequest::useDefault, false);
+            KeyFrameLeftArm(ArmKeyFrameRequest::useDefault, false);
 		}
 	}
 	state(defaultRole)
@@ -91,10 +104,20 @@ state(Striker)
 	  
 	  action
 	  {
+            if (theRobotInfo.number == SUPPORTER_NUM){
+                theBehaviorStatus.role = Role::supporter;
+                Supporter();
+                KeyFrameRightArm(ArmKeyFrameRequest::useDefault, false);
+                KeyFrameLeftArm(ArmKeyFrameRequest::useDefault, false);
+                }
+            else if (theRobotInfo.number == STRIKER_NUM){
+                theBehaviorStatus.role = Role::striker;
+                StrikerDong1();
+                KeyFrameLeftArm(ArmKeyFrameRequest::back, false);
+                KeyFrameRightArm(ArmKeyFrameRequest::back, false);
+                }
 			//ShowTeammateData(otherTeammate.number,otherTeammate.ball);
-			 StrikerDong1();
-             KeyFrameLeftArm(ArmKeyFrameRequest::back, true);
-             KeyFrameRightArm(ArmKeyFrameRequest::back, true);
+			 
 		}
 	}
 }
