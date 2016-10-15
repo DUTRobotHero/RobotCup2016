@@ -268,6 +268,8 @@ option(Keeper)
                 else if( area == 1)
                     goto WalkToVerticalPoint;
             }
+		  if(state_time>5000)
+			  goto start;
 
         }
         action {

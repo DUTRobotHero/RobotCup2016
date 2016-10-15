@@ -221,6 +221,8 @@ state(shoot)
     {
       if(libCodeRelease.timeSinceBallWasSeen() < 300)
         goto turnToBall;
+	  if(libCodeRelease.timeSinceBallWasSeen() > 17000)//若原地找球超过20秒(27000因为原先有7000的延时)，就回到中心
+		  goto backToCenter;
     }
     action
     {
@@ -228,4 +230,13 @@ state(shoot)
       WalkAtSpeedPercentage(Pose2f(1.f, 0.f, 0.f));
     }
   }
+  state(backToCenter){
+		  transition{
+			 if( libCodeRelease.timeSinceBallWasSeen() < 300  || (state_time > 10 && action_done) )
+					goto turnToBall;
+			  }
+		 action{
+					ReadyState();
+			 }
+	  }
 }
