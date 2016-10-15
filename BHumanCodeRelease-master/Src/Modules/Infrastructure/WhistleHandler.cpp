@@ -16,7 +16,7 @@ void WhistleHandler::update(GameInfo& gameInfo)
 
   if(gameInfo.state != STATE_SET)
     overrideGameState = false;
-    else if(theWhistle.correlation2 > 0.15)    //根据实际的哨声进行修改
+  else if(theWhistle.lastTimeOfIncomingSound > 0 && theWhistle.lastTimeOfIncomingSound == theWhistle.lastTimeWhistleDetected)    //根据实际的哨声进行修改
         gameInfo.state = STATE_PLAYING;
     
     /*
