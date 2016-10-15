@@ -11,7 +11,6 @@ option(ReadyState)
     int SUPPORTER_NUMBER = 3;
     int DEFENDER_NUMBER = 4;
 
-
     float ATTACK_STRIKER_X = -250.0;
     float ATTACK_STRIKER_Y = 0.0;
     float DEFEND_STRIKER_X = -900.0;
@@ -23,6 +22,8 @@ option(ReadyState)
     float DEFEND_SUPPORTER_Y = -900.0;
     float KEEPER_X = -4000.0;
     float KEEPER_Y = 0.0;
+    float DEFENDER_X = -3000.0;
+    float DEFENDER_Y = 0.0;
 
     initial_state(TurnToPosition) {
         transition {
@@ -56,6 +57,15 @@ option(ReadyState)
                         goto WalkToPosition_Defend;
                 }
             }
+             if( theRobotInfo.number == DEFENDER_NUMBER) {
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X,DEFENDER_Y);
+                if(std::abs(relatePoint.rotation) < 2_deg) {
+                    if (theGameInfo.kickOffTeam == theOwnTeamInfo.teamNumber)
+                        goto WalkToPosition_Attack;
+                    else
+                        goto WalkToPosition_Defend;
+                }
+            }
         }
         action {
             if ( theRobotInfo.number == SUPPORTER_NUMBER) {        //Hawkeye
@@ -67,7 +77,6 @@ option(ReadyState)
             else if ( theRobotInfo.number == KEEPER_NUMBER) { //Flash
                 Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,KEEPER_X,KEEPER_Y);
                 WalkToTarget(Pose2f(setTurnVelocity,0.0,0.0),Pose2f(relatePoint.rotation,0.0,0.0));
-
                 ShowReadyPosition(relatePoint);
             }
 
@@ -83,8 +92,13 @@ option(ReadyState)
                     ShowReadyPosition(relatePoint);
                 }
             }
+            else if ( theRobotInfo.number == DEFENDER_NUMBER)
+            {
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X,DEFENDER_Y);
+                WalkToTarget(Pose2f(setTurnVelocity,0.0,0.0),Pose2f(relatePoint.rotation,0.0,0.0));
+                ShowReadyPosition(relatePoint);
+            }
         }
-
     }
 
     state(WalkToPosition_Attack) {
@@ -133,6 +147,14 @@ option(ReadyState)
             else if ( theRobotInfo.number == STRIKER_NUMBER) { //Thor
 
                 Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,ATTACK_STRIKER_X,ATTACK_STRIKER_Y);
+
+                WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
+                Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
+
+                ShowReadyPosition(relatePoint);
+            }
+            else if ( theRobotInfo.number == DEFENDER_NUMBER) { //Flash
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X,DEFENDER_Y);
 
                 WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
                 Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
@@ -189,9 +211,14 @@ option(ReadyState)
             }
 
             else if ( theRobotInfo.number == STRIKER_NUMBER) { //Thor
-
                 Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFEND_STRIKER_X,DEFEND_STRIKER_Y);
+                WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
+                Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
 
+                ShowReadyPosition(relatePoint);
+            }
+            else if ( theRobotInfo.number == DEFENDER_NUMBER) { //Flash
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X,DEFENDER_Y);
                 WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
                 Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
 

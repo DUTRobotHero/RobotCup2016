@@ -6,7 +6,7 @@ option(ChooseRoles)
 	char SUPPORTER_NUM=3;
   common_transition
   {
-		if ( theRobotInfo.number == KEEPER_NUM )
+/*		if ( theRobotInfo.number == KEEPER_NUM )
 			goto Keeper;
 		else if  ( theRobotInfo.number == DEFANDER_NUM )
 			goto Defender;//应该为Defender,不过还没有写完
@@ -45,7 +45,22 @@ option(ChooseRoles)
 				//没有队友的情况默认为Striker
 				goto Striker;
 			}
-		}
+		}*/
+        for (Teammate tempTeammate:theTeammateData.teammates)
+        {		//找到对应号的teammate,排除keeper ,defender和自己
+                if (tempTeammate.number != KEEPER_NUM &&
+                    tempTeammate.number != DEFANDER_NUM && 
+                    tempTeammate.number != theRobotInfo.number )
+                    {otherTeammate=tempTeammate;}
+        }
+        if ( theRobotInfo.number == KEEPER_NUM )
+			goto Keeper;
+		else if  ( theRobotInfo.number == DEFANDER_NUM )
+			goto Defender;//应该为Defender,不过还没有写完
+		else if (theRobotInfo.number == STRIKER_NUM )
+            goto Striker;
+        else if (theRobotInfo.number == SUPPORTER_NUM )
+            goto Supporter;
   }
 
   /** Stand still and wait. */
