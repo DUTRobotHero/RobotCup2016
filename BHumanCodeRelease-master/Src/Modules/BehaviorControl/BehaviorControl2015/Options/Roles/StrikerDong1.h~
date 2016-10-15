@@ -51,9 +51,15 @@ option(StrikerDong1)
 		  speed=Pose2f(1.f,1.f,1.f);
 	  else if (theBallModel.estimate.position.norm() > 2000.f)
 		  speed=Pose2f(10.f,10.f,10.f);
+<<<<<<< HEAD
+	  else if (theBallModel.estimate.position.norm() > 2000.f)
+		  speed=Pose2f(20.f,20.f,20.f);
+	  else
+=======
 	  else if (theBallModel.estimate.position.norm() > 1000.f)
 		  speed=Pose2f(20.f, 20.f, 20.f);
         else 
+>>>>>>> a762d5062f7261b342339adaebfe25b322eca93c
 		  speed=Pose2f(30.f, 30.f, 30.f);
       WalkToTarget(speed, theBallModel.estimate.position);
     }

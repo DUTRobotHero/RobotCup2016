@@ -13,7 +13,7 @@
  preview = 100 ;
  loop = false ;
  autoComTra = false ;
- ignoreHead = false ;
+ ignoreHead = true ;
  numberOfPhases = 7 ;
  phaseParameters = [
  {
@@ -118,8 +118,8 @@
  leftFootTra2 = {x = 0 ; y = -5 ; z = -230 ;};
  leftFootRot1 = {x = 0 ; y = 0 ; z = 0 ;};
  leftFootRot2 = {x = 0 ; y = 0 ; z = 0 ;};
- rightFootTra1 = {x = 70.2095 ; y = -100 ; z = -160 ;};
- rightFootTra2 = {x = 75 ; y = -100 ; z = -160 ;};
+ rightFootTra1 = {x = 70.2095 ; y = -100 ; z = -200 ;};
+ rightFootTra2 = {x = 75 ; y = -100 ; z = -200 ;};
  rightFootRot1 = {x = 0 ; y = 0 ; z = 0 ;};
  rightFootRot2 = {x = 0 ; y = 0 ; z = 0 ;};
  leftArmTra1 = {x = 0 ; y = 120 ; z = 80 ;};
