@@ -11,6 +11,7 @@ option(HeadControl)
       case HeadControl::lookForward: goto lookForward;
       case HeadControl::leftAndRight: goto leftAndRight;
       case HeadControl::focusBall: goto focusBall;
+      case HeadControl::searchForBall: goto searchForBall;
 	  case HeadControl::lookHigh: goto lookHigh;
       default: goto none;
     }
@@ -20,6 +21,7 @@ option(HeadControl)
   state(off) {action SetHeadPanTilt(JointAngles::off, JointAngles::off, 0.f);}
   state(lookForward) {action LookForward();}
   state(leftAndRight)  {action LeftAndRight();}
+  state(searchForBall)  {action SearchForBall();}
   state(lookHigh)  {action SetHeadPanTilt(0.0f, 0.0f, 150_deg);}
   state(focusBall){action SetHeadTarget(Vector3f(theBallModel.estimate.position.x(),
 																				theBallModel.estimate.position.y(),
@@ -36,6 +38,7 @@ struct HeadControl
 	lookHigh,
     leftAndRight,
     focusBall,
+    searchForBall,
   });
 };
 

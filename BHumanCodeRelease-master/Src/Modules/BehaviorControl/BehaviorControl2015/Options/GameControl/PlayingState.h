@@ -38,6 +38,9 @@ option(PlayingState)
       {
           if (libCodeRelease.returnFormPenalty == true ){
 			  libCodeRelease.returnFormPenalty=false;
+              OUTPUT_TEXT("libCodeRelease.returnFormPenalty" << libCodeRelease.returnFormPenalty);
+              OUTPUT_TEXT("theOwnSideModel.returnFromGameControllerPenalty" << theOwnSideModel.returnFromGameControllerPenalty);
+              OUTPUT_TEXT("theOwnSideModel.returnFromManualPenalty" << theOwnSideModel.returnFromManualPenalty);
 			  goto backToField;
 			  }
       }
@@ -54,24 +57,30 @@ option(PlayingState)
       {
 		  if ( theRobotInfo.number == KEEPER_NUMBER ){
 				Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,theFieldDimensions.xPosOwnPenaltyMark,0);
-				if (relatePoint.translation.norm() < 500.f)
+				if (relatePoint.translation.norm() < 100.f)
 					goto changeRoles;
 		   }else{
-			   Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,theFieldDimensions.xPosOwnPenaltyMark+1000.f,0);
-				if (relatePoint.translation.norm() < 500.f)
+			   Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,theFieldDimensions.xPosOwnPenaltyMark,0);
+				if (relatePoint.translation.norm() < 100.f)
 					goto changeRoles;
 		   }
+           if(action_done)
+               goto play;
       }
       action
       {
+          ReadyState();
+          
+          /*
 		  if ( theRobotInfo.number == KEEPER_NUMBER ){
 				Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,theFieldDimensions.xPosOwnPenaltyMark,0);
-				WalkToTarget(Pose2f(10.f,10.f,10.f),relatePoint);
+				WalkToTarget(Pose2f(0.f,2.f,0.f),relatePoint);
 		   }
 		   else {
-				Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,theFieldDimensions.xPosOwnPenaltyMark+1000.f,0);
-			   WalkToTarget(Pose2f(10.f,10.f,10.f),relatePoint);
+				Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,theFieldDimensions.xPosOwnPenaltyMark,0);
+			   WalkToTarget(Pose2f(0.f,2.f,0.f),relatePoint);
 			}
+             * */
       }
   }
 }

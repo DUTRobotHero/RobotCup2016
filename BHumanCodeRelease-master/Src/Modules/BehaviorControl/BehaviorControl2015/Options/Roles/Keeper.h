@@ -117,7 +117,10 @@ option(Keeper)
             int area = GetAreaNumber(theBallModel,theRobotPose);
             ShowArea(area);
             if ( theRobotPose.translation.x() >= -3900 )
-                WalkToTarget(Pose2f(10.0f,10.0f,10.0f),Pose2f(0.f,-50.f,0.f));
+            {
+               Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,-3900.0,theRobotPose.translation.y());
+              WalkToTarget(Pose2f(30.f,30.f,30.f),relatePoint);
+            }
             ShowSomething(theBallModel.estimate.position.norm());
 
         }
@@ -268,12 +271,12 @@ option(Keeper)
 
         }
         action {
-            theHeadControlMode = HeadControl::focusBall;
-            WalkAtSpeedPercentage(Pose2f(1.f, 0.f, 0.f));
+            theHeadControlMode = HeadControl::searchForBall;
+          //  WalkAtSpeedPercentage(Pose2f(1.f, 0.f, 0.f));
             int area = GetAreaNumber(theBallModel,theRobotPose);
             ShowArea(area);
             ShowSomething(theBallModel.estimate.position.norm());
-
         }
     }
+    //TODO 在每个state里加入一个跳转默认状态
 }

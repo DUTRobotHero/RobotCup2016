@@ -202,8 +202,18 @@ option(ReadyState)
 
 
     state(AlignToGoal) {
+        transition{
+            if(action_done)
+                goto finished;
+        }
         action {
             WalkToTarget(Pose2f(10.f,0.f,0.f),Pose2f(-theRobotPose.rotation,0.0,0.0));
+        }
+    }
+    
+    target_state(finished){
+        action{
+            ;
         }
     }
 }

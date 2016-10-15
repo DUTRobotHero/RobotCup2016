@@ -14,6 +14,8 @@
 #include "Options/HeadControl/LookForward.h"
 #include "Options/HeadControl/LeftAndRight.h"
 #include "Options/HeadControl/LookAround.h"
+#include "Options/HeadControl/SearchForBall.h"
+
 
 #include "Options/Output/Annotation.h"
 
