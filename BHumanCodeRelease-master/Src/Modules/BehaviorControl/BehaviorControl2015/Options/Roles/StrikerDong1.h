@@ -38,6 +38,8 @@ option(StrikerDong1)
     {
       if(libCodeRelease.timeSinceBallWasSeen() > 7000)
         goto searchForBall;
+	  if(std::abs(theBallModel.estimate.position.angle()) > 20_deg)
+        goto turnToBall;
       if(theBallModel.estimate.position.norm() < 500.f)
         goto alignToGoal;
     }
@@ -81,7 +83,7 @@ option(StrikerDong1)
 					else if (theRobotPose.translation.y()<-2000.f)
 						goto sideKickRight;
 					else 
-						goto kickLeft;
+						goto shoot;
 				}
 			//else if (theObstacleModel.obstacles.size()==1 && theObstacleModel.obstacles[0].type == Obstacle::goalpost)//判断是否只有目标物一个障碍
 			//	  goto kick;//此处可继续加强条件以达到射门条件　未测试
@@ -142,7 +144,7 @@ state(kickLeft)
 {
 	transition
 	{
-		if(state_time > 3000 || (state_time > 10 && action_done))
+		if( (state_time > 10 && action_done))
 				goto turnToBall;
 		if(libCodeRelease.timeSinceBallWasSeen() > 7000)
 		       goto searchForBall;
@@ -160,6 +162,8 @@ state(kickLeft)
 	action
 	{
 		theHeadControlMode = HeadControl::focusBall;
+		//LeftKick(WalkRequest::sidewardsLeft);
+		//ShootKick();//shoot type
 		LeftKick(WalkRequest::left);
 	}
 }
@@ -168,7 +172,7 @@ state(sideKickLeft)
 {
 	transition
 	{
-		if(state_time > 3000 || (state_time > 10 && action_done))
+		if((state_time > 10 && action_done))
 				goto turnToBall;
 		if(libCodeRelease.timeSinceBallWasSeen() > 7000)
 		       goto searchForBall;
@@ -184,7 +188,7 @@ state(sideKickRight)
 {
 	transition
 	{
-		if(state_time > 3000 || (state_time > 10 && action_done))
+		if( (state_time > 10 && action_done))
 				goto turnToBall;
 		if(libCodeRelease.timeSinceBallWasSeen() > 7000)
 		       goto searchForBall;
@@ -200,7 +204,7 @@ state(shoot)
 {
 	transition
 	{
-		if(state_time > 3000 || (state_time > 10 && action_done))
+		if( (state_time > 10 && action_done))
 				goto turnToBall;
 		if(libCodeRelease.timeSinceBallWasSeen() > 7000)
 		       goto searchForBall;

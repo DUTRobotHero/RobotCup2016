@@ -1,6 +1,5 @@
 /**
- * This option lets the robot kick the ball use right leg,the kick type decide the way to kick ,kick straight or sidewards .
- * @param kickType The WalkRequest::KickType to be executed. Only right and sidewardsRight
+ * This option lets the robot kick the ball use right leg
  * This option use Shoot.h ，which is the Shoot pose.
  * By JiangDong
  */
@@ -12,20 +11,22 @@ option(ShootKick)
     {
 		if(libCodeRelease.between(theBallModel.estimate.position.y(), -50.f, -20.f)
           && libCodeRelease.between(theBallModel.estimate.position.x(), 120.f, 150.f)
-          && std::abs(libCodeRelease.angleToGoal) < 2_deg)
+          && std::abs(libCodeRelease.angleToGoalForStriker) < 2_deg)
         goto shootKick;
     }
     action
     {
 		theHeadControlMode = HeadControl::focusBall;
-        WalkToTarget(Pose2f(80.f, 80.f, 80.f), Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() + 30.f));
+        WalkToTarget(Pose2f(80.f, 80.f, 80.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 140.f, theBallModel.estimate.position.y() + 30.f));
     }
   }
 
-  state(shootKick)
+ state(shootKick)
   {
     transition
     {
+		if (action_done)
+			goto finished;
     }
     action
     {
@@ -34,4 +35,9 @@ option(ShootKick)
 		 Shoot(KickRequest::kickForward);
     }
   }
+target_state(finished){
+	action{
+		theHeadControlMode = HeadControl::lookForward;
+		;}
+	}
 }

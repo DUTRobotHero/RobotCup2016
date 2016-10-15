@@ -5,9 +5,9 @@ setRefX 4
 setDuration 800
 
 proceed 800
-setLeg 55 30 10 0 0 0
+setLeg 50 30 10 0 0 0
 proceed 400
-setLeg 55 -30 10 0 0 0
+setLeg 50 -30 10 0 0 0
 proceed 400
-setLeg 30 -15 10 0 0 0
+setLeg 25 -15 10 0 0 0
 proceed 400
