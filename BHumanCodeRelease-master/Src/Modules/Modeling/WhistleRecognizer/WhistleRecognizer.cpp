@@ -90,6 +90,7 @@ void WhistleRecognizer::update(Whistle& whistle)
   // the buffers when entering a set state:
   if(lastGameState != STATE_SET && theGameInfo.state == STATE_SET)
   {
+    whistle.correlation2 = 0.0;
     for(int i = 0; i < WHISTLE_BUFF_LEN; ++i)
     {
       inputChannel0.push_front(0);

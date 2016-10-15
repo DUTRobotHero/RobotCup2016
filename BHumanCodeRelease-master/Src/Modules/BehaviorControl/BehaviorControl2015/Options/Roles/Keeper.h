@@ -46,7 +46,7 @@ option(Keeper)
                 goto kick;
         }
         action {
-            theHeadControlMode = HeadControl::lookForward;
+            theHeadControlMode = HeadControl::focusBall;
             Pose2f Ball2Field = BallModel2Field(theBallModel,theRobotPose);
             ShowBallToField(Ball2Field);
             ShowBallToRobot(theBallModel.estimate.position);
@@ -55,7 +55,7 @@ option(Keeper)
             ShowArea(area);
             WalkToTargetAbsolute(Pose2f(theRobotPose.rotation - Ball2Field.rotation > 0 ? -pi / 32 : pi / 32,
             theRobotPose.translation.x()+3900 > 0? -30.f: 30.f,
-            theRobotPose.translation.y()-Ball2Field.translation.y() > 0? -30.f: 30.f),Pose2f(0.0,-3830.0,Ball2Field.translation.y()));
+            theRobotPose.translation.y()-Ball2Field.translation.y() > 0? -30.f: 30.f),Pose2f(0.0,-4000.0,Ball2Field.translation.y()));
             ShowSomething(theBallModel.estimate.position.norm());
 
         }
@@ -75,7 +75,7 @@ option(Keeper)
                 goto kick;
         }
         action {
-            theHeadControlMode = HeadControl::lookForward;
+            theHeadControlMode = HeadControl::focusBall;
             Pose2f Ball2Field = BallModel2Field(theBallModel,theRobotPose);
             int area = GetAreaNumber(theBallModel,theRobotPose);
 
@@ -109,7 +109,7 @@ option(Keeper)
             }
         }
         action {
-            theHeadControlMode = HeadControl::lookForward;
+            theHeadControlMode = HeadControl::focusBall;
             Pose2f Ball2Field = BallModel2Field(theBallModel,theRobotPose);
             ShowBallToField(Ball2Field);
             ShowBallToRobot(theBallModel.estimate.position);
@@ -144,7 +144,7 @@ option(Keeper)
         
         }
         action {
-            theHeadControlMode = HeadControl::lookForward;
+            theHeadControlMode = HeadControl::focusBall;
             WalkToTarget(Pose2f(50.f, 50.f, 50.f), Pose2f(theBallModel.estimate.position.angle(), 0.f, 0.f));
             int area = GetAreaNumber(theBallModel,theRobotPose);
             ShowArea(area);
@@ -171,7 +171,7 @@ option(Keeper)
                 goto WalkToVerticalPoint;
         }
         action {
-            theHeadControlMode = HeadControl::lookForward;
+            theHeadControlMode = HeadControl::focusBall;
             WalkToTarget(Pose2f(50.f, 50.f, 50.f), theBallModel.estimate.position);
             int area = GetAreaNumber(theBallModel,theRobotPose);
             ShowArea(area);
@@ -221,7 +221,7 @@ option(Keeper)
                 goto WalkToVerticalPoint;
         }
         action {
-            theHeadControlMode = HeadControl::lookForward;
+            theHeadControlMode = HeadControl::focusBall;
             WalkToTarget(Pose2f(80.f, 80.f, 80.f), Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 30.f));
             int area = GetAreaNumber(theBallModel,theRobotPose);
             ShowArea(area);
@@ -244,7 +244,7 @@ option(Keeper)
         }
         action {
             Annotation("Alive and Kickin'");
-            theHeadControlMode = HeadControl::lookForward;
+            theHeadControlMode = HeadControl::focusBall;
             InWalkKick(WalkRequest::left, Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 160.f, theBallModel.estimate.position.y() - 55.f));
             int area = GetAreaNumber(theBallModel,theRobotPose);
             ShowArea(area);
@@ -268,7 +268,7 @@ option(Keeper)
 
         }
         action {
-            theHeadControlMode = HeadControl::lookForward;
+            theHeadControlMode = HeadControl::focusBall;
             WalkAtSpeedPercentage(Pose2f(1.f, 0.f, 0.f));
             int area = GetAreaNumber(theBallModel,theRobotPose);
             ShowArea(area);
