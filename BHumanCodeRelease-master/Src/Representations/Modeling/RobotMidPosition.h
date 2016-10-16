@@ -5,4 +5,4 @@
 #include "Tools/Math/Pose2f.h"
 #include "RobotPose.h"
 
-Vector2f RobotMidPosition(const BallModel& theBallModel,const RobotPose& theRobotPose,float Radius = 750.0);
+Vector2f RobotMidPosition(const BallModel& theBallModel,const RobotPose& theRobotPose,float Radius = 650.0);

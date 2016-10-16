@@ -13,7 +13,7 @@
  preview = 100 ;
  loop = false ;
  autoComTra = false ;
- ignoreHead = false ;
+ ignoreHead = true ;
  numberOfPhases = 7 ;
  phaseParameters = [
  {
