@@ -64,6 +64,7 @@
 #include "Options/Roles/TestPlayer.h"
 #include "Options/Roles/StrikerTestShoot.h"
 #include "Options/Roles/Defender.h"
+#include "Options/Roles/PenaltyStriker.h"
 
 
 #include "Options/Output/ShowRobotPose.h"

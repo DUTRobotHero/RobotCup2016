@@ -29,12 +29,9 @@ option(HandleGameState)
                 PlaySound(theGameInfo.kickOffTeam == theOwnTeamInfo.teamNumber
                 ? "penaltyStriker.wav" : "penaltyKeeper.wav");
 
-            if(theGameInfo.secondaryState == STATE2_PENALTYSHOOT) {
-                if (theGameInfo.kickOffTeam == theOwnTeamInfo.teamNumber)
-                    StrikerDong1();
-                else
-                    Keeper();
-            } else
+            if(theGameInfo.secondaryState == STATE2_PENALTYSHOOT)
+                Stand();
+            else
                 SpecialAction(SpecialActionRequest::standHigh);
         }
     }
@@ -83,20 +80,33 @@ option(HandleGameState)
             ShowCorrelation(theWhistle.correlation2);
             ShowCorrelation(theWhistle.lastTimeWhistleDetected);
             ShowCorrelation(theWhistle.lastTimeOfIncomingSound);
-            if(theGameInfo.kickOffTeam != theOwnTeamInfo.teamNumber)
+            
+            if(theGameInfo.secondaryState == STATE2_PENALTYSHOOT)
             {
-                if(theBallModel.estimate.velocity.x() > 0.0 || theBallModel.estimate.velocity.y() > 0.0 || state_time  > 10000)
+                if (theGameInfo.kickOffTeam == theOwnTeamInfo.teamNumber)
+                    PenaltyStriker();
+                else
+                    Keeper();
+            } 
+            else 
+            {
+                if(theGameInfo.kickOffTeam != theOwnTeamInfo.teamNumber)
+                {
+                    if(theBallModel.estimate.velocity.x() > 0.0 || theBallModel.estimate.velocity.y() > 0.0 || state_time  > 10000)
+                    {
+                        ArmContact();
+                        PlayingState();
+                    }
+                }
+                
+                else 
                 {
                     ArmContact();
                     PlayingState();
                 }
-
             }
-            else 
-            {
-                ArmContact();
-                PlayingState();
-            }
+            
+            
         }
     }
 }
