@@ -11,7 +11,8 @@ namespace Behavior2015
   LibCodeRelease::LibCodeRelease():
     angleToGoal(0.f),
 	angleToGoalForStriker(0.f),
-	returnFormPenalty(false)
+	returnFormPenalty(false),
+    firstKick(true)
   {}
   
   void LibCodeRelease::preProcess()

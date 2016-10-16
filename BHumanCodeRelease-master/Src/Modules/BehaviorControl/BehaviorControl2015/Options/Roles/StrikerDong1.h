@@ -221,6 +221,9 @@ state(shoot)
 {
 	transition
 	{
+        if (libCodeRelease.firstKick==true ){
+            libCodeRelease.firstKick=false;
+            goto firstKick;}
 		if( (state_time > 10 && action_done))
 				goto turnToBall;
 		if(libCodeRelease.timeSinceBallWasSeen() > 7000)
@@ -230,6 +233,21 @@ state(shoot)
 	{
 		theHeadControlMode = HeadControl::focusBall;
 		ShootKick();//shoot type
+	}
+}
+    state(firstKick)
+{
+	transition
+	{
+		if( (state_time > 10 && action_done))
+				goto turnToBall;
+		if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+		       goto searchForBall;
+	}
+	action
+	{
+		theHeadControlMode = HeadControl::focusBall;
+		LeftKick(WalkRequest::sidewardsLeft);
 	}
 }
  state(searchForBall)
@@ -256,4 +274,5 @@ state(shoot)
 					ReadyState();
 			 }
 	  }
+
 }

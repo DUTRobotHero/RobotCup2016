@@ -21,4 +21,5 @@ public:
   float angleToGoal;
   float angleToGoalForStriker;
   bool returnFormPenalty;
+  bool firstKick;
 };
