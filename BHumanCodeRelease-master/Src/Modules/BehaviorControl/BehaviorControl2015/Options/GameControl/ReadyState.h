@@ -17,9 +17,9 @@ option(ReadyState)
     float DEFEND_STRIKER_Y = 0.0;
 
     float SUPPORTER_X = -250.0;
-    float SUPPORTER_Y = -900.0;
+    float SUPPORTER_Y = -1100.0;
     float DEFEND_SUPPORTER_X = -900.0;
-    float DEFEND_SUPPORTER_Y = -900.0;
+    float DEFEND_SUPPORTER_Y = -1100.0;
     float KEEPER_X = -4000.0;
     float KEEPER_Y = 0.0;
     float DEFENDER_X = -3000.0;
