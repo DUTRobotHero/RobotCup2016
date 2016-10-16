@@ -16,6 +16,8 @@ public:
   
   bool between(float value, float min, float max);
   float getAngle(const Vector2f& vector1, const Vector2f& vector2);
+  
+  Vector2f turnCoordnate(const Vector2f& vect);
     
   int timeSinceBallWasSeen();
 
@@ -23,4 +25,5 @@ public:
   float angleToGoalForStriker;
   bool returnFormPenalty;
   bool firstKick;
+  std::vector<Obstacle> filterdObstacles;
 };
