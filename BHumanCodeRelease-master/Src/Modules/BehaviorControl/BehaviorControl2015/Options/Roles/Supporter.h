@@ -1,6 +1,6 @@
 option(helpStriker)
 {
-	float setAdjustVelocity = 1.f/2;
+	float setAdjustVelocity = 1.f;
 	float setTurnVelocity = pi/8;
 	
 	/*common_transition{
@@ -26,7 +26,7 @@ option(helpStriker)
 			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x()-400.f,
 																														otherTeammate.pose.translation.y()+1000.f);
 			WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
-                    Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
+                    Pose2f(theBallModel.estimate.position.angle(),relatePoint.translation.x(),relatePoint.translation.y()));
 		}
 	}
 	//当strikerd的位置小于-50cm，supporter去左边
@@ -40,7 +40,7 @@ option(helpStriker)
 			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x()-400.f,
 																														otherTeammate.pose.translation.y()-1000.f);
 			WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
-                    Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
+                    Pose2f(theBallModel.estimate.position.angle(),relatePoint.translation.x(),relatePoint.translation.y()));
 		}
 	}
 }
