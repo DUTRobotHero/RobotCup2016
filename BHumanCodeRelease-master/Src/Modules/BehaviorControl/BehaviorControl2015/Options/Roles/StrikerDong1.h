@@ -73,6 +73,8 @@ option(StrikerDong1)
     {
       if(libCodeRelease.timeSinceBallWasSeen() > 7000)
         goto searchForBall;
+	  if (theBallModel.estimate.position.x() < 0)
+			 goto alignBesideBall; 
       if(std::abs(libCodeRelease.angleToGoalForStriker) < 10_deg && std::abs(theBallModel.estimate.position.y()) < 100.f)
         goto alignBehindBall;
     }
@@ -89,6 +91,8 @@ option(StrikerDong1)
 	 {
 		  if(libCodeRelease.timeSinceBallWasSeen() > 7000)
 		       goto searchForBall;
+		 if (theBallModel.estimate.position.x() < 0)
+			 goto alignBesideBall;
 		 if(libCodeRelease.between(theBallModel.estimate.position.y(), -20.f, 20.f)
           && libCodeRelease.between(theBallModel.estimate.position.x(), 140.f, 170.f)
           && std::abs(libCodeRelease.angleToGoalForStriker) < 2_deg)
@@ -154,6 +158,27 @@ option(StrikerDong1)
 	{
 		theHeadControlMode = HeadControl::focusBall;
         WalkToTarget(Pose2f(pi/8, 20.f, 20.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 0.f));
+	}
+}
+/* When the ball is behind robot ,this state make robot walk beside the ball first*/
+state(alignBesideBall)
+{
+	transition
+	{
+		if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+		       goto searchForBall;
+		if (theBallModel.estimate.position.x() > 40.f)
+			   goto alignBehindBall;
+	}
+	action
+	{
+		theHeadControlMode = HeadControl::focusBall;
+		if (theBallModel.estimate.position.y() > 0){
+			WalkToTarget(Pose2f(pi/8, 20.f, 20.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 120.f));
+			}
+		else {
+			WalkToTarget(Pose2f(pi/8, 20.f, 20.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() +120.f));
+			}
 	}
 }
 //**Kick with left leg straight**//
