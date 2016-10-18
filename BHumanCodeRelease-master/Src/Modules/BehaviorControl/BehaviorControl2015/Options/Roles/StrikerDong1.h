@@ -64,85 +64,119 @@ option(StrikerDong1)
         }
     }
 
-    state(alignToGoal) {
-        transition {
-            if(libCodeRelease.timeSinceBallWasSeen() > 7000)
-                goto searchForBall;
-            if(std::abs(libCodeRelease.angleToGoalForStriker) < 10_deg && std::abs(theBallModel.estimate.position.y()) < 100.f)
-                goto alignBehindBall;
-            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
-                goto waitAtMiddleLine;
-        }
-        action {
 
+  state(alignToGoal)
+  {
+    transition
+    {
+      if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+        goto searchForBall;
+	  if (theBallModel.estimate.position.x() < 0)
+			 goto alignBesideBall; 
+      if(std::abs(libCodeRelease.angleToGoalForStriker) < 10_deg && std::abs(theBallModel.estimate.position.y()) < 100.f)
+        goto alignBehindBall;
+    }
+    action
+    {
             theHeadControlMode = HeadControl::lookHigh;
             WalkToTarget(Pose2f(60.f, 60.f, 60.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 400.f, theBallModel.estimate.position.y()));
         }
     }
-    state(alignBehindBall) {
-        transition {
-            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
-                goto waitAtMiddleLine;
-            if(libCodeRelease.timeSinceBallWasSeen() > 7000)
-                goto searchForBall;
-            if(libCodeRelease.between(theBallModel.estimate.position.y(), -20.f, 20.f)
-            && libCodeRelease.between(theBallModel.estimate.position.x(), 140.f, 170.f)
-            && std::abs(libCodeRelease.angleToGoalForStriker) < 2_deg) {
-                if (theObstacleModel.obstacles.empty() ) { //若无障碍　则根据当前位置决定踢球方式
-                    if (theRobotPose.translation.y()>2000.f)
-                        goto sideKickLeft;
-                    else if (theRobotPose.translation.y()<-2000.f)
-                        goto sideKickRight;
-                    else
-                        goto shoot;
-                }
-                //else if (theObstacleModel.obstacles.size()==1 && theObstacleModel.obstacles[0].type == Obstacle::goalpost)//判断是否只有目标物一个障碍
-                //	  goto kick;//此处可继续加强条件以达到射门条件　未测试
-                else { //有障碍的情况
-                    //有多个障碍，找到与目标方向偏离最小的障碍
-                    Obstacle nearist;
-                    float minDeltaAngle=100.f;//test value
-                    for (Obstacle o:theObstacleModel.obstacles) {
-                        float delta_angle=fabs(o.center.angle()-libCodeRelease.angleToGoalForStriker);
-                        if ( delta_angle < minDeltaAngle) {
-                            minDeltaAngle=delta_angle;
-                            nearist=o;
-                        }
-                    }
-                    //障碍较远时  则根据当前位置决定踢球方式
-                    if (nearist.center.norm() > 4000.f) {
-                        if (theRobotPose.translation.y()>2000.f)
-                            goto sideKickLeft;
-                        else if (theRobotPose.translation.y()<-2000.f)
-                            goto sideKickRight;
-                        else
-                            goto kickLeft;
-                    }
-                    //障碍较近 并在一条线的情况  向左或者向右变向
-                    else if ( libCodeRelease.between(libCodeRelease.angleToGoalForStriker,
-                                                     nearist.right.angle() -5_deg,
-                                                     nearist.left.angle() +5_deg) ) { //5_deg为拓展的角度大约5度
-                        if (theRobotPose.translation.y()>0.f)
-                            goto sideKickLeft;
-                        else
-                            goto sideKickRight;
-                    }
-                    //障碍较近  但是没有在一条线的情况  直接向前踢
-                    else {
-                        goto kickLeft;
-//						if (theRobotPose.translation.y()>0.f)
-//							goto kickLeft;
-//						else
-//							goto kickRight;
-                    }
-                }
-            }
-        }
-        action {
-            theHeadControlMode = HeadControl::focusBall;
-            WalkToTarget(Pose2f(pi/8, 20.f, 20.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 0.f));
-        }
-    }
+
+ state(alignBehindBall)
+ {
+	 transition
+	 {
+		  if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+		       goto searchForBall;
+		 if (theBallModel.estimate.position.x() < 0)
+			 goto alignBesideBall;
+		 if(libCodeRelease.between(theBallModel.estimate.position.y(), -20.f, 20.f)
+          && libCodeRelease.between(theBallModel.estimate.position.x(), 140.f, 170.f)
+          && std::abs(libCodeRelease.angleToGoalForStriker) < 2_deg)
+		  {
+			if (theObstacleModel.obstacles.empty() )//若无障碍　则根据当前位置决定踢球方式
+				{
+					if (theRobotPose.translation.y()>2000.f)
+						goto sideKickLeft;
+					else if (theRobotPose.translation.y()<-2000.f)
+						goto sideKickRight;
+					else 
+						goto shoot;
+				}
+			//else if (theObstacleModel.obstacles.size()==1 && theObstacleModel.obstacles[0].type == Obstacle::goalpost)//判断是否只有目标物一个障碍
+			//	  goto kick;//此处可继续加强条件以达到射门条件　未测试
+     		else //有障碍的情况
+				{
+					//有多个障碍，找到与目标方向偏离最小的障碍
+					Obstacle nearist;
+					float minDeltaAngle=100.f;//test value
+					for (Obstacle o:theObstacleModel.obstacles)
+					{
+						float delta_angle=fabs(o.center.angle()-libCodeRelease.angleToGoalForStriker);
+						if ( delta_angle < minDeltaAngle)
+						{
+								minDeltaAngle=delta_angle;
+								nearist=o;
+						}
+					}
+					//障碍较远时  则根据当前位置决定踢球方式
+					if (nearist.center.norm() > 4000.f)
+					{
+						if (theRobotPose.translation.y()>2000.f)
+							goto sideKickLeft;
+						else if (theRobotPose.translation.y()<-2000.f)
+							goto sideKickRight;
+						else 
+							goto kickLeft;
+					}					
+					//障碍较近 并在一条线的情况  向左或者向右变向
+					else if ( libCodeRelease.between(libCodeRelease.angleToGoalForStriker, 
+																	nearist.right.angle() -5_deg, 
+																	nearist.left.angle() +5_deg) )//5_deg为拓展的角度大约5度
+					{
+						if (theRobotPose.translation.y()>0.f)
+							goto sideKickLeft;
+						else 
+							goto sideKickRight;
+					}
+					//障碍较近  但是没有在一条线的情况  直接向前踢
+					else
+					{
+						goto kickLeft;
+
+					}
+				}	 
+			}
+	}
+	action
+	{
+		theHeadControlMode = HeadControl::focusBall;
+        WalkToTarget(Pose2f(pi/8, 20.f, 20.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 0.f));
+	}
+}
+/* When the ball is behind robot ,this state make robot walk beside the ball first*/
+state(alignBesideBall)
+{
+	transition
+	{
+		if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+		       goto searchForBall;
+		if (theBallModel.estimate.position.x() > 40.f)
+			   goto alignBehindBall;
+	}
+	action
+	{
+		theHeadControlMode = HeadControl::focusBall;
+		if (theBallModel.estimate.position.y() > 0){
+			WalkToTarget(Pose2f(pi/8, 20.f, 20.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 120.f));
+			}
+		else {
+			WalkToTarget(Pose2f(pi/8, 20.f, 20.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() +120.f));
+			}
+	}
+}
+>>>>>>> c873cc5c844e6490d83680d41117a2f4fd976fbf
 //**Kick with left leg straight**//
     state(kickLeft) {
         transition {
