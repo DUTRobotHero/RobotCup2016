@@ -46,8 +46,8 @@ void TemplateGenerator::init()
   knownGoalposts.clear();
   unknownGoalposts.clear();
   //              //
-  //  2        5  //
-  //  4        3  //
+  //  2        3  //
+  //  4        5  //
   //  1           //
   //     Goal     //
   //updated by Skye,5号和3号互换位置，防止撞击。原来3号-2000.f，5号-1000.f
