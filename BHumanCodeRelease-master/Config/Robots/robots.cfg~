@@ -2,6 +2,7 @@
 robotsIds = [
   { name = "Thor"; headId = "ALDT1312N007903"; bodyId = "ALDR1312N007793"; },
   { name = "Flash"; headId = "ALDT1312N007825"; bodyId = "ALDR1312N007857"; },
-  //{ name = "IronMan"; headId = "ALDT1109F003574"; bodyId = "ALDR1109F004006"; },
-  { name = "Hawkeye"; headId = "ALDT1312N009571"; bodyId = "ALDR1312N009257"; }
+  { name = "Petter"; headId = "ALDT1109F003574"; bodyId = "ALDR1109F004006"; },
+  { name = "Hawkeye"; headId = "ALDT1312N009571"; bodyId = "ALDR1312N009257"; },
+  { name = "Test"; headId = "ALDT1109F004663"; bodyId = "ALDR1109F004873"; }
 ];
