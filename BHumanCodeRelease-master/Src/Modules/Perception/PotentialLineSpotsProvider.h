@@ -33,7 +33,7 @@ MODULE(PotentialLineSpotsProvider,
   PROVIDES(PotentialLineSpots),
   DEFINES_PARAMETERS(
   {,
-    (int) (4) maxEdgeNoisePixels, /**<Maximum number of noise pixels at the edges of field lines */
+    (int) (2) maxEdgeNoisePixels, /**<Maximum number of noise pixels at the edges of field lines */
     (float) (3.0f) maxAllowedLineHeightFactor, /**<FIXME */
   }),
 });

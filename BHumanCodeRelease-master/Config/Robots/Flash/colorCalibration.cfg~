@@ -1,5 +1,5 @@
 white = {
-  minR = 136;
+  minR = 84;
   minB = 100;
   minRB = 181;
 };

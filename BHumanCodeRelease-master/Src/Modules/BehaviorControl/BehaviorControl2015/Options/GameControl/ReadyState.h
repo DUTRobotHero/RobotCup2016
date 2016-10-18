@@ -2,6 +2,7 @@
 option(ReadyState)
 {
     float setAdjustVelocity = 1.f/2;
+    
     float setTurnVelocity = pi/8;
     float deltaDistance = 20.0;
     float distance;

@@ -148,6 +148,7 @@ void LineSpotProvider::validateLines(LineSpots& lineSpots) const
   {
     float variance;
     calcVariance(line->spotInImgHeights, variance);
+    
     if(variance > maxAllowedLineHeightVariance)
     {
       line = lineSpots.lines.erase(line);
@@ -189,7 +190,9 @@ void LineSpotProvider::findIntersections(LineSpots& lineSpots)
       //only continue if the angle between the two lines is roughly 90°
       const float dot = line->line.direction.normalized().dot(line2->line.direction.normalized());
       const float angle = acos(dot);//angle between lines (in rad)
-      const float angleDiff = abs(angle - pi_2);
+      const float angleDiff = abs(angle - pi_2);      
+      
+      //OUTPUT_TEXT(string("intersection angle diff: ") + to_string(angleDiff));
       if(angleDiff > maxAllowedIntersectionAngleDifference)
       {
         continue;
@@ -203,14 +206,100 @@ void LineSpotProvider::findIntersections(LineSpots& lineSpots)
         Vector2f line2EndFurther;
         const float lineDist = getCloserPoint(line->firstField, line->lastField, intersection, lineEndCloser, lineEndFurther);
         const float line2Dist = getCloserPoint(line2->firstField, line2->lastField, intersection, line2EndCloser, line2EndFurther);
-
+        
+        //lenlrx modified 10-18
+        
+        #define MIDDLE 0
+        #define ONTHEEDGE 1
+        #define OUTOFEDGE 2
+        
+        auto _b = [this,maxIntersectionDistance2](Vector2f a,Vector2f b,Vector2f c)->int{
+            float len_ad = (b - a).dot(c - a) / (b - a).norm();
+            float len_ab = (b - a).norm();
+            if(len_ad >= -maxIntersectionDistance && len_ad <= len_ab + maxIntersectionDistance){
+                float ratio = len_ad/len_ab;
+                //if(ratio >= 0.2 && ratio <=0.8)
+                if(len_ad >= maxIntersectionDistance2 && len_ad <= len_ab - maxIntersectionDistance2)
+                    return MIDDLE;
+                else
+                    return ONTHEEDGE;
+            }
+            else
+                return OUTOFEDGE;
+            };
+        
+        int intersection_in_line1 = _b( line->firstField, line->lastField,intersection);
+        int intersection_in_line2 = _b( line2->firstField, line2->lastField,intersection);
+        //lenlrx modified 10-18
+        
+        if(MIDDLE == intersection_in_line1){
+            if(MIDDLE == intersection_in_line2){
+                addIntersection(lineSpots, LineSpots::Intersection::X, intersection, line->line.direction, line2->line.direction, *line, *line2);
+                //OUTPUT_TEXT("addIntersection(lineSpots, LineSpots::Intersection::X, intersection, line->line.direction, line2->line.direction, *line, *line2);");
+            }
+            else if(ONTHEEDGE == intersection_in_line2){
+                //line2 is horizontal
+              Vector2f vertical = lineEndFurther - intersection;
+              Vector2f horizontal = line2EndFurther - intersection;
+              enforceTIntersectionDirections(vertical, horizontal);
+              addIntersection(lineSpots, LineSpots::Intersection::T, intersection, vertical, horizontal, *line2, *line);
+              //OUTPUT_TEXT("addIntersection(lineSpots, LineSpots::Intersection::T, intersection, vertical, horizontal, *line2, *line);");
+            }
+        }
+        else if(ONTHEEDGE == intersection_in_line1){
+            if(MIDDLE == intersection_in_line2){
+                Vector2f vertical = line2EndFurther - intersection;
+              Vector2f horizontal = lineEndFurther - intersection;
+              enforceTIntersectionDirections(vertical, horizontal);
+              addIntersection(lineSpots, LineSpots::Intersection::T, intersection, vertical, horizontal, *line, *line2);
+              //OUTPUT_TEXT("addIntersection(lineSpots, LineSpots::Intersection::T, intersection, vertical, horizontal, *line, *line2);");
+            }
+            else if(ONTHEEDGE == intersection_in_line2){
+                const Vector2f dir1 = lineEndFurther - intersection;
+              const Vector2f dir2 = line2EndFurther - intersection;
+              addIntersection(lineSpots, LineSpots::Intersection::L, intersection, dir1, dir2, *line, *line2);
+              //OUTPUT_TEXT("addIntersection(lineSpots, LineSpots::Intersection::L, intersection, dir1, dir2, *line, *line2);");
+            }
+        }
+        
+        
+        /*
+        if(intersection_in_line1 && intersection_in_line2){
+            const Vector2f dir1 = lineEndFurther - intersection;
+          const Vector2f dir2 = line2EndFurther - intersection;
+          addIntersection(lineSpots, LineSpots::Intersection::L, intersection, dir1, dir2, *line, *line2);
+          OUTPUT_TEXT("addIntersection(lineSpots, LineSpots::Intersection::L, intersection, dir1, dir2, *line, *line2);");
+        }
+        else if(intersection_in_line1){
+            //line2 is horizontal
+          Vector2f vertical = lineEndFurther - intersection;
+          Vector2f horizontal = line2EndFurther - intersection;
+          enforceTIntersectionDirections(vertical, horizontal);
+          addIntersection(lineSpots, LineSpots::Intersection::T, intersection, vertical, horizontal, *line2, *line);
+          OUTPUT_TEXT("addIntersection(lineSpots, LineSpots::Intersection::T, intersection, vertical, horizontal, *line2, *line);");
+        }
+        else if(intersection_in_line2){
+            //line is horizontal
+          Vector2f vertical = line2EndFurther - intersection;
+          Vector2f horizontal = lineEndFurther - intersection;
+          enforceTIntersectionDirections(vertical, horizontal);
+          addIntersection(lineSpots, LineSpots::Intersection::T, intersection, vertical, horizontal, *line, *line2);
+          OUTPUT_TEXT("addIntersection(lineSpots, LineSpots::Intersection::T, intersection, vertical, horizontal, *line, *line2);");
+        }
+        */
+        //lenlrx modified 10-18
+        /*
         if(isPointOnLine(*line, intersection) && isPointOnLine(*line2, intersection) &&
            lineDist > maxIntersectionDistance2 && line2Dist > maxIntersectionDistance2)
         {
           addIntersection(lineSpots, LineSpots::Intersection::X, intersection, line->line.direction, line2->line.direction, *line, *line2);
         }
+        //lenlrx modified 10-18
+        
         else if(isPointOnLine(*line, intersection) && isPointOnLine(*line2, intersection) &&
                lineDist <= maxIntersectionDistance2 && line2Dist > maxIntersectionDistance2)
+                
+        else if(lineDist < line2Dist)
         {
           //line2 is horizontal
           Vector2f vertical = lineEndFurther - intersection;
@@ -218,8 +307,12 @@ void LineSpotProvider::findIntersections(LineSpots& lineSpots)
           enforceTIntersectionDirections(vertical, horizontal);
           addIntersection(lineSpots, LineSpots::Intersection::T, intersection, vertical, horizontal, *line2, *line);
         }
+        //lenlrx modified 10-18
+        
         else if(isPointOnLine(*line, intersection) && isPointOnLine(*line2, intersection) &&
                 lineDist > maxIntersectionDistance2 && line2Dist <= maxIntersectionDistance2)
+                 
+        else if(lineDist >= line2Dist)
         {
           //line is horizontal
           Vector2f vertical = line2EndFurther - intersection;
@@ -227,6 +320,8 @@ void LineSpotProvider::findIntersections(LineSpots& lineSpots)
           enforceTIntersectionDirections(vertical, horizontal);
           addIntersection(lineSpots, LineSpots::Intersection::T, intersection, vertical, horizontal, *line, *line2);
         }
+        //lenlrx modified 10-18
+        
         else if(isPointOnLine(*line, intersection) && lineDist > maxIntersectionDistance2 &&
                 (!isPointOnLine(*line2, intersection)) && line2Dist <= maxIntersectionDistance)
         {
@@ -245,12 +340,14 @@ void LineSpotProvider::findIntersections(LineSpots& lineSpots)
           enforceTIntersectionDirections(vertical, horizontal);
           addIntersection(lineSpots, LineSpots::Intersection::T, intersection, vertical, horizontal, *line2, *line);
         }
+         
         else if(lineDist <= maxIntersectionDistance && line2Dist <= maxIntersectionDistance)
         {
           const Vector2f dir1 = lineEndFurther - intersection;
           const Vector2f dir2 = line2EndFurther - intersection;
           addIntersection(lineSpots, LineSpots::Intersection::L, intersection, dir1, dir2, *line, *line2);
         }
+         * */
       }
     }
   }
