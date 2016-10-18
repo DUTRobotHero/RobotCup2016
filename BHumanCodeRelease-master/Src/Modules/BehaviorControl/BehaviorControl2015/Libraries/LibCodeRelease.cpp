@@ -38,7 +38,7 @@ namespace Behavior2015
       std::vector<float> angles;
       int numb = b.size();
       int numg = g.size();
-      OUTPUT_TEXT("numb = " << numb);
+      //OUTPUT_TEXT("numb = " << numb);
       
       if(theRobotPose.translation.x() < 2200.f)
           y = 0.f;
@@ -99,9 +99,9 @@ namespace Behavior2015
           else
               y = -600.f;
       }
-      OUTPUT_TEXT("Y = " << y);
+      //OUTPUT_TEXT("Y = " << y);
       angleToGoalForStriker = (theRobotPose.inverse() * Vector2f(theFieldDimensions.xPosOpponentGroundline, y)).angle();
-      OUTPUT_TEXT("angleToGoalForStriker" << angleToGoalForStriker * 180.f / 3.141592654);
+      //OUTPUT_TEXT("angleToGoalForStriker" << angleToGoalForStriker * 180.f / 3.141592654);
   }
 
   void LibCodeRelease::postProcess()

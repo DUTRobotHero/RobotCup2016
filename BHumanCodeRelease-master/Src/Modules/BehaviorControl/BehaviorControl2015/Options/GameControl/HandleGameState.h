@@ -90,20 +90,8 @@ option(HandleGameState)
             } 
             else 
             {
-                if(theGameInfo.kickOffTeam != theOwnTeamInfo.teamNumber)
-                {
-                    if(theBallModel.estimate.velocity.x() > 0.0 || theBallModel.estimate.velocity.y() > 0.0 || state_time  > 10000)
-                    {
-                        ArmContact();
-                        PlayingState();
-                    }
-                }
-                
-                else 
-                {
-                    ArmContact();
-                    PlayingState();
-                }
+                ArmContact();
+                PlayingState();
             }
             
             
