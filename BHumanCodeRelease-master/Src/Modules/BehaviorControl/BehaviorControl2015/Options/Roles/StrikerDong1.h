@@ -1,278 +1,275 @@
 /** A test striker option without common decision */
 option(StrikerDong1)
 {
-  initial_state(start)
-  {
-    transition
-    {
-      if(state_time > 1000)
-        goto turnToBall;
+    initial_state(start) {
+        transition {
+            if(state_time > 1000)
+                goto turnToBall;
+            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
+                goto waitAtMiddleLine;
+        }
+        action {
+            theHeadControlMode = HeadControl::lookForward;
+            theBehaviorStatus.role = Role::striker;
+            Stand();
+        }
     }
-    action
-    {
-      theHeadControlMode = HeadControl::lookForward;
-	  theBehaviorStatus.role = Role::striker;
-      Stand();
-    }
-  }
 
-  state(turnToBall)
-  {
-    transition
-    {
-      if(libCodeRelease.timeSinceBallWasSeen() > 7000)
-        goto searchForBall;
-      if(std::abs(theBallModel.estimate.position.angle()) < 5_deg)
-        goto walkToBall;
+    state(turnToBall) {
+        transition {
+            if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+                goto searchForBall;
+            if(std::abs(theBallModel.estimate.position.angle()) < 5_deg)
+                goto walkToBall;
+            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
+                goto waitAtMiddleLine;
+        }
+        action {
+            theHeadControlMode = HeadControl::lookForward;
+            WalkToTarget(Pose2f(50.f, 50.f, 50.f), Pose2f(theBallModel.estimate.position.angle(), 0.f, 0.f));
+        }
     }
-    action
-    {
-      theHeadControlMode = HeadControl::lookForward;
-      WalkToTarget(Pose2f(50.f, 50.f, 50.f), Pose2f(theBallModel.estimate.position.angle(), 0.f, 0.f));
-    }
-  }
 
-  state(walkToBall)
-  {
-    transition
-    {
-      if(libCodeRelease.timeSinceBallWasSeen() > 7000)
-        goto searchForBall;
-	  if(std::abs(theBallModel.estimate.position.angle()) > 20_deg)
-        goto turnToBall;
-      if(theBallModel.estimate.position.norm() < 500.f)
-        goto alignToGoal;
+    state(walkToBall) {
+        transition {
+            if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+                goto searchForBall;
+            if(std::abs(theBallModel.estimate.position.angle()) > 20_deg)
+                goto turnToBall;
+            if(theBallModel.estimate.position.norm() < 500.f)
+                goto alignToGoal;
+            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
+                goto waitAtMiddleLine;
+        }
+        action {
+            theHeadControlMode = HeadControl::focusBall;
+            Pose2f speed(0.f,0.f,0.f);
+            if  ( theBallModel.estimate.position.norm() > 3500.f )
+                speed=Pose2f(1.f,1.f,1.f);
+            else if (theBallModel.estimate.position.norm() > 3000.f)
+                speed=Pose2f(5.f,5.f,5.f);
+            else if (theBallModel.estimate.position.norm() > 2500.f)
+                speed=Pose2f(8.f, 8.f, 8.f);
+            else if (theBallModel.estimate.position.norm() > 2000.f)
+                speed=Pose2f(10.f,10.f,10.f);
+            else if (theBallModel.estimate.position.norm() > 1500.f)
+                speed=Pose2f(12.f, 12.f, 12.f);
+            else if (theBallModel.estimate.position.norm() > 1000.f)
+                speed=Pose2f(15.f, 15.f, 15.f);
+            else if (theBallModel.estimate.position.norm() > 700.f)
+                speed=Pose2f(18.f, 18.f, 18.f);
+            else
+                speed=Pose2f(20.f, 20.f, 20.f);
+            WalkToTarget(speed, theBallModel.estimate.position);
+        }
     }
-    action
-    {
-      theHeadControlMode = HeadControl::focusBall;
-	  Pose2f speed(0.f,0.f,0.f);
-	  if  ( theBallModel.estimate.position.norm() > 3500.f )
-		  speed=Pose2f(1.f,1.f,1.f);
-	  else if (theBallModel.estimate.position.norm() > 3000.f)
-		  speed=Pose2f(5.f,5.f,5.f);
-	  else if (theBallModel.estimate.position.norm() > 2500.f)
-		  speed=Pose2f(8.f, 8.f, 8.f);
-      else if (theBallModel.estimate.position.norm() > 2000.f)
-		  speed=Pose2f(10.f,10.f,10.f);
-	  else if (theBallModel.estimate.position.norm() > 1500.f)
-		  speed=Pose2f(12.f, 12.f, 12.f);
-      else if (theBallModel.estimate.position.norm() > 1000.f)
-		  speed=Pose2f(15.f, 15.f, 15.f);
-      else if (theBallModel.estimate.position.norm() > 700.f)
-		  speed=Pose2f(18.f, 18.f, 18.f);
-        else 
-		  speed=Pose2f(20.f, 20.f, 20.f);
-      WalkToTarget(speed, theBallModel.estimate.position);
-    }
-  }
 
-  state(alignToGoal)
-  {
-    transition
-    {
-      if(libCodeRelease.timeSinceBallWasSeen() > 7000)
-        goto searchForBall;
-      if(std::abs(libCodeRelease.angleToGoalForStriker) < 10_deg && std::abs(theBallModel.estimate.position.y()) < 100.f)
-        goto alignBehindBall;
-    }
-    action
-    {
+    state(alignToGoal) {
+        transition {
+            if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+                goto searchForBall;
+            if(std::abs(libCodeRelease.angleToGoalForStriker) < 10_deg && std::abs(theBallModel.estimate.position.y()) < 100.f)
+                goto alignBehindBall;
+            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
+                goto waitAtMiddleLine;
+        }
+        action {
 
-      theHeadControlMode = HeadControl::lookHigh;
-      WalkToTarget(Pose2f(60.f, 60.f, 60.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 400.f, theBallModel.estimate.position.y()));
+            theHeadControlMode = HeadControl::lookHigh;
+            WalkToTarget(Pose2f(60.f, 60.f, 60.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 400.f, theBallModel.estimate.position.y()));
+        }
     }
-  }
- state(alignBehindBall)
- {
-	 transition
-	 {
-		  if(libCodeRelease.timeSinceBallWasSeen() > 7000)
-		       goto searchForBall;
-		 if(libCodeRelease.between(theBallModel.estimate.position.y(), -20.f, 20.f)
-          && libCodeRelease.between(theBallModel.estimate.position.x(), 140.f, 170.f)
-          && std::abs(libCodeRelease.angleToGoalForStriker) < 2_deg)
-		  {
-			if (theObstacleModel.obstacles.empty() )//若无障碍　则根据当前位置决定踢球方式
-				{
-					if (theRobotPose.translation.y()>2000.f)
-						goto sideKickLeft;
-					else if (theRobotPose.translation.y()<-2000.f)
-						goto sideKickRight;
-					else 
-						goto shoot;
-				}
-			//else if (theObstacleModel.obstacles.size()==1 && theObstacleModel.obstacles[0].type == Obstacle::goalpost)//判断是否只有目标物一个障碍
-			//	  goto kick;//此处可继续加强条件以达到射门条件　未测试
-     		else //有障碍的情况
-				{
-					//有多个障碍，找到与目标方向偏离最小的障碍
-					Obstacle nearist;
-					float minDeltaAngle=100.f;//test value
-					for (Obstacle o:theObstacleModel.obstacles)
-					{
-						float delta_angle=fabs(o.center.angle()-libCodeRelease.angleToGoalForStriker);
-						if ( delta_angle < minDeltaAngle)
-						{
-								minDeltaAngle=delta_angle;
-								nearist=o;
-						}
-					}
-					//障碍较远时  则根据当前位置决定踢球方式
-					if (nearist.center.norm() > 4000.f)
-					{
-						if (theRobotPose.translation.y()>2000.f)
-							goto sideKickLeft;
-						else if (theRobotPose.translation.y()<-2000.f)
-							goto sideKickRight;
-						else 
-							goto kickLeft;
-					}					
-					//障碍较近 并在一条线的情况  向左或者向右变向
-					else if ( libCodeRelease.between(libCodeRelease.angleToGoalForStriker, 
-																	nearist.right.angle() -5_deg, 
-																	nearist.left.angle() +5_deg) )//5_deg为拓展的角度大约5度
-					{
-						if (theRobotPose.translation.y()>0.f)
-							goto sideKickLeft;
-						else 
-							goto sideKickRight;
-					}
-					//障碍较近  但是没有在一条线的情况  直接向前踢
-					else
-					{
-						goto kickLeft;
+    state(alignBehindBall) {
+        transition {
+            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
+                goto waitAtMiddleLine;
+            if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+                goto searchForBall;
+            if(libCodeRelease.between(theBallModel.estimate.position.y(), -20.f, 20.f)
+            && libCodeRelease.between(theBallModel.estimate.position.x(), 140.f, 170.f)
+            && std::abs(libCodeRelease.angleToGoalForStriker) < 2_deg) {
+                if (theObstacleModel.obstacles.empty() ) { //若无障碍　则根据当前位置决定踢球方式
+                    if (theRobotPose.translation.y()>2000.f)
+                        goto sideKickLeft;
+                    else if (theRobotPose.translation.y()<-2000.f)
+                        goto sideKickRight;
+                    else
+                        goto shoot;
+                }
+                //else if (theObstacleModel.obstacles.size()==1 && theObstacleModel.obstacles[0].type == Obstacle::goalpost)//判断是否只有目标物一个障碍
+                //	  goto kick;//此处可继续加强条件以达到射门条件　未测试
+                else { //有障碍的情况
+                    //有多个障碍，找到与目标方向偏离最小的障碍
+                    Obstacle nearist;
+                    float minDeltaAngle=100.f;//test value
+                    for (Obstacle o:theObstacleModel.obstacles) {
+                        float delta_angle=fabs(o.center.angle()-libCodeRelease.angleToGoalForStriker);
+                        if ( delta_angle < minDeltaAngle) {
+                            minDeltaAngle=delta_angle;
+                            nearist=o;
+                        }
+                    }
+                    //障碍较远时  则根据当前位置决定踢球方式
+                    if (nearist.center.norm() > 4000.f) {
+                        if (theRobotPose.translation.y()>2000.f)
+                            goto sideKickLeft;
+                        else if (theRobotPose.translation.y()<-2000.f)
+                            goto sideKickRight;
+                        else
+                            goto kickLeft;
+                    }
+                    //障碍较近 并在一条线的情况  向左或者向右变向
+                    else if ( libCodeRelease.between(libCodeRelease.angleToGoalForStriker,
+                                                     nearist.right.angle() -5_deg,
+                                                     nearist.left.angle() +5_deg) ) { //5_deg为拓展的角度大约5度
+                        if (theRobotPose.translation.y()>0.f)
+                            goto sideKickLeft;
+                        else
+                            goto sideKickRight;
+                    }
+                    //障碍较近  但是没有在一条线的情况  直接向前踢
+                    else {
+                        goto kickLeft;
 //						if (theRobotPose.translation.y()>0.f)
 //							goto kickLeft;
-//						else 
+//						else
 //							goto kickRight;
-					}
-				}	 
-			}
-	}
-	action
-	{
-		theHeadControlMode = HeadControl::focusBall;
-        WalkToTarget(Pose2f(pi/8, 20.f, 20.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 0.f));
-	}
-}
+                    }
+                }
+            }
+        }
+        action {
+            theHeadControlMode = HeadControl::focusBall;
+            WalkToTarget(Pose2f(pi/8, 20.f, 20.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 0.f));
+        }
+    }
 //**Kick with left leg straight**//
-state(kickLeft)
-{
-	transition
-	{
-		if( (state_time > 10 && action_done))
-				goto turnToBall;
-		if(libCodeRelease.timeSinceBallWasSeen() > 7000)
-		       goto searchForBall;
-		if( !theObstacleModel.obstacles.empty()  )
-		{
-				for (Obstacle o:theObstacleModel.obstacles)
-					{
-						if ( o.type == Obstacle::goalpost )
-							goto shoot;
-					}
-		}
-		if (theGameInfo.secondaryState == STATE2_PENALTYSHOOT)
-			goto shoot;
-	}
-	action
-	{
-		theHeadControlMode = HeadControl::focusBall;
-		//LeftKick(WalkRequest::sidewardsLeft);
-		//ShootKick();//shoot type
-		LeftKick(WalkRequest::left);
-	}
-}
+    state(kickLeft) {
+        transition {
+            if( (state_time > 10 && action_done))
+                goto turnToBall;
+            if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+                goto searchForBall;
+            if( !theObstacleModel.obstacles.empty()  ) {
+                for (Obstacle o:theObstacleModel.obstacles) {
+                    if ( o.type == Obstacle::goalpost )
+                        goto shoot;
+                }
+            }
+            if (theGameInfo.secondaryState == STATE2_PENALTYSHOOT)
+                goto shoot;
+            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
+                goto waitAtMiddleLine;
+        }
+        action {
+            theHeadControlMode = HeadControl::focusBall;
+            //LeftKick(WalkRequest::sidewardsLeft);
+            //ShootKick();//shoot type
+            LeftKick(WalkRequest::left);
+        }
+    }
 //**Kick with left leg sidewards**//
-state(sideKickLeft)
-{
-	transition
-	{
-		if((state_time > 10 && action_done))
-				goto turnToBall;
-		if(libCodeRelease.timeSinceBallWasSeen() > 7000)
-		       goto searchForBall;
-	}
-	action
-	{
-		theHeadControlMode = HeadControl::focusBall;
-		LeftKick(WalkRequest::sidewardsLeft);
-	}
-}
+    state(sideKickLeft) {
+        transition {
+            if((state_time > 10 && action_done))
+                goto turnToBall;
+            if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+                goto searchForBall;
+            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
+                goto waitAtMiddleLine;
+        }
+        action {
+            theHeadControlMode = HeadControl::focusBall;
+            LeftKick(WalkRequest::sidewardsLeft);
+        }
+    }
 //**Kick with left leg sidewards**//
-state(sideKickRight)
-{
-	transition
-	{
-		if( (state_time > 10 && action_done))
-				goto turnToBall;
-		if(libCodeRelease.timeSinceBallWasSeen() > 7000)
-		       goto searchForBall;
-	}
-	action
-	{
-		theHeadControlMode = HeadControl::focusBall;
-		RightKick(WalkRequest::sidewardsRight);
-	}
-}
+    state(sideKickRight) {
+        transition {
+            if( (state_time > 10 && action_done))
+                goto turnToBall;
+            if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+                goto searchForBall;
+            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
+                goto waitAtMiddleLine;
+        }
+        action {
+            theHeadControlMode = HeadControl::focusBall;
+            RightKick(WalkRequest::sidewardsRight);
+        }
+    }
 //**Kick with right leg straight**//
-state(shoot)
-{
-	transition
-	{
-        if (libCodeRelease.firstKick==true ){
-            libCodeRelease.firstKick=false;
-            goto firstKick;}
-		if( (state_time > 10 && action_done))
-				goto turnToBall;
-		if(libCodeRelease.timeSinceBallWasSeen() > 7000)
-		       goto searchForBall;
-	}
-	action
-	{
-		theHeadControlMode = HeadControl::focusBall;
-		ShootKick();//shoot type
-	}
-}
-    state(firstKick)
-{
-	transition
-	{
-		if( (state_time > 10 && action_done))
-				goto turnToBall;
-		if(libCodeRelease.timeSinceBallWasSeen() > 7000)
-		       goto searchForBall;
-	}
-	action
-	{
-		theHeadControlMode = HeadControl::focusBall;
-		LeftKick(WalkRequest::sidewardsLeft);
-	}
-}
- state(searchForBall)
-  {
-    transition
-    {
-      if(libCodeRelease.timeSinceBallWasSeen() < 300)
-        goto turnToBall;
-	  if(libCodeRelease.timeSinceBallWasSeen() > 17000)//若原地找球超过20秒(27000因为原先有7000的延时)，就回到中心
-		  goto backToCenter;
+    state(shoot) {
+        transition {
+            if (libCodeRelease.firstKick==true ) {
+                libCodeRelease.firstKick=false;
+                goto firstKick;
+            }
+            if( (state_time > 10 && action_done))
+                goto turnToBall;
+            if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+                goto searchForBall;
+            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
+                goto waitAtMiddleLine;
+        }
+        action {
+            theHeadControlMode = HeadControl::focusBall;
+            ShootKick();//shoot type
+        }
     }
-    action
-    {
-      theHeadControlMode = HeadControl::lookForward;    
-      WalkAtSpeedPercentage(Pose2f(1.f, 0.f, 0.f));
+    state(firstKick) {
+        transition {
+            if( (state_time > 10 && action_done))
+                goto turnToBall;
+            if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+                goto searchForBall;
+            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
+                goto waitAtMiddleLine;
+        }
+        action {
+            theHeadControlMode = HeadControl::focusBall;
+            LeftKick(WalkRequest::sidewardsLeft);
+        }
     }
-  }
-  state(backToCenter){
-		  transition{
-			 if( libCodeRelease.timeSinceBallWasSeen() < 300  || (state_time > 10 && action_done) )
-					goto turnToBall;
-			  }
-		 action{
-					ReadyState();
-			 }
-	  }
+    state(searchForBall) {
+        transition {
+            if(libCodeRelease.timeSinceBallWasSeen() < 300)
+                goto turnToBall;
+            if(libCodeRelease.timeSinceBallWasSeen() > 17000)//若原地找球超过20秒(27000因为原先有7000的延时)，就回到中心
+                goto backToCenter;
+            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
+                goto waitAtMiddleLine;
+        }
+        action {
+            theHeadControlMode = HeadControl::lookForward;
+            WalkAtSpeedPercentage(Pose2f(1.f/2, 0.f, 0.f));
+        }
+    }
+    state(backToCenter) {
+        transition {
+            if( libCodeRelease.timeSinceBallWasSeen() < 300  || (state_time > 10 && action_done) )
+                goto turnToBall;
+            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
+                goto waitAtMiddleLine;
+        }
+        action {
+            ReadyState();
+        }
+    }
+
+    state(waitAtMiddleLine) {
+        transition {
+            float distance = theBallModel.estimate.position.norm();
+            if( std::abs(distance) < 1000.0 )
+                goto turnToBall;
+            if( state_time > 7000)
+                goto searchForBall;
+        }
+        action {
+            theHeadControlMode = HeadControl::focusBall;
+            Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,0.0,theRobotPose.translation.y());
+            WalkToTarget(Pose2f(50.f,1.f,1.f),Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
+        }
+    }
 
 }

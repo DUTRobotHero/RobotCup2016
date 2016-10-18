@@ -45,6 +45,8 @@ option(Keeper)
                 goto turnToBall;
             if ( std::abs(theBallModel.estimate.position.angle()) < 15_deg && theBallModel.estimate.position.norm() < 230.f)
                 goto kick;
+                            if( theRobotPose.translation.x() < -4450.0 )
+                goto start;
         }
         action {
             theHeadControlMode = HeadControl::focusBall;
@@ -54,9 +56,16 @@ option(Keeper)
             ShowRobotToField(theRobotPose);
             int area = GetAreaNumber(theBallModel,theRobotPose);
             ShowArea(area);
-            WalkToTargetAbsolute(Pose2f(theRobotPose.rotation - Ball2Field.rotation > 0 ? -pi / 32 : pi / 32,
+            //too slow
+          /*  WalkToTargetAbsolute(Pose2f(theRobotPose.rotation - Ball2Field.rotation > 0 ? -pi / 32 : pi / 32,
             theRobotPose.translation.x()+3900 > 0? -30.f: 30.f,
-            theRobotPose.translation.y()-Ball2Field.translation.y() > 0? -30.f: 30.f),Pose2f(0.0,-4000.0,Ball2Field.translation.y()));
+            theRobotPose.translation.y()-Ball2Field.translation.y() > 0? -30.f: 30.f),Pose2f(0.0,-4000.0,Ball2Field.translation.y()));*/
+            //先转身再垂直距离走过去
+            float aim_x = -3950.0;
+            float aim_y = 550* Ball2Field.translation.y()/(Ball2Field.translation.x()+4500.0);
+            //转化为相对于机器人的坐标
+            Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,aim_x,aim_y);
+            WalkToTarget(Pose2f(50.f,1.f,1.f),Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
             ShowSomething(theBallModel.estimate.position.norm());
 
         }
@@ -74,6 +83,8 @@ option(Keeper)
                 goto turnToBall;
             else if ( std::abs(theBallModel.estimate.position.angle()) < 15_deg && theBallModel.estimate.position.norm() < 230.f)
                 goto kick;
+                            if( theRobotPose.translation.x() < -4450.0 )
+                goto start;
         }
         action {
             theHeadControlMode = HeadControl::focusBall;
@@ -107,6 +118,8 @@ option(Keeper)
                     goto WalkToMiddlePoint;
                 else if( area == 4)
                     goto turnToBall;
+                                if( theRobotPose.translation.x() < -4450.0 )
+                goto start;
             }
         }
         action {
@@ -146,6 +159,8 @@ option(Keeper)
                     goto WalkToVerticalPoint;
                 else if(std::abs(theBallModel.estimate.position.angle()) < 5_deg && theBallModel.estimate.position.norm() < 230.f )
                     goto kick;
+                                if( theRobotPose.translation.x() < -4450.0 )
+                goto start;
             }
 
         }
@@ -175,6 +190,8 @@ option(Keeper)
                 goto WalkToMiddlePoint;
             else if( area == 1)
                 goto WalkToVerticalPoint;
+                            if( theRobotPose.translation.x() < -4450.0 )
+                goto start;
         }
         action {
             theHeadControlMode = HeadControl::focusBall;
@@ -225,6 +242,8 @@ option(Keeper)
                 goto WalkToMiddlePoint;
             else if( area == 1)
                 goto WalkToVerticalPoint;
+                            if( theRobotPose.translation.x() < -4450.0 )
+                goto start;
         }
         action {
             theHeadControlMode = HeadControl::focusBall;
@@ -247,10 +266,13 @@ option(Keeper)
                 goto WalkToMiddlePoint;
             else if( area == 1)
                 goto WalkToVerticalPoint;
+            if( theRobotPose.translation.x() < -4450.0 )
+                goto start;
         }
         action {
             Annotation("Alive and Kickin'");
             theHeadControlMode = HeadControl::focusBall;
+            //判断障碍物的距离
             InWalkKick(WalkRequest::left, Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 160.f, theBallModel.estimate.position.y() - 55.f));
             int area = GetAreaNumber(theBallModel,theRobotPose);
             ShowArea(area);
@@ -272,7 +294,7 @@ option(Keeper)
                     goto WalkToVerticalPoint;
             }
 
-            if(state_time>5000)
+            if(state_time>5000 || theRobotPose.translation.x() < -4450.0)
                 goto start;
 
         }

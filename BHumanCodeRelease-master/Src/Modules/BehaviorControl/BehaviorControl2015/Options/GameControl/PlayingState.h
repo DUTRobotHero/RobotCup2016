@@ -20,21 +20,8 @@ option(PlayingState)
       Stand();
     }
   }
-  state(play)
-  {
-    transition
-    {
-        if (state_time>5000){
-			goto changeRoles;
-		}
-    }
-    action
-    {
-      theHeadControlMode = HeadControl::leftAndRight;
-    }
-  }
 
-  state(changeRoles)
+  state(play)
   {
       transition
       {
@@ -60,11 +47,11 @@ option(PlayingState)
 		  if ( theRobotInfo.number == KEEPER_NUMBER ){
 				Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,theFieldDimensions.xPosOwnPenaltyMark,0);
 				if (relatePoint.translation.norm() < 100.f)
-					goto changeRoles;
+					goto play;
 		   }else{
 			   Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,theFieldDimensions.xPosOwnPenaltyMark,0);
 				if (relatePoint.translation.norm() < 100.f)
-					goto changeRoles;
+					goto play;
 		   }
            if(action_done)
                goto play;

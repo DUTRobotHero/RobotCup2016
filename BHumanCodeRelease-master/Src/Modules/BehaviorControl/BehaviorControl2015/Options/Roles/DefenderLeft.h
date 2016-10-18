@@ -164,7 +164,7 @@
 //          走上去挡住 （注意控制距离 ）
 //     else
 //          goto start
-option(Defender)
+option(DefenderLeft)
 {
     initial_state(start) {
         transition {
@@ -188,7 +188,7 @@ option(Defender)
             ShowBallToRobot(theBallModel.estimate.position);
             ShowRobotToField(theRobotPose);
 
-            Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,-3000.0,0.0);
+            Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,-2500.0,1100.0);
             WalkToTarget(Pose2f(pi/8,1.f,1.f),relatePoint);
         }
     }

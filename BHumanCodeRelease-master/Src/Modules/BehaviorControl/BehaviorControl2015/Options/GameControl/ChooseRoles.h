@@ -1,17 +1,20 @@
 option(ChooseRoles)
 {
-	char KEEPER_NUM=1;
-	char DEFANDER_NUM=4;
-	char STRIKER_NUM=2;
-	char SUPPORTER_NUM=3;
+	char KEEPER_NUM =1;
+	char DEFENDER_LEFT = 4;
+	char STRIKER_NUM = 2;
+	char SUPPORTER_NUM = 3;
+    char DEFENDER_RIGHT = 5;
   /** Stand still and wait. */
   initial_state(initial)
   {
 	  transition{
 		  if ( theRobotInfo.number == KEEPER_NUM )
 			goto Keeper;
-		else if  ( theRobotInfo.number == DEFANDER_NUM )
-			goto Defender;
+		else if  ( theRobotInfo.number == DEFENDER_LEFT)
+			goto DefenderLeft;
+        else if ( theRobotInfo.number == DEFENDER_RIGHT)
+            goto DefenderRight;
 		else if (theRobotInfo.number == STRIKER_NUM)
 			goto Striker;
 		else if (theRobotInfo.number == SUPPORTER_NUM)
@@ -31,7 +34,7 @@ option(ChooseRoles)
           theBehaviorStatus.role = Role::keeper;
 		}
 	}
-	state(Defender)
+	state(DefenderLeft)
   {
 	  
 	  action
@@ -39,10 +42,21 @@ option(ChooseRoles)
 			//ShowTeammateData(otherTeammate.number,otherTeammate.ball);
            // for(Obstacle o:theObstacleModel.obstacles)
              //   ShowObstacles(o.center);
-			Defender();
+			DefenderLeft();
             theBehaviorStatus.role = Role::defender;
 		}
 	}
+    
+    state(DefenderRight)
+    {
+        action
+        {
+            DefenderRight();
+            theBehaviorStatus.role = Role::defender;
+
+        }
+    }
+    
 state(Striker)
   {
 	  transition{
@@ -50,7 +64,8 @@ state(Striker)
 				for (Teammate tempTeammate:theTeammateData.teammates)
 				{		//找到Supporter的信息
 						if (tempTeammate.number != KEEPER_NUM &&
-							tempTeammate.number != DEFANDER_NUM && 
+							tempTeammate.number != DEFENDER_LEFT && 
+                            tempTeammate.number != DEFENDER_RIGHT &&
 							tempTeammate.number != 5&& 
 							tempTeammate.number != theRobotInfo.number )
 							{otherTeammate=tempTeammate;}
@@ -75,7 +90,8 @@ state(Striker)
 				for (Teammate tempTeammate:theTeammateData.teammates)
 				{		//找到Striker的信息
 						if (tempTeammate.number != KEEPER_NUM &&
-							tempTeammate.number != DEFANDER_NUM && 
+							tempTeammate.number != DEFENDER_LEFT && 
+                            tempTeammate.number != DEFENDER_RIGHT &&
 							tempTeammate.number != 5&& 
 							tempTeammate.number != theRobotInfo.number )
 							{otherTeammate=tempTeammate;}

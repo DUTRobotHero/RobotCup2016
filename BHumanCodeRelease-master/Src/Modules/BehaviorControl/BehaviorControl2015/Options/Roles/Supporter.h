@@ -23,7 +23,7 @@ option(helpStriker)
 					goto sideright;
 		}
 		action{
-			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x()-400.f,
+			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x() + 400.f,
 																														otherTeammate.pose.translation.y()+1000.f);
 			WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
                     Pose2f(theBallModel.estimate.position.angle(),relatePoint.translation.x(),relatePoint.translation.y()));
@@ -37,7 +37,7 @@ option(helpStriker)
 					goto sideleft;
 		}
 		action{
-			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x()-400.f,
+			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x() + 400.f,
 																														otherTeammate.pose.translation.y()-1000.f);
 			WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
                     Pose2f(theBallModel.estimate.position.angle(),relatePoint.translation.x(),relatePoint.translation.y()));
