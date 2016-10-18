@@ -62,7 +62,7 @@ option(PenaltyStriker)
   {
     transition
     {
-      if(libCodeRelease.between(theBallModel.estimate.position.y(), -20.f, 20.f)
+      if(libCodeRelease.between(theBallModel.estimate.position.y(), -50.f, -30.f)
           && libCodeRelease.between(theBallModel.estimate.position.x(), 140.f, 170.f)
           && std::abs(libCodeRelease.angleToGoalForStriker) < 2_deg)
         goto shoot;
@@ -70,7 +70,7 @@ option(PenaltyStriker)
     action
     {
       theHeadControlMode = HeadControl::focusBall;
-      WalkToTarget(Pose2f(80.f, 80.f, 80.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y()));
+      WalkToTarget(Pose2f(80.f, 80.f, 80.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() + 30.f));
     }
   }
   
