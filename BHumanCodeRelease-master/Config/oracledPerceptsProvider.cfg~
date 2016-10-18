@@ -25,4 +25,4 @@ goalPostRecognitionRate = 0.9;
 applyPenaltyMarkNoise = true;
 penaltyMarkPosInImageStdDev = 1;
 penaltyMarkMaxVisibleDistance = 2500;
-penaltyMarkRecognitionRate = 1;
+penaltyMarkRecognitionRate = 0.5;
