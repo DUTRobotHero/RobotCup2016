@@ -78,9 +78,23 @@ state(Striker)
 	  }
 	  action
 	  {
-		  ShowTeammateData(otherTeammate.number,otherTeammate.ball);
-		  StrikerDong1();
-          theBehaviorStatus.role = Role::striker;
+          if(theGameInfo.kickOffTeam != theOwnTeamInfo.teamNumber)
+            {
+                if(theBallModel.estimate.velocity.x() > 0.0 || theBallModel.estimate.velocity.y() > 0.0 || state_time  > 10000)
+                {
+                    ShowTeammateData(otherTeammate.number,otherTeammate.ball);
+                    StrikerDong1();
+                    theBehaviorStatus.role = Role::striker;
+                }
+            }
+            
+            else 
+            {
+                ShowTeammateData(otherTeammate.number,otherTeammate.ball);
+                StrikerDong1();
+                theBehaviorStatus.role = Role::striker;
+            }
+		  
 		}
 	}
 	state(Supporter)
@@ -110,9 +124,23 @@ state(Striker)
 	  }
 	  action
 	  {
-			ShowTeammateData(otherTeammate.number,otherTeammate.ball);
-            theBehaviorStatus.role = Role::supporter;
-		    Supporter();
+          
+          if(theGameInfo.kickOffTeam != theOwnTeamInfo.teamNumber)
+            {
+                if(theBallModel.estimate.velocity.x() > 0.0 || theBallModel.estimate.velocity.y() > 0.0 || state_time  > 10000)
+                {
+                    ShowTeammateData(otherTeammate.number,otherTeammate.ball);
+                    theBehaviorStatus.role = Role::supporter;
+                    Supporter();
+                }
+            }
+            
+            else 
+            {
+                ShowTeammateData(otherTeammate.number,otherTeammate.ball);
+                theBehaviorStatus.role = Role::supporter;
+                Supporter();
+            }
 		}
 	}
 /*	state(defaultRole)
