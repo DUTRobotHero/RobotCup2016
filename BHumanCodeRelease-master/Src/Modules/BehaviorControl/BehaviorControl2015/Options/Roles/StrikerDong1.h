@@ -176,7 +176,7 @@ state(alignBesideBall)
 			}
 	}
 }
->>>>>>> c873cc5c844e6490d83680d41117a2f4fd976fbf
+
 //**Kick with left leg straight**//
     state(kickLeft) {
         transition {
