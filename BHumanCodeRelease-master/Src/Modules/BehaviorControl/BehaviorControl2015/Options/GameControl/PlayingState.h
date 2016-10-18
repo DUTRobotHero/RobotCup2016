@@ -1,10 +1,12 @@
 option(PlayingState)
 {
 
-//    int STRIKER_NUMBER = 2;
+
     int KEEPER_NUMBER = 1;
- //   int SUPPORTER_NUMBER = 3;
-	
+    int STRIKER_NUMBER = 2;
+    int SUPPORTER_NUMBER = 3;
+	int DEFENDER_NUMBER1 = 4;
+    int DEFENDER_NUMBER2 = 5;
 	initial_state(upstand)
   {
     transition
@@ -73,5 +75,3 @@ option(PlayingState)
       }
   }
 }
-  
-

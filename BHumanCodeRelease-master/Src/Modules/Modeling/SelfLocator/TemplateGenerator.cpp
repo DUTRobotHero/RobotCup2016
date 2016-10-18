@@ -50,12 +50,13 @@ void TemplateGenerator::init()
   //  4        3  //
   //  1           //
   //     Goal     //
+  //updated by Skye,5号和3号互换位置，防止撞击。原来3号-2000.f，5号-1000.f
   walkInPositions.clear();
   Vector2f pos1(-3000.f, theFieldDimensions.yPosLeftSideline);
   Vector2f pos2(-1000.f, theFieldDimensions.yPosLeftSideline);
-  Vector2f pos3(-2000.f, theFieldDimensions.yPosRightSideline);
+  Vector2f pos3(-1000.f, theFieldDimensions.yPosRightSideline);
   Vector2f pos4(-2000.f, theFieldDimensions.yPosLeftSideline);
-  Vector2f pos5(-1000.f, theFieldDimensions.yPosRightSideline);
+  Vector2f pos5(-2000.f, theFieldDimensions.yPosRightSideline);
   Vector2f centerOfGoal(theFieldDimensions.xPosOwnGroundline, 0.f);
   Vector2f pos1ToGoal = centerOfGoal - pos1;
   Vector2f pos2ToGoal = centerOfGoal - pos2;

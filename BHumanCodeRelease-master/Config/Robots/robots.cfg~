@@ -3,6 +3,10 @@ robotsIds = [
   { name = "Thor"; headId = "ALDT1312N007903"; bodyId = "ALDR1312N007793"; },
   { name = "Flash"; headId = "ALDT1312N007825"; bodyId = "ALDR1312N007857"; },
   { name = "Petter"; headId = "ALDT1109F003574"; bodyId = "ALDR1109F004006"; },
+<<<<<<< HEAD
   { name = "Hawkeye"; headId = "ALDT1312N009571"; bodyId = "ALDR1312N009257"; },
   { name = "Test"; headId = "ALDT1109F004663"; bodyId = "ALDR1109F004873"; }
+=======
+  { name = "Hawkeye"; headId = "ALDT1312N009571"; bodyId = "ALDR1312N009257"; }
+>>>>>>> 9b53f86caf3bca0c82f503a8183cf5e29ae9a548
 ];

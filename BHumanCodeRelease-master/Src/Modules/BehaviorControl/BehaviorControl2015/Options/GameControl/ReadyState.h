@@ -3,13 +3,14 @@ option(ReadyState)
 {
     float setAdjustVelocity = 1.f/2;
     float setTurnVelocity = pi/8;
-    float deltaDistance = 20.0;
+    float deltaDistance = 10.0;
     float distance;
+
     int KEEPER_NUMBER = 1;
     int STRIKER_NUMBER = 2;
-
     int SUPPORTER_NUMBER = 3;
-    int DEFENDER_NUMBER = 4;
+    int DEFENDER_NUMBER1 = 4;
+    int DEFENDER_NUMBER2= 5;
 
     float ATTACK_STRIKER_X = -250.0;
     float ATTACK_STRIKER_Y = 0.0;
@@ -22,8 +23,10 @@ option(ReadyState)
     float DEFEND_SUPPORTER_Y = -1100.0;
     float KEEPER_X = -4000.0;
     float KEEPER_Y = 0.0;
-    float DEFENDER_X = -3000.0;
-    float DEFENDER_Y = 0.0;
+    float DEFENDER_X1 = -3000.0;
+    float DEFENDER_Y1 = 1000.0;
+    float DEFENDER_X2 = -3000.0;
+    float DEFENDER_Y2 = -1000.0;
 
     initial_state(TurnToPosition) {
         transition {
@@ -57,8 +60,17 @@ option(ReadyState)
                         goto WalkToPosition_Defend;
                 }
             }
-            if( theRobotInfo.number == DEFENDER_NUMBER) {
-                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X,DEFENDER_Y);
+            if( theRobotInfo.number == DEFENDER_NUMBER1) {
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X1,DEFENDER_Y1);
+                if(std::abs(relatePoint.rotation) < 2_deg) {
+                    if (theGameInfo.kickOffTeam == theOwnTeamInfo.teamNumber)
+                        goto WalkToPosition_Attack;
+                    else
+                        goto WalkToPosition_Defend;
+                }
+            }
+                        if( theRobotInfo.number == DEFENDER_NUMBER2) {
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X2,DEFENDER_Y2);
                 if(std::abs(relatePoint.rotation) < 2_deg) {
                     if (theGameInfo.kickOffTeam == theOwnTeamInfo.teamNumber)
                         goto WalkToPosition_Attack;
@@ -91,8 +103,13 @@ option(ReadyState)
                     WalkToTarget(Pose2f(setTurnVelocity,0.0,0.0),Pose2f(relatePoint.rotation,0.0,0.0));
                     ShowReadyPosition(relatePoint);
                 }
-            } else if ( theRobotInfo.number == DEFENDER_NUMBER) {
-                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X,DEFENDER_Y);
+            } else if ( theRobotInfo.number == DEFENDER_NUMBER1) {
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X1,DEFENDER_Y1);
+                WalkToTarget(Pose2f(setTurnVelocity,0.0,0.0),Pose2f(relatePoint.rotation,0.0,0.0));
+                ShowReadyPosition(relatePoint);
+            }
+            else if ( theRobotInfo.number == DEFENDER_NUMBER2) {
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X2,DEFENDER_Y2);
                 WalkToTarget(Pose2f(setTurnVelocity,0.0,0.0),Pose2f(relatePoint.rotation,0.0,0.0));
                 ShowReadyPosition(relatePoint);
             }
@@ -120,8 +137,14 @@ option(ReadyState)
                 distance = relatePoint.translation.norm();
                 if ( distance < deltaDistance )
                     goto AlignToGoal;
-            } else if (theRobotInfo.number == DEFENDER_NUMBER ) {
-                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X,DEFENDER_Y);
+            } else if (theRobotInfo.number == DEFENDER_NUMBER1 ) {
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X1,DEFENDER_Y1);
+                distance = relatePoint.translation.norm();
+                if ( distance < deltaDistance )
+                    goto AlignToGoal;
+            }
+            else if (theRobotInfo.number == DEFENDER_NUMBER2 ) {
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X2,DEFENDER_Y2);
                 distance = relatePoint.translation.norm();
                 if ( distance < deltaDistance )
                     goto AlignToGoal;
@@ -155,8 +178,16 @@ option(ReadyState)
                 Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
 
                 ShowReadyPosition(relatePoint);
-            } else if ( theRobotInfo.number == DEFENDER_NUMBER) { //Flash
-                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X,DEFENDER_Y);
+            } else if ( theRobotInfo.number == DEFENDER_NUMBER1) { //Flash
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X1,DEFENDER_Y1);
+
+                WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
+                Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
+
+                ShowReadyPosition(relatePoint);
+            }
+            else if ( theRobotInfo.number == DEFENDER_NUMBER2) { //Flash
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X2,DEFENDER_Y2);
 
                 WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
                 Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
@@ -191,8 +222,14 @@ option(ReadyState)
                 distance = relatePoint.translation.norm();
                 if ( distance < deltaDistance )
                     goto AlignToGoal;
-            } else if (theRobotInfo.number == DEFENDER_NUMBER ) {
-                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X,DEFENDER_Y);
+            } else if (theRobotInfo.number == DEFENDER_NUMBER1 ) {
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X1,DEFENDER_Y1);
+                distance = relatePoint.translation.norm();
+                if ( distance < deltaDistance )
+                    goto AlignToGoal;
+            }
+             else if (theRobotInfo.number == DEFENDER_NUMBER2 ) {
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X2,DEFENDER_Y2);
                 distance = relatePoint.translation.norm();
                 if ( distance < deltaDistance )
                     goto AlignToGoal;
@@ -223,8 +260,15 @@ option(ReadyState)
                 Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
 
                 ShowReadyPosition(relatePoint);
-            } else if ( theRobotInfo.number == DEFENDER_NUMBER) { //Flash
-                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X,DEFENDER_Y);
+            } else if ( theRobotInfo.number == DEFENDER_NUMBER1) { //Flash
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X1,DEFENDER_Y1);
+                WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
+                Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
+
+                ShowReadyPosition(relatePoint);
+            }
+            else if ( theRobotInfo.number == DEFENDER_NUMBER2) { //Flash
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFENDER_X2,DEFENDER_Y2);
                 WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
                 Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
 
