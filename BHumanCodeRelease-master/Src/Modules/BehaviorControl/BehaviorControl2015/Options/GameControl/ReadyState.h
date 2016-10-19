@@ -23,7 +23,7 @@ option(ReadyState)
     float DEFEND_SUPPORTER_Y = -1100.0;
     float KEEPER_X = -4000.0;
     float KEEPER_Y = 0.0;
-    float DEFENDER_X1 = -3000.0;
+    float DEFENDER_X1 = -1500.0;
     float DEFENDER_Y1 = 1000.0;
     float DEFENDER_X2 = -3000.0;
     float DEFENDER_Y2 = -1000.0;

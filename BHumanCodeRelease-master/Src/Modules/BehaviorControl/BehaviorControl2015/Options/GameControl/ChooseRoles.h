@@ -66,7 +66,6 @@ state(Striker)
 						if (tempTeammate.number != KEEPER_NUM &&
 							tempTeammate.number != DEFENDER_LEFT && 
                             tempTeammate.number != DEFENDER_RIGHT &&
-							tempTeammate.number != 5&& 
 							tempTeammate.number != theRobotInfo.number )
 							{otherTeammate=tempTeammate;}
 				}
@@ -106,7 +105,6 @@ state(Striker)
 						if (tempTeammate.number != KEEPER_NUM &&
 							tempTeammate.number != DEFENDER_LEFT && 
                             tempTeammate.number != DEFENDER_RIGHT &&
-							tempTeammate.number != 5&& 
 							tempTeammate.number != theRobotInfo.number )
 							{otherTeammate=tempTeammate;}
 				}

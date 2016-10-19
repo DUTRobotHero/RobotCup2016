@@ -173,7 +173,7 @@ option(DefenderRight)
             Pose2f Ball2Field = BallModel2Field(theBallModel,theRobotPose);
             if( libCodeRelease.timeSinceBallWasSeen() < 300 &&  Ball2Field.translation.x() < -1000.0)
                 goto walkToBall;
-            if ( theRobotPose.translation.x() > -2500.0)
+            if ( theRobotPose.translation.x() > -1500.0)
                 goto ReturnToDefendArea;
             //Is this really neccessary？
             /*            bool RobotInPenaltyArea = IsRobotInPenaltyArea(theRobotPose);

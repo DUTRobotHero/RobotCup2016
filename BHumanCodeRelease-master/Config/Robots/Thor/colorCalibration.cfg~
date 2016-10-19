@@ -1,54 +1,35 @@
 white = {
-<<<<<<< HEAD
-  minR = 64;
-  minB = 151;
-  minRB = 248;
-=======
-  minR = 60;
-  minB = 186;
-  minRB = 144;
->>>>>>> 178b21aa91e1929cdbda9669a87d8e75ea8f8bda
+  minR = 136;
+  minB = 100;
+  minRB = 181;
 };
 ranges = [
   {
     hue = {
-<<<<<<< HEAD
-      min = 70;
-      max = 144;
+      min = 74;
+      max = 222;
     };
     saturation = {
-      min = 125;
-      max = 186;
+      min = 76;
+      max = 255;
     };
     intensity = {
-      min = 40;
-      max = 138;
-=======
-      min = 72;
-      max = 196;
-    };
-    saturation = {
-      min = 112;
-      max = 250;
-    };
-    intensity = {
-      min = 72;
-      max = 184;
->>>>>>> 178b21aa91e1929cdbda9669a87d8e75ea8f8bda
+      min = 76;
+      max = 191;
     };
   },
   {
     hue = {
-      min = 117;
-      max = 117;
+      min = 121;
+      max = 223;
     };
     saturation = {
-      min = 87;
-      max = 87;
+      min = 116;
+      max = 221;
     };
     intensity = {
-      min = 176;
-      max = 176;
+      min = 92;
+      max = 250;
     };
   },
   {
@@ -67,11 +48,7 @@ ranges = [
   },
   {
     hue = {
-<<<<<<< HEAD
       min = 229;
-=======
-      min = 225;
->>>>>>> 178b21aa91e1929cdbda9669a87d8e75ea8f8bda
       max = 17;
     };
     saturation = {
@@ -85,16 +62,16 @@ ranges = [
   },
   {
     hue = {
-      min = 0;
-      max = 0;
+      min = 139;
+      max = 255;
     };
     saturation = {
       min = 0;
-      max = 0;
+      max = 134;
     };
     intensity = {
       min = 0;
-      max = 60;
+      max = 111;
     };
   }
 ];
