@@ -95,13 +95,13 @@ option(StrikerDong1)
           && libCodeRelease.between(theBallModel.estimate.position.x(), 140.f, 170.f)
           && std::abs(libCodeRelease.angleToGoalForStriker) < 2_deg)
 		  {
-			if (theObstacleModel.obstacles.empty() )//若无障碍　则根据当前位置决定踢球方式
+			if (libCodeRelease.filterdObstacles.empty() )//若无障碍　则根据当前位置决定踢球方式
 				{
-					if (theRobotPose.translation.y()>2000.f)
+					/*if (theRobotPose.translation.y()>2000.f)
 						goto sideKickLeft;
 					else if (theRobotPose.translation.y()<-2000.f)
 						goto sideKickRight;
-					else 
+					else*/ 
 						goto shoot;
 				}
 			//else if (theObstacleModel.obstacles.size()==1 && theObstacleModel.obstacles[0].type == Obstacle::goalpost)//判断是否只有目标物一个障碍
@@ -111,7 +111,9 @@ option(StrikerDong1)
 					//有多个障碍，找到与目标方向偏离最小的障碍
 					Obstacle nearist;
 					float minDeltaAngle=100.f;//test value
-					for (Obstacle o:theObstacleModel.obstacles)
+                    /*if(theRobotPose.translation.x() > 3000.f)
+                        goto kickLeft;*/
+					for (Obstacle o:libCodeRelease.filterdObstacles)
 					{
 						float delta_angle=fabs(o.center.angle()-libCodeRelease.angleToGoalForStriker);
 						if ( delta_angle < minDeltaAngle)
@@ -121,14 +123,14 @@ option(StrikerDong1)
 						}
 					}
 					//障碍较远时  则根据当前位置决定踢球方式
-					if (nearist.center.norm() > 4000.f)
+					if (nearist.center.norm() > 2000.f)
 					{
-						if (theRobotPose.translation.y()>2000.f)
+						/*if (theRobotPose.translation.y()>2000.f)
 							goto sideKickLeft;
 						else if (theRobotPose.translation.y()<-2000.f)
 							goto sideKickRight;
-						else 
-							goto kickLeft;
+						else*/ 
+							goto shoot;
 					}					
 					//障碍较近 并在一条线的情况  向左或者向右变向
 					else if ( libCodeRelease.between(libCodeRelease.angleToGoalForStriker, 
@@ -143,7 +145,7 @@ option(StrikerDong1)
 					//障碍较近  但是没有在一条线的情况  直接向前踢
 					else
 					{
-						goto kickLeft;
+						goto shoot;
 
 					}
 				}	 
@@ -184,12 +186,12 @@ state(alignBesideBall)
                 goto turnToBall;
             if(libCodeRelease.timeSinceBallWasSeen() > 7000)
                 goto searchForBall;
-            if( !theObstacleModel.obstacles.empty()  ) {
+           /* if( !theObstacleModel.obstacles.empty()  ) {
                 for (Obstacle o:theObstacleModel.obstacles) {
                     if ( o.type == Obstacle::goalpost )
                         goto shoot;
                 }
-            }
+            }*/
             if (theGameInfo.secondaryState == STATE2_PENALTYSHOOT)
                 goto shoot;
             if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
