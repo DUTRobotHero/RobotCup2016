@@ -2,13 +2,6 @@ option(helpStriker)
 {
 	float setAdjustVelocity = 1.f;
 	float setTurnVelocity = pi/8;
-	
-	/*common_transition{
-		 if(otherTeammate.pose.translation.y()>=0.f)
-		  goto sideleft;
-		else
-			goto sideright;
-	}	*/
 	initial_state(start)
 	{
 		transition{
@@ -21,30 +14,51 @@ option(helpStriker)
 		transition{
 			if(otherTeammate.pose.translation.y()>=500.f)
 					goto sideright;
+			
 		}
 		action{
-			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x() + 400.f,
-																														otherTeammate.pose.translation.y()+1000.f);
-			WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
-                    Pose2f(theBallModel.estimate.position.angle(),relatePoint.translation.x(),relatePoint.translation.y()));
-		}
-	}
-	//当strikerd的位置小于-50cm，supporter去左边
-	state(sideright)
-	{	
-		transition{
-			if(otherTeammate.pose.translation.y()<=-500.f)
-					goto sideleft;
-		}
-		action{
-			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x() + 400.f,
+			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x() + 1000.f,
 																														otherTeammate.pose.translation.y()-1000.f);
 			WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
                     Pose2f(theBallModel.estimate.position.angle(),relatePoint.translation.x(),relatePoint.translation.y()));
 		}
 	}
-}
 
+	state(sideright)
+	{	
+		transition{
+				//当strikerd的位置小于-50cm，supporter去左边
+			if(otherTeammate.pose.translation.y()<=-500.f)
+					goto sideleft;
+				//当striker的位置在supporter右边　先直走
+			if(otherTeammate.pose.translation.y()<theRobotPose.translation.y())
+					goto walkForward; 
+		}
+		action{
+			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x() + 1000.f,
+																														otherTeammate.pose.translation.y()+1000.f);
+			WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
+                    Pose2f(theBallModel.estimate.position.angle(),relatePoint.translation.x(),relatePoint.translation.y()));
+		}
+	}
+	state(walkForward)
+	{	
+		transition{
+			if(otherTeammate.pose.translation.y()<=-500.f)
+					goto sideleft;
+			if(otherTeammate.pose.translation.y()>=500.f)
+					goto sideright;
+			if(otherTeammate.pose.translation.x()-theRobotPose.translation.x() < - 1000.f)
+					goto start; 
+		}
+		action{
+			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x() + 1500.f,
+																														theRobotPose.translation.y());
+			WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
+			Pose2f(theBallModel.estimate.position.angle(),relatePoint.translation.x(),relatePoint.translation.y()));
+		}
+	}
+}
 option(Supporter)
 {
   initial_state(start)

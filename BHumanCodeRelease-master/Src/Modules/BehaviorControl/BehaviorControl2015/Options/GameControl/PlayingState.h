@@ -35,24 +35,14 @@ option(PlayingState)
       }
       action
       {
-          ShowBool(theOwnSideModel.returnFromGameControllerPenalty);
-          ShowBool(theOwnSideModel.returnFromManualPenalty);
           ChooseRoles();
+		  ShowSomething(theTeammateData.numberOfActiveTeammates);
       }
   }
   state(backToField)
   {
       transition
       {
-		  if ( theRobotInfo.number == KEEPER_NUMBER ){
-				Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,theFieldDimensions.xPosOwnPenaltyMark,0);
-				if (relatePoint.translation.norm() < 100.f)
-					goto play;
-		   }else{
-			   Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,theFieldDimensions.xPosOwnPenaltyMark,0);
-				if (relatePoint.translation.norm() < 100.f)
-					goto play;
-		   }
            if(action_done)
                goto play;
       }
