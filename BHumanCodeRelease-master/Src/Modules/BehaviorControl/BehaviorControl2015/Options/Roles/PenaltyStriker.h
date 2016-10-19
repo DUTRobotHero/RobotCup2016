@@ -25,7 +25,7 @@ option(PenaltyStriker)
     action
     {
       theHeadControlMode = HeadControl::lookForward;
-      WalkToTarget(Pose2f(50.f, 50.f, 50.f), Pose2f(theBallModel.estimate.position.angle(), 0.f, 0.f));
+      WalkToTarget(Pose2f(5.f, 5.f, 5.f), Pose2f(theBallModel.estimate.position.angle(), 0.f, 0.f));
     }
   }
   
@@ -39,7 +39,7 @@ option(PenaltyStriker)
     action
     {
       theHeadControlMode = HeadControl::lookForward;
-      WalkToTarget(Pose2f(50.f, 50.f, 50.f), theBallModel.estimate.position);
+      WalkToTarget(Pose2f(5.f, 5.f, 5.f), theBallModel.estimate.position);
     }
   }
   
@@ -48,13 +48,13 @@ option(PenaltyStriker)
     transition
     {
     
-      if(std::abs(libCodeRelease.angleToGoalForStriker) < 10_deg && std::abs(theBallModel.estimate.position.y()) < 100.f)
+      if(std::abs(libCodeRelease.angleForPenaltyStriker) < 10_deg && std::abs(theBallModel.estimate.position.y()) < 100.f)
         goto alignBehindBall;
     }
     action
     {
       theHeadControlMode = HeadControl::lookForward;
-      WalkToTarget(Pose2f(100.f, 100.f, 100.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 400.f, theBallModel.estimate.position.y()));
+      WalkToTarget(Pose2f(5.f, 5.f, 5.f), Pose2f(libCodeRelease.angleForPenaltyStriker, theBallModel.estimate.position.x() - 400.f, theBallModel.estimate.position.y()));
     }
   }
   
@@ -62,15 +62,15 @@ option(PenaltyStriker)
   {
     transition
     {
-      if(libCodeRelease.between(theBallModel.estimate.position.y(), -50.f, -30.f)
+      if(libCodeRelease.between(theBallModel.estimate.position.y(), -20.f, 20.f)
           && libCodeRelease.between(theBallModel.estimate.position.x(), 140.f, 170.f)
-          && std::abs(libCodeRelease.angleToGoalForStriker) < 2_deg)
+          && std::abs(libCodeRelease.angleForPenaltyStriker) < 2_deg)
         goto shoot;
     }
     action
     {
       theHeadControlMode = HeadControl::focusBall;
-      WalkToTarget(Pose2f(80.f, 80.f, 80.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() + 30.f));
+      WalkToTarget(Pose2f(5.f, 5.f, 5.f), Pose2f(libCodeRelease.angleForPenaltyStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() ));
     }
   }
   
@@ -84,8 +84,8 @@ option(PenaltyStriker)
         }
         action
         {
-            theHeadControlMode = HeadControl::focusBall;
-            ShootKick();//shoot type
+            theHeadControlMode = HeadControl::lookForward;
+            ShootKickForPenalty();//shoot type
         }
     }
       
