@@ -39,7 +39,7 @@ option(Keeper)
             bool RobotInPenaltyArea = IsRobotInPenaltyArea(theRobotPose);
             if( !RobotInPenaltyArea )
                 goto ReturnToPenaltyArea;
-            if(std::abs(theBallModel.estimate.position.angle()) > 60_deg)    //这个角度不要太小
+            if(std::abs(theBallModel.estimate.position.angle()) > 45_deg)    //这个角度不要太小
                 goto turnToBall;
             if ( std::abs(theBallModel.estimate.position.angle()) < 15_deg && theBallModel.estimate.position.norm() < 230.f)
                 goto kick;
@@ -89,8 +89,8 @@ option(Keeper)
            Vector2f mid = RobotMidPosition(theBallModel,theRobotPose,710.0); //场地绝对坐标
      //       WalkToTarget(Pose2f(50.f,40.f,40.f),Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
          WalkToTargetAbsolute(Pose2f(theRobotPose.rotation - Ball2Field.rotation > 0 ? -pi / 32 : pi / 32,
-            theRobotPose.translation.x()-mid.x() > 0? -20.f: 20.f,
-            theRobotPose.translation.y()-mid.y() > 0? -20.f: 20.f),Pose2f(Ball2Field.rotation,mid.x(),mid.y()));
+            theRobotPose.translation.x()-mid.x() > 0? -40.f: 40.f,
+            theRobotPose.translation.y()-mid.y() > 0? -40.f: 40.f),Pose2f(Ball2Field.rotation,mid.x(),mid.y()));
 
           /*  float aim_x = -3950.0;
             float aim_y = 550* Ball2Field.translation.y()/(Ball2Field.translation.x()+4500.0);
