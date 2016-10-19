@@ -3,7 +3,7 @@
 
 option(DefenderBackward)
 {
-	#define DEFENDLINE -2500.0
+	#define DEFENDLINE -750.0
     initial_state(start) {
         transition {
             if(state_time > 1000)
