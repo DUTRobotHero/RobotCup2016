@@ -23,6 +23,7 @@ public:
 
   float angleToGoal;
   float angleToGoalForStriker;
+  float angleForPenaltyStriker;
   bool returnFormPenalty;
   bool firstKick;
   std::vector<Obstacle> filterdObstacles;

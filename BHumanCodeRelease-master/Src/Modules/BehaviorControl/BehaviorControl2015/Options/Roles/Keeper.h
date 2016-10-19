@@ -2,7 +2,7 @@ option(Keeper)
 {
     initial_state(start) {
         transition {
-            if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+            if(libCodeRelease.timeSinceBallWasSeen() > 500)
                 goto searchForBall;
 
             //判断球在不同的区域，进行相应的防守动作
@@ -15,7 +15,6 @@ option(Keeper)
                 goto turnToBall;
         }
         action {
-
             theHeadControlMode = HeadControl::lookForward;
             Annotation("I am in initial_state");
             Pose2f Ball2Field = BallModel2Field(theBallModel,theRobotPose);
@@ -24,9 +23,8 @@ option(Keeper)
             ShowRobotToField(theRobotPose);
             int area = GetAreaNumber(theBallModel,theRobotPose);
             ShowArea(area);
-
             Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,-4200.0,0.0);
-            WalkToTarget(Pose2f(pi/8,1.f,1.f),relatePoint);
+            WalkToTarget(Pose2f(pi/8,20.f,20.f),relatePoint);
         }
     }
 
@@ -41,12 +39,10 @@ option(Keeper)
             bool RobotInPenaltyArea = IsRobotInPenaltyArea(theRobotPose);
             if( !RobotInPenaltyArea )
                 goto ReturnToPenaltyArea;
-            if(std::abs(theBallModel.estimate.position.angle()) > 5_deg)
+            if(std::abs(theBallModel.estimate.position.angle()) > 60_deg)    //这个角度不要太小
                 goto turnToBall;
             if ( std::abs(theBallModel.estimate.position.angle()) < 15_deg && theBallModel.estimate.position.norm() < 230.f)
                 goto kick;
-                            if( theRobotPose.translation.x() < -4450.0 )
-                goto start;
         }
         action {
             theHeadControlMode = HeadControl::focusBall;
@@ -57,15 +53,16 @@ option(Keeper)
             int area = GetAreaNumber(theBallModel,theRobotPose);
             ShowArea(area);
             //too slow
-          /*  WalkToTargetAbsolute(Pose2f(theRobotPose.rotation - Ball2Field.rotation > 0 ? -pi / 32 : pi / 32,
+       /*    WalkToTargetAbsolute(Pose2f(theRobotPose.rotation - Ball2Field.rotation > 0 ? -pi / 8 : pi / 8,
             theRobotPose.translation.x()+3900 > 0? -30.f: 30.f,
             theRobotPose.translation.y()-Ball2Field.translation.y() > 0? -30.f: 30.f),Pose2f(0.0,-4000.0,Ball2Field.translation.y()));*/
             //先转身再垂直距离走过去
             float aim_x = -3950.0;
-            float aim_y = 550* Ball2Field.translation.y()/(Ball2Field.translation.x()+4500.0);
+        //    float aim_y = 550* Ball2Field.translation.y()/(Ball2Field.translation.x()+4500.0);
+            float aim_y = Ball2Field.translation.y();
             //转化为相对于机器人的坐标
             Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,aim_x,aim_y);
-            WalkToTarget(Pose2f(50.f,1.f,1.f),Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
+            WalkToTarget(Pose2f(50.f,40.f,40.f),Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
             ShowSomething(theBallModel.estimate.position.norm());
 
         }
@@ -83,19 +80,24 @@ option(Keeper)
                 goto turnToBall;
             else if ( std::abs(theBallModel.estimate.position.angle()) < 15_deg && theBallModel.estimate.position.norm() < 230.f)
                 goto kick;
-                            if( theRobotPose.translation.x() < -4450.0 )
-                goto start;
         }
         action {
             theHeadControlMode = HeadControl::focusBall;
             Pose2f Ball2Field = BallModel2Field(theBallModel,theRobotPose);
             int area = GetAreaNumber(theBallModel,theRobotPose);
 
-            Vector2f mid = RobotMidPosition(theBallModel,theRobotPose);
-            WalkToTargetAbsolute(Pose2f(theRobotPose.rotation - Ball2Field.rotation > 0 ? -pi / 32 : pi / 32,
+           Vector2f mid = RobotMidPosition(theBallModel,theRobotPose,710.0); //场地绝对坐标
+     //       WalkToTarget(Pose2f(50.f,40.f,40.f),Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
+         WalkToTargetAbsolute(Pose2f(theRobotPose.rotation - Ball2Field.rotation > 0 ? -pi / 32 : pi / 32,
             theRobotPose.translation.x()-mid.x() > 0? -20.f: 20.f,
             theRobotPose.translation.y()-mid.y() > 0? -20.f: 20.f),Pose2f(Ball2Field.rotation,mid.x(),mid.y()));
 
+          /*  float aim_x = -3950.0;
+            float aim_y = 550* Ball2Field.translation.y()/(Ball2Field.translation.x()+4500.0);
+            //转化为相对于机器人的坐标
+            Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,aim_x,aim_y);
+            WalkToTarget(Pose2f(50.f,40.f,40.f),Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));*/
+            
             ShowRobotToField(theRobotPose);
             ShowBallToField(Ball2Field);
             ShowBallToRobot(theBallModel.estimate.position);
@@ -107,7 +109,7 @@ option(Keeper)
 
     state(ReturnToPenaltyArea) {
         transition {
-            if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+            if(libCodeRelease.timeSinceBallWasSeen() > 500)
                 goto searchForBall;
             int area = GetAreaNumber(theBallModel,theRobotPose);
             bool RobotInPenaltyArea = IsRobotInPenaltyArea(theRobotPose);
@@ -118,8 +120,6 @@ option(Keeper)
                     goto WalkToMiddlePoint;
                 else if( area == 4)
                     goto turnToBall;
-                                if( theRobotPose.translation.x() < -4450.0 )
-                goto start;
             }
         }
         action {
@@ -131,12 +131,15 @@ option(Keeper)
             int area = GetAreaNumber(theBallModel,theRobotPose);
             ShowArea(area);
             if ( theRobotPose.translation.x() >= -3900 ) {
-                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,-4200.0,theRobotPose.translation.y());
-                WalkToTarget(Pose2f(30.f,30.f,30.f),relatePoint);
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,-4200.0,0.0);
+                WalkToTarget(Pose2f(50.f,80.f,80.f),relatePoint);
+                ShowRobotToField(relatePoint);
             }
-            if (  theRobotPose.translation.y() < -4400) {
-                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,-4200.0,theRobotPose.translation.y());
-                WalkToTarget(Pose2f(30.f,30.f,30.f),relatePoint);
+            if (  theRobotPose.translation.x() < -4400) {
+                Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,-4200.0,0.0);
+                WalkToTarget(Pose2f(50.f,80.f,80.f),relatePoint);
+                ShowRobotToField(relatePoint);
+
             }
             ShowSomething(theBallModel.estimate.position.norm());
 
@@ -145,7 +148,7 @@ option(Keeper)
 
     state(turnToBall) {
         transition {
-            if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+            if(libCodeRelease.timeSinceBallWasSeen() > 500)
                 goto searchForBall;
             /*       if(std::abs(theBallModel.estimate.position.angle()) < 15_deg )    //原来是5_deg
                        goto WalkToVerticalPoint;*/
@@ -159,8 +162,6 @@ option(Keeper)
                     goto WalkToVerticalPoint;
                 else if(std::abs(theBallModel.estimate.position.angle()) < 5_deg && theBallModel.estimate.position.norm() < 230.f )
                     goto kick;
-                                if( theRobotPose.translation.x() < -4450.0 )
-                goto start;
             }
 
         }
@@ -177,21 +178,16 @@ option(Keeper)
 
     state(WalkToBall) {
         transition {
-            if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+            if(libCodeRelease.timeSinceBallWasSeen() > 500)
                 goto searchForBall;
-            if(libCodeRelease.timeSinceBallWasSeen() > 7000)
-                goto searchForBall;
+
             if(theBallModel.estimate.position.norm() < 500.f)
                 goto alignBehindBall;
             int area = GetAreaNumber(theBallModel,theRobotPose);
-            if( area == 4)
-                goto WalkToBall;
-            else if( area == 2 )
+            if( area == 2 )
                 goto WalkToMiddlePoint;
             else if( area == 1)
                 goto WalkToVerticalPoint;
-                            if( theRobotPose.translation.x() < -4450.0 )
-                goto start;
         }
         action {
             theHeadControlMode = HeadControl::focusBall;
@@ -199,37 +195,14 @@ option(Keeper)
             int area = GetAreaNumber(theBallModel,theRobotPose);
             ShowArea(area);
             ShowSomething(theBallModel.estimate.position.norm());
+            ShowBallToRobot(theBallModel.estimate.position);
 
         }
     }
 
-    /*  state(alignToGoal) {
-          transition {
-              if(libCodeRelease.timeSinceBallWasSeen() > 7000)
-                  goto searchForBall;
-              if(std::abs(libCodeRelease.angleToGoal) < 10_deg && std::abs(theBallModel.estimate.position.y()) < 100.f)
-                  goto alignBehindBall;
-              int area = GetAreaNumber(theBallModel,theRobotPose);
-              if( area == 4)
-                  goto WalkToBall;
-              else if( area == 2 )
-                  goto WalkToMiddlePoint;
-              else if( area == 1)
-                  goto WalkToVerticalPoint;
-          }
-          action {
-              theHeadControlMode = HeadControl::lookForward;
-              WalkToTarget(Pose2f(100.f, 100.f, 100.f), Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 400.f, theBallModel.estimate.position.y()));
-              int area = GetAreaNumber(theBallModel,theRobotPose);
-              ShowArea(area);
-              ShowSomething(theBallModel.estimate.position.norm());
-
-          }
-      }*/
-
     state(alignBehindBall) {
         transition {
-            if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+            if(libCodeRelease.timeSinceBallWasSeen() > 500)
                 goto searchForBall;
             if(libCodeRelease.between(theBallModel.estimate.position.y(), 20.f, 50.f)
             && libCodeRelease.between(theBallModel.estimate.position.x(), 140.f, 170.f)
@@ -237,13 +210,11 @@ option(Keeper)
                 goto kick;
             int area = GetAreaNumber(theBallModel,theRobotPose);
             if( area == 4)
-                goto WalkToBall;
+                goto turnToBall;
             else if( area == 2)
                 goto WalkToMiddlePoint;
             else if( area == 1)
                 goto WalkToVerticalPoint;
-                            if( theRobotPose.translation.x() < -4450.0 )
-                goto start;
         }
         action {
             theHeadControlMode = HeadControl::focusBall;
@@ -261,13 +232,11 @@ option(Keeper)
                 goto start;
             int area = GetAreaNumber(theBallModel,theRobotPose);    //防止球在被踢的中途出去，快速复位
             if( area == 4)
-                goto WalkToBall;
+                goto turnToBall;
             else if( area == 2)
                 goto WalkToMiddlePoint;
             else if( area == 1)
                 goto WalkToVerticalPoint;
-            if( theRobotPose.translation.x() < -4450.0 )
-                goto start;
         }
         action {
             Annotation("Alive and Kickin'");
@@ -287,14 +256,14 @@ option(Keeper)
             if(libCodeRelease.timeSinceBallWasSeen() < 300) {
                 int area = GetAreaNumber(theBallModel,theRobotPose);
                 if( area == 4)
-                    goto WalkToBall;
+                    goto turnToBall;
                 else if( area == 2)
                     goto WalkToMiddlePoint;
                 else if( area == 1)
                     goto WalkToVerticalPoint;
             }
 
-            if(state_time>5000 || theRobotPose.translation.x() < -4450.0)
+            if(state_time>5000)
                 goto start;
 
         }
