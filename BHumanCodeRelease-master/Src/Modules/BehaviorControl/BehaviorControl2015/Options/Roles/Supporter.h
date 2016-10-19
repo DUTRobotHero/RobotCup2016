@@ -12,12 +12,11 @@ option(helpStriker)
 	state(sideleft)
 	{
 		transition{
-			if(otherTeammate.pose.translation.y()>=500.f)
+			if(otherTeammate.pose.translation.y()>=1000.f)
 					goto sideright;
 		}
 		action{
-			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x() -400.f,
-																														otherTeammate.pose.translation.y()-1000.f);
+			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,3200.f,1100.f);
 			WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
                     Pose2f(theBallModel.estimate.position.angle(),relatePoint.translation.x(),relatePoint.translation.y()));
 		}
@@ -27,12 +26,11 @@ option(helpStriker)
 	{	
 		transition{
 				//当strikerd的位置小于-50cm，supporter去左边
-			if(otherTeammate.pose.translation.y()<=-500.f)
+			if(otherTeammate.pose.translation.y()<=-1000.f)
 					goto sideleft;
 		}
 		action{
-			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x() -400.f,
-																														otherTeammate.pose.translation.y()+1000.f);
+			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,3200.f,-1100.f);
 			WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
                     Pose2f(theBallModel.estimate.position.angle(),relatePoint.translation.x(),relatePoint.translation.y()));
 		}
