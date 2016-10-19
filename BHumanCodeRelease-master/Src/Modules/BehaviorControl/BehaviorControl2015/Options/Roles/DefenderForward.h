@@ -69,7 +69,7 @@ option(helpDefenderBackfward)
 
 option(DefenderForward)
 {
-#define DEFENDLINE -2500.0
+#define DEFENDLINE -750.0
   initial_state(start)
   {
     transition

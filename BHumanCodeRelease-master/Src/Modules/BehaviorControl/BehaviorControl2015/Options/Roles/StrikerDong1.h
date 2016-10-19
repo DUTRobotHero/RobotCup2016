@@ -9,7 +9,7 @@ option(StrikerDong1)
         action {
             theHeadControlMode = HeadControl::lookForward;
             theBehaviorStatus.role = Role::striker;
-            Stand();
+            //Stand();
         }
     }
 

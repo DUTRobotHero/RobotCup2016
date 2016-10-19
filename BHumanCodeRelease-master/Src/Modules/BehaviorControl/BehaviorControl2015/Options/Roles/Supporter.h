@@ -14,10 +14,9 @@ option(helpStriker)
 		transition{
 			if(otherTeammate.pose.translation.y()>=500.f)
 					goto sideright;
-			
 		}
 		action{
-			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x() + 1000.f,
+			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x() -400.f,
 																														otherTeammate.pose.translation.y()-1000.f);
 			WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
                     Pose2f(theBallModel.estimate.position.angle(),relatePoint.translation.x(),relatePoint.translation.y()));
@@ -30,32 +29,12 @@ option(helpStriker)
 				//当strikerd的位置小于-50cm，supporter去左边
 			if(otherTeammate.pose.translation.y()<=-500.f)
 					goto sideleft;
-				//当striker的位置在supporter右边　先直走
-			if(otherTeammate.pose.translation.y()<theRobotPose.translation.y())
-					goto walkForward; 
 		}
 		action{
-			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x() + 1000.f,
+			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x() -400.f,
 																														otherTeammate.pose.translation.y()+1000.f);
 			WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
                     Pose2f(theBallModel.estimate.position.angle(),relatePoint.translation.x(),relatePoint.translation.y()));
-		}
-	}
-	state(walkForward)
-	{	
-		transition{
-			if(otherTeammate.pose.translation.y()<=-500.f)
-					goto sideleft;
-			if(otherTeammate.pose.translation.y()>=500.f)
-					goto sideright;
-			if(otherTeammate.pose.translation.x()-theRobotPose.translation.x() < - 1000.f)
-					goto start; 
-		}
-		action{
-			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,otherTeammate.pose.translation.x() + 1500.f,
-																														theRobotPose.translation.y());
-			WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
-			Pose2f(theBallModel.estimate.position.angle(),relatePoint.translation.x(),relatePoint.translation.y()));
 		}
 	}
 }
@@ -71,7 +50,7 @@ option(Supporter)
     action
     {
       theHeadControlMode = HeadControl::lookForward;
-      Stand();
+      //Stand();
     }
   }
 
