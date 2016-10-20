@@ -1,11 +1,12 @@
-option(Supporter)
+option(DefenderForward)
 {
+  	#define DEFENDLINE -750.0  
 	float setAdjustVelocity = 1.f;
 	float setTurnVelocity = pi/8;
 	initial_state(start)
 	{
 		transition{
-			goto sideright;
+			goto sideleft;
 		}
 		action{
       theHeadControlMode = HeadControl::lookForward;
@@ -14,16 +15,18 @@ option(Supporter)
 		state(sideleft)
 	{
 		transition{
+            if ( theRobotPose.translation.x() > DEFENDLINE)
+                goto ReturnToDefendArea;
 			if(otherTeammate.pose.translation.y()>=1000.f)
 					goto sideright;
 			if(libCodeRelease.timeSinceBallWasSeen() > 10000)
 					goto searchForBall;
-			if(libCodeRelease.timeSinceBallWasSeen() < 300 && theRobotPose.translation.x()>2000.f)
+			if(libCodeRelease.timeSinceBallWasSeen() < 300 && theRobotPose.translation.x()>-2000.f)
 				goto turnToBall;
 		}
 		action{
 			theHeadControlMode = HeadControl::searchForBall;
-			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,3200.f,1100.f);
+			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,-1500.f,750.f);
 			WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
                     Pose2f(libCodeRelease.angleToGoal,relatePoint.translation.x(),relatePoint.translation.y()));
 		}
@@ -33,16 +36,18 @@ option(Supporter)
 	{	
 		transition{
 				//当strikerd的位置小于-50cm，supporter去左边
+            if ( theRobotPose.translation.x() > DEFENDLINE)
+                goto ReturnToDefendArea;
 			if(otherTeammate.pose.translation.y()<=-1000.f)
 					goto sideleft;
 			if(libCodeRelease.timeSinceBallWasSeen() > 10000)
 					goto searchForBall;
-			if(libCodeRelease.timeSinceBallWasSeen() < 300 && theRobotPose.translation.x()>2000.f)
+			if(libCodeRelease.timeSinceBallWasSeen() < 300 && theRobotPose.translation.x()>-2000.f)
 				goto turnToBall;
 		}
 		action{
 			theHeadControlMode = HeadControl::searchForBall;
-			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,3200.f,-1100.f);
+			Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,-1500.f,-750.f);
 			WalkToTarget(Pose2f( setTurnVelocity,setAdjustVelocity,setAdjustVelocity),
 					Pose2f(libCodeRelease.angleToGoal,relatePoint.translation.x(),relatePoint.translation.y()));
 		}
@@ -52,7 +57,9 @@ option(Supporter)
   {
     transition
     {
-        if( theRobotPose.translation.x() < 2000)
+        if ( theRobotPose.translation.x() > DEFENDLINE)
+                goto ReturnToDefendArea;
+        if( theRobotPose.translation.x() < -2000.f)
             goto start;
       if(libCodeRelease.timeSinceBallWasSeen() > 15000)
         goto searchForBall;
@@ -69,6 +76,8 @@ option(Supporter)
   {
     transition
     {
+        if ( theRobotPose.translation.x() > DEFENDLINE)
+                goto ReturnToDefendArea;
       if(libCodeRelease.timeSinceBallWasSeen() < 300)
         goto turnToBall;
 	 if(libCodeRelease.timeSinceBallWasSeen() > 15000)
@@ -85,19 +94,22 @@ option(Supporter)
   {
     transition
     {
+        if ( theRobotPose.translation.x() > DEFENDLINE)
+                goto ReturnToDefendArea;
       if(libCodeRelease.timeSinceBallWasSeen() < 300)
         goto turnToBall;
 	  if(libCodeRelease.timeSinceBallWasSeen() > 30000)//若原地找球超过20秒(27000因为原先有7000的延时)，就回到中心
-		  goto backToCenter;
+		  goto backToStartPosition;
     }
     action
     {
-      theHeadControlMode = HeadControl::lookForward;    
-      WalkAtSpeedPercentage(Pose2f(1.f/2, 0.f, 0.f));
+            theHeadControlMode = HeadControl::searchForBall;
     }
   }
-  state(backToCenter){
+  state(backToStartPosition){
 		  transition{
+              if ( theRobotPose.translation.x() > DEFENDLINE)
+                goto ReturnToDefendArea;
 			 if( libCodeRelease.timeSinceBallWasSeen() < 300  || (state_time > 10 && action_done) )
 					goto start;
 			  }
@@ -105,4 +117,17 @@ option(Supporter)
 					ReadyState();
 			 }
 	  }
+    state(ReturnToDefendArea) {
+        transition {
+            Pose2f Ball2Field = BallModel2Field(theBallModel,theRobotPose);
+            if( libCodeRelease.timeSinceBallWasSeen() < 300 &&  Ball2Field.translation.x() < DEFENDLINE)
+                goto turnToBall;
+			if(libCodeRelease.timeSinceBallWasSeen() > 7000)
+                goto searchForBall;
+        }
+        action {
+			ReadyState();
+            theHeadControlMode = HeadControl::searchForBall;
+        }
+    }
 }

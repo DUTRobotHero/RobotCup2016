@@ -5,13 +5,11 @@ option(StrikerDong1)
         transition {
             if(state_time > 1000)
                 goto turnToBall;
-            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
-                goto waitAtMiddleLine;
         }
         action {
             theHeadControlMode = HeadControl::lookForward;
             theBehaviorStatus.role = Role::striker;
-            Stand();
+            //Stand();
         }
     }
 
@@ -21,8 +19,6 @@ option(StrikerDong1)
                 goto searchForBall;
             if(std::abs(theBallModel.estimate.position.angle()) < 5_deg)
                 goto walkToBall;
-            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
-                goto waitAtMiddleLine;
         }
         action {
             theHeadControlMode = HeadControl::lookForward;
@@ -38,8 +34,6 @@ option(StrikerDong1)
                 goto turnToBall;
             if(theBallModel.estimate.position.norm() < 500.f)
                 goto alignToGoal;
-            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
-                goto waitAtMiddleLine;
         }
         action {
             theHeadControlMode = HeadControl::focusBall;
@@ -95,13 +89,13 @@ option(StrikerDong1)
           && libCodeRelease.between(theBallModel.estimate.position.x(), 140.f, 170.f)
           && std::abs(libCodeRelease.angleToGoalForStriker) < 2_deg)
 		  {
-			if (theObstacleModel.obstacles.empty() )//若无障碍　则根据当前位置决定踢球方式
+			if (libCodeRelease.filterdObstacles.empty() )//若无障碍　则根据当前位置决定踢球方式
 				{
-					if (theRobotPose.translation.y()>2000.f)
+					/*if (theRobotPose.translation.y()>2000.f)
 						goto sideKickLeft;
 					else if (theRobotPose.translation.y()<-2000.f)
 						goto sideKickRight;
-					else 
+					else*/ 
 						goto shoot;
 				}
 			//else if (theObstacleModel.obstacles.size()==1 && theObstacleModel.obstacles[0].type == Obstacle::goalpost)//判断是否只有目标物一个障碍
@@ -111,7 +105,9 @@ option(StrikerDong1)
 					//有多个障碍，找到与目标方向偏离最小的障碍
 					Obstacle nearist;
 					float minDeltaAngle=100.f;//test value
-					for (Obstacle o:theObstacleModel.obstacles)
+                    /*if(theRobotPose.translation.x() > 3000.f)
+                        goto kickLeft;*/
+					for (Obstacle o:libCodeRelease.filterdObstacles)
 					{
 						float delta_angle=fabs(o.center.angle()-libCodeRelease.angleToGoalForStriker);
 						if ( delta_angle < minDeltaAngle)
@@ -121,14 +117,14 @@ option(StrikerDong1)
 						}
 					}
 					//障碍较远时  则根据当前位置决定踢球方式
-					if (nearist.center.norm() > 4000.f)
+					if (nearist.center.norm() > 2000.f)
 					{
-						if (theRobotPose.translation.y()>2000.f)
+						/*if (theRobotPose.translation.y()>2000.f)
 							goto sideKickLeft;
 						else if (theRobotPose.translation.y()<-2000.f)
 							goto sideKickRight;
-						else 
-							goto kickLeft;
+						else*/ 
+							goto shoot;
 					}					
 					//障碍较近 并在一条线的情况  向左或者向右变向
 					else if ( libCodeRelease.between(libCodeRelease.angleToGoalForStriker, 
@@ -144,7 +140,6 @@ option(StrikerDong1)
 					else
 					{
 						goto kickLeft;
-
 					}
 				}	 
 			}
@@ -177,23 +172,21 @@ state(alignBesideBall)
 	}
 }
 
-//**Kick with left leg straight**//
+//Kick with left leg straight
     state(kickLeft) {
         transition {
             if( (state_time > 10 && action_done))
                 goto turnToBall;
             if(libCodeRelease.timeSinceBallWasSeen() > 7000)
                 goto searchForBall;
-            if( !theObstacleModel.obstacles.empty()  ) {
+           /* if( !theObstacleModel.obstacles.empty()  ) {
                 for (Obstacle o:theObstacleModel.obstacles) {
                     if ( o.type == Obstacle::goalpost )
                         goto shoot;
                 }
-            }
+            }*/
             if (theGameInfo.secondaryState == STATE2_PENALTYSHOOT)
                 goto shoot;
-            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
-                goto waitAtMiddleLine;
         }
         action {
             theHeadControlMode = HeadControl::focusBall;
@@ -202,37 +195,33 @@ state(alignBesideBall)
             LeftKick(WalkRequest::left);
         }
     }
-//**Kick with left leg sidewards**//
+//Kick with left leg sidewards
     state(sideKickLeft) {
         transition {
             if((state_time > 10 && action_done))
                 goto turnToBall;
             if(libCodeRelease.timeSinceBallWasSeen() > 7000)
                 goto searchForBall;
-            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
-                goto waitAtMiddleLine;
         }
         action {
             theHeadControlMode = HeadControl::focusBall;
             LeftKick(WalkRequest::sidewardsLeft);
         }
     }
-//**Kick with left leg sidewards**//
+//Kick with left leg sidewards
     state(sideKickRight) {
         transition {
             if( (state_time > 10 && action_done))
                 goto turnToBall;
             if(libCodeRelease.timeSinceBallWasSeen() > 7000)
                 goto searchForBall;
-            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
-                goto waitAtMiddleLine;
         }
         action {
             theHeadControlMode = HeadControl::focusBall;
             RightKick(WalkRequest::sidewardsRight);
         }
     }
-//**Kick with right leg straight**//
+//Kick with right leg straight
     state(shoot) {
         transition {
             if (libCodeRelease.firstKick==true ) {
@@ -243,8 +232,6 @@ state(alignBesideBall)
                 goto turnToBall;
             if(libCodeRelease.timeSinceBallWasSeen() > 7000)
                 goto searchForBall;
-            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
-                goto waitAtMiddleLine;
         }
         action {
             theHeadControlMode = HeadControl::focusBall;
@@ -257,8 +244,6 @@ state(alignBesideBall)
                 goto turnToBall;
             if(libCodeRelease.timeSinceBallWasSeen() > 7000)
                 goto searchForBall;
-            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
-                goto waitAtMiddleLine;
         }
         action {
             theHeadControlMode = HeadControl::focusBall;
@@ -271,8 +256,6 @@ state(alignBesideBall)
                 goto turnToBall;
             if(libCodeRelease.timeSinceBallWasSeen() > 17000)//若原地找球超过20秒(27000因为原先有7000的延时)，就回到中心
                 goto backToCenter;
-            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
-                goto waitAtMiddleLine;
         }
         action {
             theHeadControlMode = HeadControl::lookForward;
@@ -283,15 +266,13 @@ state(alignBesideBall)
         transition {
             if( libCodeRelease.timeSinceBallWasSeen() < 300  || (state_time > 10 && action_done) )
                 goto turnToBall;
-            if(theBallModel.estimate.position.x() < -2000.0 && theRobotPose.translation.x() > 0.0)
-                goto waitAtMiddleLine;
         }
         action {
             ReadyState();
         }
     }
 
-    state(waitAtMiddleLine) {
+/*    state(waitAtMiddleLine) {
         transition {
             float distance = theBallModel.estimate.position.norm();
             if( std::abs(distance) < 1000.0 )
@@ -304,6 +285,6 @@ state(alignBesideBall)
             Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,0.0,theRobotPose.translation.y());
             WalkToTarget(Pose2f(50.f,1.f,1.f),Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
         }
-    }
+    }*/
 
 }

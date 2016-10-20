@@ -12,6 +12,7 @@ namespace Behavior2015
   LibCodeRelease::LibCodeRelease():
     angleToGoal(0.f),
 	angleToGoalForStriker(0.f),
+	angleForPenaltyStriker(0.f),
 	returnFormPenalty(false),
     firstKick(true)
   {filterdObstacles.clear();}
@@ -102,6 +103,8 @@ namespace Behavior2015
       //OUTPUT_TEXT("Y = " << y);
       angleToGoalForStriker = (theRobotPose.inverse() * Vector2f(theFieldDimensions.xPosOpponentGroundline, y)).angle();
       //OUTPUT_TEXT("angleToGoalForStriker" << angleToGoalForStriker * 180.f / 3.141592654);
+      
+      angleForPenaltyStriker = (theRobotPose.inverse() * Vector2f(theFieldDimensions.xPosOpponentGroundline, -300.f)).angle();
   }
 
   void LibCodeRelease::postProcess()

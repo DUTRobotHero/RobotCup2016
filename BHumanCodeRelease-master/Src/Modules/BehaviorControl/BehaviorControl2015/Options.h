@@ -63,8 +63,8 @@
 #include "Options/Roles/Supporter.h"
 #include "Options/Roles/TestPlayer.h"
 #include "Options/Roles/StrikerTestShoot.h"
-#include "Options/Roles/DefenderLeft.h"
-#include "Options/Roles/DefenderRight.h"
+#include "Options/Roles/DefenderForward.h"
+#include "Options/Roles/DefenderBackward.h"
 
 #include "Options/Roles/PenaltyStriker.h"
 
@@ -73,6 +73,7 @@
 #include "Options/Skills/LeftKick.h"
 #include "Options/Skills/RightKick.h"
 #include "Options/Skills/ShootKick.h"
+#include "Options/Skills/ShootKickForPenalty.h"
 
 
 #include "Options/Roles/StrikerDong1.h"

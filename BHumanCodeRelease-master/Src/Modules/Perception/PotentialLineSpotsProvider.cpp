@@ -58,7 +58,11 @@ void PotentialLineSpotsProvider::runVerticalScanline(unsigned int scanlineIdx, P
   vector<Edge> edgeBuffer; //used to buffer first edge while searching for next edge
   //start searching for non-white<->white edges
   const int x = line.x;
+  
+  #define WhiteToNonWhite 0
+  #define NonWhiteToWhite 1
 
+  /*
   EdgeType expectedEdge = GreenToWhite; //first edge we expect is greenToWhite
 
   for(unsigned i = 0; i < line.regions.size();) //i is increased inside the loop
@@ -87,6 +91,36 @@ void PotentialLineSpotsProvider::runVerticalScanline(unsigned int scanlineIdx, P
     {
       ++i;
     }
+     * */
+     int expectedEdge = NonWhiteToWhite; //first edge we expect is greenToWhite
+
+  for(unsigned i = 0; i < line.regions.size();) //i is increased inside the loop
+  {
+    int nextRegion = -1;
+    int edgeY = -1;
+    if(expectedEdge == NonWhiteToWhite &&
+       ! line.regions[i].color.is(ColorClasses::white) &&
+       isEdgeTowards_Gai(line, i, nextRegion, edgeY, ColorClasses::white,ColorClasses::green))
+    {
+      i = nextRegion;
+      ASSERT(line.regions[nextRegion].color.is(ColorClasses::white));
+      edgeBuffer.emplace_back(GreenToWhite, edgeY);
+      expectedEdge = WhiteToNonWhite;
+    }
+    else if(expectedEdge == WhiteToNonWhite &&
+            line.regions[i].color.is(ColorClasses::white) &&
+            isEdgeTowards_Gai(line, i, nextRegion, edgeY, ColorClasses::green,ColorClasses::white))
+    {
+      i = nextRegion;
+      //ASSERT(line.regions[nextRegion].color.is(ColorClasses::green));
+      edgeBuffer.emplace_back(WhiteToGreen, edgeY);
+      expectedEdge = NonWhiteToWhite;
+    }
+    else
+    {
+      ++i;
+    }
+     
 
     if(edgeBuffer.size() == 2)
     {
@@ -225,4 +259,81 @@ bool PotentialLineSpotsProvider::isEdgeTowards(const RScanline& line, const int 
   }
 
   return false;
+}
+
+
+bool PotentialLineSpotsProvider::isEdgeTowards_reverse(const RScanline& line, const int currentIndex, int& outNewIndex,
+                                               int& outEdgeY, ColorClasses::Color color) const
+{
+  int noiseCounter = 0;
+  const int startIndex = std::min(currentIndex + 1, static_cast<int>(line.regions.size() - 1));
+  const int firstLower = line.regions[startIndex].lower;
+  for(unsigned i = startIndex; i < line.regions.size(); ++i)
+  {
+    const Region& r = line.regions[i];
+    if(!r.color.is(color))
+    {
+      //found desired region
+      outNewIndex = i;
+      outEdgeY = static_cast<int>((r.lower + firstLower) / 2);
+      return true;
+    }
+    else
+    {
+      noiseCounter += r.lower - r.upper;
+      if(noiseCounter > maxEdgeNoisePixels)
+      {
+        return false;
+      }
+    }
+  }
+
+  return false;
+}
+
+bool PotentialLineSpotsProvider::isEdgeTowards_Gai(const RScanline& line, const int currentIndex, int& outNewIndex,
+                                               int& outEdgeY, ColorClasses::Color color1,ColorClasses::Color color2) const
+{
+  int noiseCounter = 0;
+  const int startIndex = std::min(currentIndex + 1, static_cast<int>(line.regions.size() - 1));
+  const int firstLower = line.regions[startIndex].lower;
+  
+  int i;
+  for(i = startIndex; i < line.regions.size(); ++i)
+  {
+    const Region& r = line.regions[i];
+    if(r.color.is(color1))
+    {
+      //found desired region
+      outNewIndex = i;
+      outEdgeY = static_cast<int>((r.lower + firstLower) / 2);
+      goto final_check;
+    }
+    else
+    {
+      noiseCounter += r.lower - r.upper;
+      if(noiseCounter > maxEdgeNoisePixels)
+      {
+        return false;
+      }
+    }
+  }
+
+  final_check:
+  bool got_color2 = false;
+  
+  int prev_len = 0;
+  
+  for(;i >= 0 && prev_len < 5; --i,prev_len++)
+  {
+      const Region& r = line.regions[i];
+      if(r.color.is(color2)){
+              got_color2 = true;
+              break;
+      }
+      
+  }
+  
+  return got_color2;
+  
 }

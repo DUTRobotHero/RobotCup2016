@@ -3,6 +3,11 @@
  */
 option(HandleGameState)
 {
+	int KEEPER_NUMBER = 1;
+    int STRIKER_NUMBER = 2;
+    int SUPPORTER_NUMBER = 3;
+    int DEFENDER_NUMBER1 = 4;
+    int DEFENDER_NUMBER2= 5;
     /** As game state changes are discrete external events and all states are independent of each other,
         a common transition can be used here. */
     common_transition {
@@ -88,13 +93,24 @@ option(HandleGameState)
                 else
                     Keeper();
             } 
-            else 
+            else if(theGameInfo.kickOffTeam != theOwnTeamInfo.teamNumber)
             {
-                ArmContact();
-                PlayingState();
+				if (theRobotInfo.number == STRIKER_NUMBER || theRobotInfo.number == SUPPORTER_NUMBER){
+					 if(theBallModel.estimate.velocity.x() > 0.0 || theBallModel.estimate.velocity.y() > 0.0 || state_time  > 10000){
+						 ArmContact();
+						PlayingState();
+						 }
+					}
+				else {
+					ArmContact();
+					PlayingState();
+					}
             }
-            
-            
+			else
+			{
+				ArmContact();
+				PlayingState();
+				}
         }
     }
 }

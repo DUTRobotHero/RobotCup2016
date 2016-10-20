@@ -26,13 +26,11 @@
       <Body ref="Nao" name="robot4">
         <Translation x="2.0" y = "-3" z="320mm"/>
         <Rotation z="55degree"/>
-      </Body>
-<!--      
+      </Body>    
       <Body ref="Nao" name="robot5">
         <Translation x="1.0" y="3" z="320mm"/>
         <Rotation z="-45degree"/>
       </Body>
--->
    </Compound>
 
     <Compound name="extras">

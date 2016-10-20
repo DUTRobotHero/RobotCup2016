@@ -33,7 +33,7 @@ MODULE(PotentialLineSpotsProvider,
   PROVIDES(PotentialLineSpots),
   DEFINES_PARAMETERS(
   {,
-    (int) (2) maxEdgeNoisePixels, /**<Maximum number of noise pixels at the edges of field lines */
+    (int) (4) maxEdgeNoisePixels, /**<Maximum number of noise pixels at the edges of field lines */
     (float) (3.0f) maxAllowedLineHeightFactor, /**<FIXME */
   }),
 });
@@ -116,6 +116,11 @@ private:
   bool isEdgeTowards(const RScanline& line, const int currentIndex, int& outNewIndex,
                      int& outEdgeY, ColorClasses::Color color) const;
 
+  bool isEdgeTowards_reverse(const RScanline& line, const int currentIndex, int& outNewIndex,
+                     int& outEdgeY, ColorClasses::Color color) const;
+
+  bool isEdgeTowards_Gai(const RScanline& line, const int currentIndex, int& outNewIndex,
+                     int& outEdgeY, ColorClasses::Color color1,ColorClasses::Color color2) const;
 
   /**Contains the edges that have been detected on each scanline*/
   std::vector<Scanline> scanlinesVert;

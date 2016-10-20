@@ -8,7 +8,7 @@ bool IsRobotInPenaltyArea(const RobotPose& theRobotPose)
     float PENALTYWIDTH = 600.0;
     float PENALTYHEIGHT = 2200;
     float FIELDWIDTH = 9000;
-    if ( (theRobotPose.translation.x() < (-FIELDWIDTH/2+PENALTYWIDTH)) && (theRobotPose.translation.y() > -PENALTYHEIGHT/2) && (theRobotPose.translation.y() < PENALTYHEIGHT/2 ))
+    if ( (theRobotPose.translation.x() > -4500.0) && (theRobotPose.translation.x() < (-FIELDWIDTH/2+PENALTYWIDTH)) && (theRobotPose.translation.y() > -PENALTYHEIGHT/2) && (theRobotPose.translation.y() < PENALTYHEIGHT/2 ))
         return true;
     else
         return false;

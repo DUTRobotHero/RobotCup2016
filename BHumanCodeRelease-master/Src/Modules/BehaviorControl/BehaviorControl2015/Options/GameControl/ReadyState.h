@@ -12,21 +12,21 @@ option(ReadyState)
     int DEFENDER_NUMBER1 = 4;
     int DEFENDER_NUMBER2= 5;
 
-    float ATTACK_STRIKER_X = -250.0;
+    float ATTACK_STRIKER_X = -300.0;
     float ATTACK_STRIKER_Y = 0.0;
     float DEFEND_STRIKER_X = -900.0;
     float DEFEND_STRIKER_Y = 0.0;
 
-    float SUPPORTER_X = -250.0;
+    float SUPPORTER_X = -300.0;
     float SUPPORTER_Y = -1100.0;
     float DEFEND_SUPPORTER_X = -900.0;
     float DEFEND_SUPPORTER_Y = -1100.0;
     float KEEPER_X = -4000.0;
     float KEEPER_Y = 0.0;
-    float DEFENDER_X1 = -3000.0;
-    float DEFENDER_Y1 = 1000.0;
+    float DEFENDER_X1 = -1500.0;
+    float DEFENDER_Y1 = 700.0;
     float DEFENDER_X2 = -3000.0;
-    float DEFENDER_Y2 = -1000.0;
+    float DEFENDER_Y2 = -700.0;
 
     initial_state(TurnToPosition) {
         transition {
