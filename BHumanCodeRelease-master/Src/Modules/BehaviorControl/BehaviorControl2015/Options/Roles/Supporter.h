@@ -52,6 +52,8 @@ option(Supporter)
   {
     transition
     {
+        if( theRobotPose.translation.x() < 2000)
+            goto start;
       if(libCodeRelease.timeSinceBallWasSeen() > 15000)
         goto searchForBall;
       if(std::abs(theBallModel.estimate.position.angle()) < 5_deg)
@@ -85,13 +87,13 @@ option(Supporter)
     {
       if(libCodeRelease.timeSinceBallWasSeen() < 300)
         goto turnToBall;
-	  if(libCodeRelease.timeSinceBallWasSeen() > 60000)//若原地找球超过20秒(27000因为原先有7000的延时)，就回到中心
+	  if(libCodeRelease.timeSinceBallWasSeen() > 30000)//若原地找球超过20秒(27000因为原先有7000的延时)，就回到中心
 		  goto backToCenter;
     }
     action
     {
       theHeadControlMode = HeadControl::lookForward;    
-      WalkAtSpeedPercentage(Pose2f(1.f, 0.f, 0.f));
+      WalkAtSpeedPercentage(Pose2f(1.f/2, 0.f, 0.f));
     }
   }
   state(backToCenter){
