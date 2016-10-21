@@ -9,13 +9,13 @@ contrast = {
   value = 60;
 };
 exposure = {
-  value = 150;
+  value = 250;
 };
 fadeToBlack = {
   value = 0;
 };
 gain = {
-  value = 100;
+  value = 180;
 };
 hue = {
   value = 0;
@@ -27,5 +27,5 @@ sharpness = {
   value = 2;
 };
 whiteBalance = {
-  value = 5099;
+  value = 6500;
 };

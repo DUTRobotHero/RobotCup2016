@@ -1,4 +1,4 @@
-camera = upper;
+camera = lower;
 autoExposure = {
   value = 0;
 };
@@ -9,23 +9,23 @@ contrast = {
   value = 60;
 };
 exposure = {
-  value = 150;
+  value = 300;
 };
 fadeToBlack = {
   value = 0;
 };
 gain = {
-  value = 100;
+  value = 200;
 };
 hue = {
   value = 0;
 };
 saturation = {
-  value = 240;
+  value = 255;
 };
 sharpness = {
   value = 2;
 };
 whiteBalance = {
-  value = 5099;
+  value = 6500;
 };
