@@ -204,7 +204,10 @@ option(Keeper)
         transition {
             if(libCodeRelease.timeSinceBallWasSeen() > 500)
                 goto searchForBall;
-            if(libCodeRelease.between(theBallModel.estimate.position.y(), 20.f, 50.f)
+          //  if(libCodeRelease.between(theBallModel.estimate.position.y(), 20.f, 50.f)
+            //&& libCodeRelease.between(theBallModel.estimate.position.x(), 140.f, 170.f)
+            //&& std::abs(libCodeRelease.angleToGoal) < 2_deg)
+            if(libCodeRelease.between(theBallModel.estimate.position.y(), -20.f, 20.f)
             && libCodeRelease.between(theBallModel.estimate.position.x(), 140.f, 170.f)
             && std::abs(libCodeRelease.angleToGoal) < 2_deg)
                 goto kick;
@@ -218,7 +221,8 @@ option(Keeper)
         }
         action {
             theHeadControlMode = HeadControl::focusBall;
-            WalkToTarget(Pose2f(80.f, 80.f, 80.f), Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 30.f));
+     //       WalkToTarget(Pose2f(80.f, 80.f, 80.f), Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 30.f));
+     WalkToTarget(Pose2f(80.f, 80.f, 80.f), Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y()));
             int area = GetAreaNumber(theBallModel,theRobotPose);
             ShowArea(area);
             ShowSomething(theBallModel.estimate.position.norm());
@@ -226,23 +230,25 @@ option(Keeper)
         }
     }
 
-    state(kick) {
+    state(kick) {  
         transition {
             if(state_time > 3000 || (state_time > 10 && action_done))
                 goto start;
             int area = GetAreaNumber(theBallModel,theRobotPose);    //防止球在被踢的中途出去，快速复位
-            if( area == 4)
+          //FIXED by Skye 10-21
+            if(action_done && area == 4)
                 goto turnToBall;
-            else if( area == 2)
+            else if( action_done && area == 2)
                 goto WalkToMiddlePoint;
-            else if( area == 1)
+            else if( action_done && area == 1)
                 goto WalkToVerticalPoint;
         }
         action {
             Annotation("Alive and Kickin'");
             theHeadControlMode = HeadControl::focusBall;
             //判断障碍物的距离
-            InWalkKick(WalkRequest::left, Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 160.f, theBallModel.estimate.position.y() - 55.f));
+           // InWalkKick(WalkRequest::left, Pose2f(libCodeRelease.angleToGoal, theBallModel.estimate.position.x() - 160.f, theBallModel.estimate.position.y() - 55.f));
+            ShootKick();
             int area = GetAreaNumber(theBallModel,theRobotPose);
             ShowArea(area);
             ShowSomething(theBallModel.estimate.position.norm());
