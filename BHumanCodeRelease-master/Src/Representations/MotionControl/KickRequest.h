@@ -13,6 +13,7 @@ STREAMABLE(KickRequest,
   ENUM(KickMotionID,
   {,
     kickForward,
+	newKick,
     none,
   });
 

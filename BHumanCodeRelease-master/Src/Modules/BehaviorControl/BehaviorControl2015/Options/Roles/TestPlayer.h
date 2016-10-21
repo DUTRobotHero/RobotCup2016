@@ -5,6 +5,7 @@ option(TestPlayer)
   {
     transition
     {
+		goto shoot;
     }
     action
     {
@@ -12,5 +13,14 @@ option(TestPlayer)
       Stand();
     }
   }
+      state(shoot) {
+        transition {
+			if (action_done)
+				goto start;
+        }
+        action {
+		 Shoot(KickRequest::kickForward);
+        }
+    }
 
 }

@@ -13,6 +13,8 @@ option(PlayingState)
     {
       if(theFallDownState.state == FallDownState::upright && action_done)
         goto play;
+		if (theRobotInfo.number == 6)
+			goto	test;
     }
     action
     {
@@ -20,7 +22,14 @@ option(PlayingState)
       Stand();
     }
   }
-
+state(test)
+{
+	transition{
+		}
+	action{
+		TestPlayer();
+		}
+	}
   state(play)
   {
       transition
