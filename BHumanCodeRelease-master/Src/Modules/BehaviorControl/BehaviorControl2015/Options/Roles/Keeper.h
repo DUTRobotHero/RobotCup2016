@@ -53,16 +53,16 @@ option(Keeper)
             int area = GetAreaNumber(theBallModel,theRobotPose);
             ShowArea(area);
             //too slow
-       /*    WalkToTargetAbsolute(Pose2f(theRobotPose.rotation - Ball2Field.rotation > 0 ? -pi / 8 : pi / 8,
+          WalkToTargetAbsolute(Pose2f(theRobotPose.rotation - Ball2Field.rotation > 0 ? -pi / 32 : pi / 32,
             theRobotPose.translation.x()+3900 > 0? -30.f: 30.f,
-            theRobotPose.translation.y()-Ball2Field.translation.y() > 0? -30.f: 30.f),Pose2f(0.0,-4000.0,Ball2Field.translation.y()));*/
+            theRobotPose.translation.y()-Ball2Field.translation.y() > 0? -30.f: 30.f),Pose2f(0.0,-4000.0,Ball2Field.translation.y()));
             //先转身再垂直距离走过去
-            float aim_x = -3950.0;
+          /*  float aim_x = -3950.0;
         //    float aim_y = 550* Ball2Field.translation.y()/(Ball2Field.translation.x()+4500.0);
             float aim_y = Ball2Field.translation.y();
             //转化为相对于机器人的坐标
             Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,aim_x,aim_y);
-            WalkToTarget(Pose2f(50.f,40.f,40.f),Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
+            WalkToTarget(Pose2f(50.f,40.f,40.f),Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));*/
             ShowSomething(theBallModel.estimate.position.norm());
 
         }
