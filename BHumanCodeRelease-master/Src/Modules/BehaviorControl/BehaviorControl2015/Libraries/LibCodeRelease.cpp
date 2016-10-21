@@ -100,9 +100,9 @@ namespace Behavior2015
           else
               y = -600.f;
       }
-      //OUTPUT_TEXT("Y = " << y);
+  //    OUTPUT_TEXT("Y = " << y);
       angleToGoalForStriker = (theRobotPose.inverse() * Vector2f(theFieldDimensions.xPosOpponentGroundline, y)).angle();
-      //OUTPUT_TEXT("angleToGoalForStriker" << angleToGoalForStriker * 180.f / 3.141592654);
+     // OUTPUT_TEXT("angleToGoalForStriker" << angleToGoalForStriker * 180.f / 3.141592654);
       
       angleForPenaltyStriker = (theRobotPose.inverse() * Vector2f(theFieldDimensions.xPosOpponentGroundline, -300.f)).angle();
   }

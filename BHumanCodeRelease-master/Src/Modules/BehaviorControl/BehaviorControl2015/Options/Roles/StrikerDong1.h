@@ -128,8 +128,8 @@ option(StrikerDong1)
 					}					
 					//障碍较近 并在一条线的情况  向左或者向右变向
 					else if ( libCodeRelease.between(libCodeRelease.angleToGoalForStriker, 
-																	nearist.right.angle() -5_deg, 
-																	nearist.left.angle() +5_deg) )//5_deg为拓展的角度大约5度
+																	nearist.right.angle() - 5_deg, 
+																	nearist.left.angle() + 5_deg) )//5_deg为拓展的角度大约5度
 					{
 						if (theRobotPose.translation.y()>0.f)
 							goto sideKickLeft;
@@ -147,7 +147,7 @@ option(StrikerDong1)
 	action
 	{
 		theHeadControlMode = HeadControl::focusBall;
-        WalkToTarget(Pose2f(pi/8, 20.f, 20.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 0.f));
+        WalkToTarget(Pose2f(pi/8, 20.f, 20.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y()));
 	}
 }
 /* When the ball is behind robot ,this state make robot walk beside the ball first*/
@@ -167,7 +167,7 @@ state(alignBesideBall)
 			WalkToTarget(Pose2f(pi/8, 20.f, 20.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() - 120.f));
 			}
 		else {
-			WalkToTarget(Pose2f(pi/8, 20.f, 20.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() +120.f));
+			WalkToTarget(Pose2f(pi/8, 20.f, 20.f), Pose2f(libCodeRelease.angleToGoalForStriker, theBallModel.estimate.position.x() - 150.f, theBallModel.estimate.position.y() + 120.f));
 			}
 	}
 }
@@ -179,12 +179,12 @@ state(alignBesideBall)
                 goto turnToBall;
             if(libCodeRelease.timeSinceBallWasSeen() > 7000)
                 goto searchForBall;
-           /* if( !theObstacleModel.obstacles.empty()  ) {
+            if( !theObstacleModel.obstacles.empty()  ) {
                 for (Obstacle o:theObstacleModel.obstacles) {
                     if ( o.type == Obstacle::goalpost )
                         goto shoot;
                 }
-            }*/
+            }
             if (theGameInfo.secondaryState == STATE2_PENALTYSHOOT)
                 goto shoot;
         }
