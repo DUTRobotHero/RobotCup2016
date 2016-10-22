@@ -37,7 +37,7 @@ option(StrikerDong1)
                 goto alignToGoal;
         }
         action {
-            theHeadControlMode = HeadControl::focusBall;
+            theHeadControlMode = HeadControl::lookForward;
             Pose2f speed(0.f,0.f,0.f);
             if  ( theBallModel.estimate.position.norm() > 3500.f )
                 speed=Pose2f(1.f,1.f,1.f);
@@ -94,7 +94,7 @@ option(StrikerDong1)
           && libCodeRelease.between(theBallModel.estimate.position.x(), 140.f, 170.f)
           && std::abs(libCodeRelease.angleToGoalForStriker) < angleRange)
 		  {
-			if (libCodeRelease.filterdObstacles.empty() )//若无障碍　则根据当前位置决定踢球方式
+			if (libCodeRelease.theObstacleModel.obstacles.empty() )//若无障碍　则根据当前位置决定踢球方式
 				{
 					/*if (theRobotPose.translation.y()>2000.f)
 						goto sideKickLeft;
