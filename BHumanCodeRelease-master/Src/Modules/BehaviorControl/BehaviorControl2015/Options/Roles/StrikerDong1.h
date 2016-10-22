@@ -1,6 +1,7 @@
 /** A test striker option without common decision */
 option(StrikerDong1)
 {
+	float angleRange=2_deg;
     initial_state(start) {
         transition {
             if(state_time > 1000)
@@ -81,13 +82,17 @@ option(StrikerDong1)
  {
 	 transition
 	 {
+		 if (theRobotPose.translation.x()>3800.f && theRobotPose.translation.y()<750.f &&theRobotPose.translation.y() >-750.f )
+			 angleRange=5_deg;
+		else
+			angleRange=2_deg;
 		  if(libCodeRelease.timeSinceBallWasSeen() > 7000)
 		       goto searchForBall;
 		 if (theBallModel.estimate.position.x() < 0)
 			 goto alignBesideBall;
 		 if(libCodeRelease.between(theBallModel.estimate.position.y(), -20.f, 20.f)
           && libCodeRelease.between(theBallModel.estimate.position.x(), 140.f, 170.f)
-          && std::abs(libCodeRelease.angleToGoalForStriker) < 2_deg)
+          && std::abs(libCodeRelease.angleToGoalForStriker) < angleRange)
 		  {
 			if (libCodeRelease.filterdObstacles.empty() )//若无障碍　则根据当前位置决定踢球方式
 				{
