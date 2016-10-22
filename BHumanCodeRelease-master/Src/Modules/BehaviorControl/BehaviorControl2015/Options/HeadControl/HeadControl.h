@@ -22,7 +22,7 @@ option(HeadControl)
   state(lookForward) {action LookForward();}
   state(leftAndRight)  {action LeftAndRight();}
   state(searchForBall)  {action SearchForBall();}
-  state(lookHigh)  {action SetHeadPanTilt(0.0f, 0.1f, 150_deg);}
+  state(lookHigh)  {action SetHeadPanTilt(0.0f, 0.0f, 150_deg);}
   state(focusBall){action SetHeadTarget(Vector3f(theBallModel.estimate.position.x(),
 																				theBallModel.estimate.position.y(),
 																				theBallModel.estimate.radius/2.0));}

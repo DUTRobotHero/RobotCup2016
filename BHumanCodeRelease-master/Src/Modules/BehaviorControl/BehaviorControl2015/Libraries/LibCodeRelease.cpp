@@ -55,7 +55,6 @@ namespace Behavior2015
       float y = 0.f;
       std::vector<Obstacle> b = filterdObstacles;
       int numb = b.size();
-      OUTPUT_TEXT("numb = "<< numb);
       if(numb == 0)
       {
           y = 0.f;
@@ -114,7 +113,7 @@ namespace Behavior2015
       }
       //OUTPUT_TEXT("Y = "<< y);
       angleToGoalForStriker = (theRobotPose.inverse() * Vector2f(theFieldDimensions.xPosOpponentGroundline, y)).angle();
-      //OUTPUT_TEXT("angleToGoalForStriker" << angleToGoalForStriker * 180.f / 3.141592654);
+      angleForPenaltyStriker = (theRobotPose.inverse() * Vector2f(theFieldDimensions.xPosOpponentGroundline, -300.f)).angle();
   }
 
   void LibCodeRelease::postProcess()
