@@ -14,6 +14,7 @@ option(Supporter)
 		state(sideleft)
 	{
 		transition{
+				//当strikerd的位置大于1000mm，supporter去右边
 			if(otherTeammate.pose.translation.y()>=1000.f)
 					goto sideright;
 			if(libCodeRelease.timeSinceBallWasSeen() > 10000)
@@ -32,7 +33,7 @@ option(Supporter)
 	state(sideright)
 	{	
 		transition{
-				//当strikerd的位置小于-50cm，supporter去左边
+				//当strikerd的位置小于-1000mm，supporter去左边
 			if(otherTeammate.pose.translation.y()<=-1000.f)
 					goto sideleft;
 			if(libCodeRelease.timeSinceBallWasSeen() > 10000)

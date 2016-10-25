@@ -25,7 +25,7 @@ option(HeadControl)
   state(lookHigh)  {action SetHeadPanTilt(0.0f, 0.0f, 150_deg);}
   state(focusBall){action SetHeadTarget(Vector3f(theBallModel.estimate.position.x(),
 																				theBallModel.estimate.position.y(),
-																				theBallModel.estimate.radius/2.0));}
+																				theBallModel.estimate.radius/2.0f));}
 }
 
 struct HeadControl

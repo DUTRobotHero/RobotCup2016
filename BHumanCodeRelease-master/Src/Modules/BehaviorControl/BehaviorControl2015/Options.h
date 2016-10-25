@@ -61,8 +61,6 @@
 #include "Options/Roles/Striker.h"
 #include "Options/Roles/Keeper.h"
 #include "Options/Roles/Supporter.h"
-#include "Options/Roles/TestPlayer.h"
-#include "Options/Roles/StrikerTestShoot.h"
 #include "Options/Roles/DefenderForward.h"
 #include "Options/Roles/DefenderBackward.h"
 
@@ -76,7 +74,7 @@
 #include "Options/Skills/ShootKickForPenalty.h"
 
 
-#include "Options/Roles/StrikerDong1.h"
+#include "Options/Roles/StrikerDong.h"
 #include "Options/Roles/StrikerMing.h"
 
 #include "Options/Skills/ArmContact.h"

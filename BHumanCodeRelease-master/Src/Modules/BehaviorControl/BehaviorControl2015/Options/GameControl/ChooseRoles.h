@@ -113,7 +113,7 @@ state(Striker)
 	  action
 	  {
                 ShowTeammateData(otherTeammate.number,otherTeammate.ball);
-                StrikerDong1();
+                StrikerDong();
                 theBehaviorStatus.role = Role::striker;
 		}
 	}
@@ -148,23 +148,6 @@ state(Striker)
                 Supporter();
 		}
 }
-/*	state(defaultRole)
-  {
-	  
-	  action
-	  {
-            if (theRobotInfo.number == SUPPORTER_NUM){
-                theBehaviorStatus.role = Role::supporter;
-                Supporter();
-                }
-            else if (theRobotInfo.number == STRIKER_NUM){
-                theBehaviorStatus.role = Role::striker;
-                StrikerDong1();
-                }
-			//ShowTeammateData(otherTeammate.number,otherTeammate.ball);
-			 
-		}
-	}*/
 }
 Teammate otherTeammate;
 Teammate otherDefender;

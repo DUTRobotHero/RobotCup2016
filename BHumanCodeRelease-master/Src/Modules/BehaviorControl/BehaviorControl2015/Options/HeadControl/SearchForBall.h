@@ -16,7 +16,7 @@ option(SearchForBall)
                 goto lookLeft;
         }
         action {
-            SetHeadPanTilt(0.8, 0.f, 50_deg);
+            SetHeadPanTilt(0.8f, 0.f, 50_deg);
         }
     }
     state(lookLeft) {
@@ -25,7 +25,7 @@ option(SearchForBall)
                 goto lookRight1;
         }
         action {
-            SetHeadPanTilt(-0.8, 0.f, 50_deg);
+            SetHeadPanTilt(-0.8f, 0.f, 50_deg);
         }
     }
 
@@ -35,7 +35,7 @@ option(SearchForBall)
                 goto lookLeft1;
         }
         action {
-            SetHeadPanTilt(0.8, 0.f, 50_deg);
+            SetHeadPanTilt(0.8f, 0.f, 50_deg);
         }
     }
 
@@ -47,7 +47,7 @@ option(SearchForBall)
                 goto LeftAndRight;
         }
         action {
-            SetHeadPanTilt(-0.8, 0.f, 50_deg);
+            SetHeadPanTilt(-0.8f, 0.f, 50_deg);
         }
     }
 }

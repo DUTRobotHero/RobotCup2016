@@ -65,9 +65,9 @@ namespace Behavior2015
             if(b[0].type == Obstacle::goalpost)
             {
                 if(theRobotPose.translation.y() > 750.f)
-                    y = LibCodeRelease::turnCoordnate(b[0].right).y() - 150.f;
+                    y = LibCodeRelease::turnCoordnate(b[0].center).y() - 150.f;
                 else
-                    y = LibCodeRelease::turnCoordnate(b[0].right).y() + 150.f;
+                    y = LibCodeRelease::turnCoordnate(b[0].center).y() + 150.f;
             }
             else
             {

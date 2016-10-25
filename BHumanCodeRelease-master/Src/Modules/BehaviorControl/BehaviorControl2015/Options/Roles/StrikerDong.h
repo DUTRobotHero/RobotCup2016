@@ -1,5 +1,21 @@
-/** A test striker option without common decision */
-option(StrikerDong1)
+/** A striker option write by dong */
+/*StrikerDong策略简介
+ * StrikerDong的策略是参照bhuman给出的测试版Striker在其基础上丰富了踢球动作
+ * 调用了libCodeRelease.cpp 中由Ming写的angleToGoalForStriker作为踢球方向
+ * 各个state介绍：
+ * turnToBall
+ * walkToBall
+ * alignToGoal(将身体转向球门)
+ * alignBehindBall(使身体，球，球门在一条直线)(这时会根据看到的障碍决定踢球姿势)
+ * alignBesideBall(当在alignBehindBall发现球在身后的时候会进入这个state先走到球的边上)
+ * kickLeft 左脚直踢
+ * sideKickLeft　左脚向右边踢
+ * sideKickRight　右脚向左边踢
+ * shoot　射门动作
+ * searchForBall　找球
+ * backToCenter 回到中心圆(如果长时间没找到球就会切到这个state下,依赖于Xing写的ReadyState())
+ * */
+option(StrikerDong)
 {
 	float angleRange=2_deg;
     initial_state(start) {
@@ -10,7 +26,6 @@ option(StrikerDong1)
         action {
             theHeadControlMode = HeadControl::lookForward;
             theBehaviorStatus.role = Role::striker;
-            //Stand();
         }
     }
 
@@ -38,6 +53,7 @@ option(StrikerDong1)
         }
         action {
             theHeadControlMode = HeadControl::lookForward;
+			//控制走向球的速度，由于步态没有调，所以走的速度过快会摔倒，这里根据距离球的距离将走路速度调低，如果能把步态调好这里可以加快速度
             Pose2f speed(0.f,0.f,0.f);
             if  ( theBallModel.estimate.position.norm() > 3500.f )
                 speed=Pose2f(1.f,1.f,1.f);
@@ -58,8 +74,6 @@ option(StrikerDong1)
             WalkToTarget(speed, theBallModel.estimate.position);
         }
     }
-
-
   state(alignToGoal)
   {
     transition
@@ -103,15 +117,11 @@ option(StrikerDong1)
 					else*/ 
 						goto shoot;
 				}
-			//else if (theObstacleModel.obstacles.size()==1 && theObstacleModel.obstacles[0].type == Obstacle::goalpost)//判断是否只有目标物一个障碍
-			//	  goto kick;//此处可继续加强条件以达到射门条件　未测试
      		else //有障碍的情况
 				{
 					//有多个障碍，找到与目标方向偏离最小的障碍
 					Obstacle nearist;
 					float minDeltaAngle=100.f;//test value
-                    /*if(theRobotPose.translation.x() > 3000.f)
-                        goto kickLeft;*/
 					for (Obstacle o:libCodeRelease.filterdObstacles)
 					{
 						float delta_angle=fabs(o.center.angle()-libCodeRelease.angleToGoalForStriker);
@@ -195,8 +205,6 @@ state(alignBesideBall)
         }
         action {
             theHeadControlMode = HeadControl::focusBall;
-            //LeftKick(WalkRequest::sidewardsLeft);
-            //ShootKick();//shoot type
             LeftKick(WalkRequest::left);
         }
     }
@@ -240,7 +248,7 @@ state(alignBesideBall)
         }
         action {
             theHeadControlMode = HeadControl::focusBall;
-            ShootKick();//shoot type
+            ShootKick();
         }
     }
     state(firstKick) {
@@ -276,20 +284,4 @@ state(alignBesideBall)
             ReadyState();
         }
     }
-
-/*    state(waitAtMiddleLine) {
-        transition {
-            float distance = theBallModel.estimate.position.norm();
-            if( std::abs(distance) < 1000.0 )
-                goto turnToBall;
-            if( state_time > 7000)
-                goto searchForBall;
-        }
-        action {
-            theHeadControlMode = HeadControl::focusBall;
-            Pose2f relatePoint=AbsolutePointToRobot(theRobotPose,0.0,theRobotPose.translation.y());
-            WalkToTarget(Pose2f(50.f,1.f,1.f),Pose2f(relatePoint.rotation,relatePoint.translation.x(),relatePoint.translation.y()));
-        }
-    }*/
-
 }

@@ -5,13 +5,11 @@ option(ReadyState)
     float setTurnVelocity = pi/8;
     float deltaDistance = 10.0;
     float distance;
-
-    int KEEPER_NUMBER = 1;
-    int STRIKER_NUMBER = 2;
-    int SUPPORTER_NUMBER = 3;
-    int DEFENDER_NUMBER1 = 4;
-    int DEFENDER_NUMBER2= 5;
-
+	#define KEEPER_NUMBER 1
+    #define STRIKER_NUMBER 2
+    #define SUPPORTER_NUMBER 3
+    #define DEFENDER_NUMBER1 4
+    #define DEFENDER_NUMBER2 5
     float ATTACK_STRIKER_X = -300.0;
     float ATTACK_STRIKER_Y = 0.0;
     float DEFEND_STRIKER_X = -900.0;
@@ -151,6 +149,7 @@ option(ReadyState)
             }
         }
         action {
+            theHeadControlMode = HeadControl::leftAndRight;
 
             if ( theRobotInfo.number == SUPPORTER_NUMBER) {        //Hawkeye
                 Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,SUPPORTER_X,SUPPORTER_Y);
@@ -236,6 +235,8 @@ option(ReadyState)
             }
         }
         action {
+			            theHeadControlMode = HeadControl::leftAndRight;
+
             if ( theRobotInfo.number == SUPPORTER_NUMBER) {        //Hawkeye
                 Pose2f relatePoint = AbsolutePointToRobot(theRobotPose,DEFEND_SUPPORTER_X,DEFEND_SUPPORTER_Y);
 

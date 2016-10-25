@@ -17,7 +17,7 @@ option(LeftAndRight)
                 goto lookLeft;
         }
         action {
-            SetHeadPanTilt(0.8, 0.f, 50_deg);
+            SetHeadPanTilt(0.8f, 0.f, 50_deg);
         }
     }
     state(lookLeft) {
@@ -26,7 +26,7 @@ option(LeftAndRight)
                 goto lookRight1;
         }
         action {
-            SetHeadPanTilt(-0.8, 0.f, 50_deg);
+            SetHeadPanTilt(-0.8f, 0.f, 50_deg);
         }
     }
 
@@ -36,7 +36,7 @@ option(LeftAndRight)
                 goto lookLeft1;
         }
         action {
-            SetHeadPanTilt(0.8, 0.f, 50_deg);
+            SetHeadPanTilt(0.8f, 0.f, 50_deg);
         }
     }
 
@@ -47,7 +47,7 @@ option(LeftAndRight)
                 goto lookForward;
         }
         action {
-            SetHeadPanTilt(-0.8, 0.f, 50_deg);
+            SetHeadPanTilt(-0.8f, 0.f, 50_deg);
         }
     }
 

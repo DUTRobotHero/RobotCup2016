@@ -3,11 +3,11 @@
  */
 option(HandleGameState)
 {
-	int KEEPER_NUMBER = 1;
-    int STRIKER_NUMBER = 2;
-    int SUPPORTER_NUMBER = 3;
-    int DEFENDER_NUMBER1 = 4;
-    int DEFENDER_NUMBER2= 5;
+	#define KEEPER_NUMBER 1
+    #define STRIKER_NUMBER 2
+    #define SUPPORTER_NUMBER 3
+    #define DEFENDER_NUMBER1 4
+    #define DEFENDER_NUMBER2 5
     /** As game state changes are discrete external events and all states are independent of each other,
         a common transition can be used here. */
     common_transition {
