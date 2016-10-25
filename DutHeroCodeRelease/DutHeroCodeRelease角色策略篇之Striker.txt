@@ -1,0 +1,53 @@
+﻿StrikerDong文件位置
+
+BHumanCodeRelease-master/Src/Modules/BehaviorControl/BehaviorControl2015/Options/Roles
+
+StrikerDong策略简介
+
+    StrikerDong的策略是参照bhuman给出的测试版Striker在其基础上丰富了踢球动作
+
+     调用了libCodeRelease.cpp 中由Ming写的angleToGoalForStriker作为踢球方向
+
+各个state介绍：
+
+    turnToBall
+
+    walkToBall
+
+    alignToGoal(将身体转向球门)
+
+    alignBehindBall(使身体，球，球门在一条直线)(这时会根据看到的障碍决定踢球姿势)
+
+    alignBesideBall(当在alignBehindBall发现球在身后的时候会进入这个state先走到球的边上)
+
+    kickLeft 左脚直踢
+
+    sideKickLeft　左脚向右边踢
+
+    sideKickRight　右脚向左边踢
+
+    shoot　射门动作
+
+    searchForBall　找球
+
+    backToCenter 回到中心圆(如果长时间没找到球就会切到这个state下,依赖于Xing写的ReadyState())
+
+alignBehindBall中踢球姿势条件简介：
+
+    通过调用Obstacles模块来决定踢球方式
+
+    如果没有障碍，直接shoot(射门),如果有障碍，找到距离angleToGoalForStriker最近的障碍进行判断，
+
+根据最近障碍的位置决定姿势，如果障碍较远，则直接左前踢，如果障碍较近，根据自定位位置左侧踢和右侧踢
+
+具体实现请见代码。
+
+找球策略：
+
+　如果在任何状态下没有看到球超过7000ms，就会进行找球（原地转圈）,如果还没有找到球，超过17000ms
+
+就会回到初始位置，这时调用ReadyState().
+
+
+
+

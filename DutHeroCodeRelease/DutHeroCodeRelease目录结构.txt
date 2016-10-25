@@ -1,0 +1,39 @@
+1.环境搭建(bhuman刷机　ide的配置)
+
+2.对bhuman架构的整体理解
+
+2.1moudle representation的关系
+
+2.2如何添加一个option
+
+2.3调试方法（ShowData的option,OUTPUT宏定义等）
+
+2.4....
+
+3.角色策略
+
+Striker
+
+Supporter
+
+Keeper
+
+Defender
+
+4.游戏状态的介绍
+
+initial ready set play penalty 结合代码说明在每个state机器人会做什么
+
+５.GameController(裁判盒)配置及使用
+
+６.SimRobot的使用
+
+6.1在SimRobot中校准机器人的场地线
+
+6.2在SimRobot中校准机器人的色标
+
+6.3在SimRobot中进行模拟测试以及一些小技巧（快捷键等）
+
+7.bush的使用
+
+
